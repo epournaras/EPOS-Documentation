@@ -21,7 +21,7 @@ A 20-minutes video tutorial can be found [here](https://www.youtube.com/watch?v=
 2. Install `Sphinx` by typing this in your terminal:
 
 ```
-pip install sphinx sphinx-autobuild
+sudo pip3 install sphinx sphinx-autobuild
 ```
 
 3. Create a directory `docs` within your project, and enter this directory
