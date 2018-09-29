@@ -242,14 +242,70 @@
 </div>
 <div class="section" id="scaling-techniques">
 <span id="global-cost-function-scaling"></span><h2>Scaling Techniques<a class="headerlink" href="#scaling-techniques" title="Permalink to this headline">¶</a></h2>
+<p>As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with <a class="reference internal" href="#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a>, for any other global cost function it is ignored.</p>
+<p>The scaling technique can be selected via <code class="docutils literal notranslate"><span class="pre">-setScaling</span></code> command line arfgument. The available options are described below.</p>
 <div class="section" id="standard-normalization">
 <span id="global-cost-function-scaling-standard"></span><h3>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
+<p>The standard normalization <span class="math notranslate nohighlight">\(n(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, with the mean value <span class="math notranslate nohighlight">\(\mu(x)\)</span> and the standard deviation <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-std-normalization">
+<span class="eqno">(5)<a class="headerlink" href="#equation-equation-std-normalization" title="Permalink to this equation">¶</a></span>\[n(x) = \frac{x - \mu(x)}{\sigma(x)}\]</div>
+<p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(\mu(x)\)</span> and <span class="math notranslate nohighlight">\(\sigma(x)\)</span>, respectively. Note that vector <span class="math notranslate nohighlight">\(n(x)\)</span> is also <span class="math notranslate nohighlight">\(d\)</span>-dimensional vector. Moreover, the values in <span class="math notranslate nohighlight">\(n(x)\)</span> have the mean of 0 and the standard deviation of 1. Note that values in <span class="math notranslate nohighlight">\(n(x)\)</span> can be negative, but always between -1 and 1.</p>
+<p>This standard normalization can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-setScaling</span> <span class="pre">STD</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="std-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#std-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">standard_normalization</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the standard normalization can be found in clas <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> The standard deviation of a vector whose all values are equal is 0, and if the standard normalization is applied on such vector, it will result in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
 </div>
 <div class="section" id="min-max-scaling">
 <span id="global-cost-function-scaling-min-max"></span><h3>Min-Max Scaling<a class="headerlink" href="#min-max-scaling" title="Permalink to this headline">¶</a></h3>
+<p>The min-max scaling <span class="math notranslate nohighlight">\(m(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, where <span class="math notranslate nohighlight">\(x_{min}\)</span> is the minimal value found in <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(x_{max}\)</span> is the maximal value found in <span class="math notranslate nohighlight">\(x\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-min-max">
+<span class="eqno">(6)<a class="headerlink" href="#equation-equation-min-max" title="Permalink to this equation">¶</a></span>\[m(x) = \frac{x - x_{min}}{x_{max} - x_{min}}\]</div>
+<p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(x_{min}\)</span> and <span class="math notranslate nohighlight">\(x_{max} - x_{min}\)</span>, respectively. The values in <span class="math notranslate nohighlight">\(m(x)\)</span> are always non-negative. More precisely, min-max scaling maps <span class="math notranslate nohighlight">\(x_{min}\)</span> to 0 and <span class="math notranslate nohighlight">\(x_{max}\)</span> to 1.</p>
+<p>This min-max scaling can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-setScaling</span> <span class="pre">MIN-MAX</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="min-max-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#min-max-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">min_max_normalization</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the min-max scaling can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> For a vector whose values are all equal, it holds that <span class="math notranslate nohighlight">\(x_{min} = x_{max}\)</span>, hence if the min-max scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
 </div>
 <div class="section" id="unit-length-scaling">
 <span id="global-cost-function-scaling-unit-length"></span><h3>Unit-Length Scaling<a class="headerlink" href="#unit-length-scaling" title="Permalink to this headline">¶</a></h3>
+<p>The unit-length scaling <span class="math notranslate nohighlight">\(u(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, whose Euclidean (<span class="math notranslate nohighlight">\(L_{2}\)</span>) norm is <span class="math notranslate nohighlight">\(\left\lVert x \right\rVert\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-unit-length">
+<span class="eqno">(7)<a class="headerlink" href="#equation-equation-unit-length" title="Permalink to this equation">¶</a></span>\[u(x) = \frac{x}{\left\lVert x \right\rVert}\]</div>
+<p>where division is performed element-wise with constant <span class="math notranslate nohighlight">\(\left\lVert x \right\rVert\)</span>. The Euclidean norm of the resulting vector <span class="math notranslate nohighlight">\(u(x)\)</span> has the Euclidean norm of 1, <span class="math notranslate nohighlight">\(\left\lVert u(x) \right\rVert\)</span>. The absolute value of every element in <span class="math notranslate nohighlight">\(u(x)\)</span> is between 0 and 1.</p>
+<p>This unit-length scaling can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-setScaling</span> <span class="pre">UNIT-LENGTH</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="unit-length-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#unit-length-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">unit_length_normalization</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the unit-length scaling can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> A vector whose all values are 0, has the Euclidean norm of 0, and if the unit-length scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
 </div>
 </div>
 </div>

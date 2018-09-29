@@ -116,18 +116,90 @@ The exact implementation of the function is given in ``func.RMSECostFunction.jav
 Scaling Techniques
 ==================
 
+As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with :ref:`global-cost-function-rss`, for any other global cost function it is ignored.
+
+The scaling technique can be selected via ``-setScaling`` command line arfgument. The available options are described below.
+
 .. _global-cost-function-scaling-standard:
 
 Standard Normalization
 ----------------------
+
+The standard normalization :math:`n(\cdot)` of a vector :math:`x \in \mathbb{R}^{d}`, with the mean value :math:`\mu(x)` and the standard deviation :math:`\sigma(x)` is defined as follows:
+
+.. math::
+   :label: equation-std-normalization
+
+   n(x) = \frac{x - \mu(x)}{\sigma(x)}
+
+where subtraction and division are performed element-wise with constants :math:`\mu(x)` and :math:`\sigma(x)`, respectively. Note that vector :math:`n(x)` is also :math:`d`-dimensional vector. Moreover, the values in :math:`n(x)` have the mean of 0 and the standard deviation of 1. Note that values in :math:`n(x)` can be negative, but always between -1 and 1.
+
+This standard normalization can be selected in one of the following two ways:
+
+1. either setting ``-setScaling STD``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: std-configuration-java
+
+      public static UnaryOperator<Vector> normalizer = Vector.standard_normalization;
+
+The implementation of the standard normalization can be found in clas ``data.Vector`` and is implemented as ``UnaryOperator<Vector>`` function.
+
+**Limitations:** The standard deviation of a vector whose all values are equal is 0, and if the standard normalization is applied on such vector, it will result in division by zero. As a solution to this, a small constant (:math:`10^{-9}`) is added in the denominator.
 
 .. _global-cost-function-scaling-min-max:
 
 Min-Max Scaling
 ---------------
 
+The min-max scaling :math:`m(\cdot)` of a vector :math:`x \in \mathbb{R}^{d}`, where :math:`x_{min}` is the minimal value found in :math:`x`, and :math:`x_{max}` is the maximal value found in :math:`x`, is defined as follows:
+
+.. math::
+   :label: equation-min-max
+
+   m(x) = \frac{x - x_{min}}{x_{max} - x_{min}}
+
+where subtraction and division are performed element-wise with constants :math:`x_{min}` and :math:`x_{max} - x_{min}`, respectively. The values in :math:`m(x)` are always non-negative. More precisely, min-max scaling maps :math:`x_{min}` to 0 and :math:`x_{max}` to 1. 
+
+This min-max scaling can be selected in one of the following two ways:
+
+1. either setting ``-setScaling MIN-MAX``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: min-max-configuration-java
+
+      public static UnaryOperator<Vector> normalizer = Vector.min_max_normalization;
+
+The implementation of the min-max scaling can be found in class ``data.Vector`` and is implemented as ``UnaryOperator<Vector>`` function.
+
+**Limitations:** For a vector whose values are all equal, it holds that :math:`x_{min} = x_{max}`, hence if the min-max scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (:math:`10^{-9}`) is added in the denominator.
+
 .. _global-cost-function-scaling-unit-length:
 
 Unit-Length Scaling
 -------------------
 
+The unit-length scaling :math:`u(\cdot)` of a vector :math:`x \in \mathbb{R}^{d}`, whose Euclidean (:math:`L_{2}`) norm is :math:`\left\lVert x \right\rVert`, is defined as follows:
+
+.. math::
+   :label: equation-unit-length
+
+   u(x) = \frac{x}{\left\lVert x \right\rVert}
+
+where division is performed element-wise with constant :math:`\left\lVert x \right\rVert`. The Euclidean norm of the resulting vector :math:`u(x)` has the Euclidean norm of 1, :math:`\left\lVert u(x) \right\rVert = 1`. The absolute value of every element in :math:`u(x)` is between 0 and 1.
+
+This unit-length scaling can be selected in one of the following two ways:
+
+1. either setting ``-setScaling UNIT-LENGTH``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: unit-length-configuration-java
+
+      public static UnaryOperator<Vector> normalizer = Vector.unit_length_normalization;
+
+The implementation of the unit-length scaling can be found in class ``data.Vector`` and is implemented as ``UnaryOperator<Vector>`` function.
+
+**Limitations:** A vector whose all values are 0, has the Euclidean norm of 0, and if the unit-length scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (:math:`10^{-9}`) is added in the denominator.
