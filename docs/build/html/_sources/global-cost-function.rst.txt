@@ -188,7 +188,7 @@ The unit-length scaling :math:`u(\cdot)` of a vector :math:`x \in \mathbb{R}^{d}
 
    u(x) = \frac{x}{\left\lVert x \right\rVert}
 
-where division is performed element-wise with constant :math:`\left\lVert x \right\rVert`. The Euclidean norm of the resulting vector :math:`u(x)` has the Euclidean norm of 1, :math:`\left\lVert u(x) \right\rVert`. The absolute value of every element in :math:`u(x)` is between 0 and 1.
+where division is performed element-wise with constant :math:`\left\lVert x \right\rVert`. The Euclidean norm of the resulting vector :math:`u(x)` has the Euclidean norm of 1, :math:`\left\lVert u(x) \right\rVert = 1`. The absolute value of every element in :math:`u(x)` is between 0 and 1.
 
 This unit-length scaling can be selected in one of the following two ways:
 
