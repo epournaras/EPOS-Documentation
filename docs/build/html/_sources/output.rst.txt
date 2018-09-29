@@ -1,12 +1,30 @@
+.. _output-chapter:
+
+======
 Output
-------
+======
 
-## Global Cost
+.. _output-global-cost:
 
-## Local Cost
+Global Cost
+===========
 
-## Unfairness
+.. _output-local-cost:
 
-## Selected Plans' Distribution
+Local Cost
+==========
 
-## Weights
+.. _output-unfairness:
+
+Unfairness
+==========
+
+.. _output-histograms:
+
+Selected Plans' Distribution
+============================
+
+.. _output-weights:
+
+Weights
+=======

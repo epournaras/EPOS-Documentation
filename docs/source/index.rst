@@ -3,8 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+=================================================
 EPOS - Economic Planning and Optimized Selections
-================================
+=================================================
 
 .. toctree::
    :maxdepth: 2
@@ -16,16 +17,19 @@ EPOS - Economic Planning and Optimized Selections
    local-cost-function
    tree-topology
    output
+   termination-criteria
    multi-objective-optimization
+   logging
+   advanced-topics
 
 
 Other
---------
+-----
 
 - Links to datasets.
 
 Software Artifact
---------
+-----------------
 
 - Here you can copy paste the content from the following page: http://epos-net.org/software/exemplar/
 

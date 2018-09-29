@@ -13,6 +13,16 @@ EPOS is capable of randomly changing the relative position of agents in the tree
 
 When certain criterion is met, the reorganization is triggered. Consequently, a new random relative position of agents within the original tree topology is constructed and each agent receives a new set of children and a new parent. The criterion is always evaluated by the current root agent. The current root agent is the one that generates new random relative position of agents within the hierarchy and is the one that notifies the agents that the reorganization is taking place by first notifying its children which then propagate the notification down their subtrees. Note that the actual reorganization takes place during the top-down phase. When an agent receives a notification that the reorganziation is taking place, it sends a request message to the current root, and it responds with a message containg the adresses of new children and a new parent. The reorganization also clears all current and previous selections, responses from subtree and indicator variables.
 
+The reproducability of experiments in terms of randomness in selecting new relative position of agents when the reorganization is triggered can be controlled via a *random generator seed*. It can be set via one of the following two ways (the example shows setting the seed to 0):
+
+1. either setting ``-reorganizationSeed 0``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: reorganization-seed-configuration-java
+
+      public long reorganizationSeed = 0;
+
 The class encapsulating the reorganization functionality is ``agent.ModifiableIeposAgent<V extends DataType<V>>``. This class handles request and response messages exchanged to obtain a new set of children and a new parent. It also handles various reorganization criteria: :ref:`tree-topology-criterion-periodically`, :ref:`tree-topology-criterion-convergence` and :ref:`tree-topology-criterion-reduction`. 
 
 .. _tree-topology-criterion-periodically:
@@ -82,3 +92,19 @@ The reorganization criterion based on the global cost reduction can be enabled i
       public double convergenceTolerance = 0.5;
 
 Note that the threshold must be a double value between 0 and 1. If the *threshold* is 0, no reorganization happens, since the relative global cost reduction can never be strictly lower than 0. If the *threshold* is 1, then reorganizations are guaranteed to happen since the relative global cost reduction is always lower than 1.
+
+.. _tree-topology-criterion-never:
+
+Reorganization Criterion: Never
+-------------------------------
+
+By default, reorganizations are disabled. Externally, it can be done in one of the following two ways:
+
+1. either setting ``-enableNEVERstrategy``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: reorganization-never-configuration-java
+
+      public ReorganizationStrategyType reorganizationType = 
+                                        ReorganizationStrategyType.NEVER;

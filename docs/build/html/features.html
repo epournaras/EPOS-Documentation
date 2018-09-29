@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Features &mdash; EPOS 1.0 documentation</title>
+  <title>Command Line Arguments &mdash; EPOS 1.0 documentation</title>
   
 
   
@@ -80,17 +80,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Arguments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#variance">Variance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#cross-correlation">Cross-Correlation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#residual-sum-of-squares">Residual Sum of Squares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#root-mean-square-error">Root Mean Square Error</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#scaling-techniques">Scaling Techniques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#standard-normalization">Standard Normalization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#min-max-scaling">Min-Max Scaling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html#unit-length-scaling">Unit-Length Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
@@ -140,7 +132,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Features</li>
+      <li>Command Line Arguments</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,35 +151,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="features">
-<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="command-line-arguments">
+<span id="arguments-chapter"></span><h1>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h1>
 <p>EPOS has the following command line arguments:</p>
 <blockquote>
 <div><ul class="simple">
-<li><cite>h</cite>: show helptext</li>
-<li><cite>dataset</cite>: Dataset name to be used. This is the name of the directory located inside datasets/ directory thta contains all data. No default value, must be set</li>
-<li><cite>numSim</cite>: Number of simulations. Default is 1.</li>
-<li><cite>numIterations</cite>: Number of iterations. Default is 40.</li>
-<li><cite>lambda</cite>: Lambda preference level. Lambda &gt; 0. Used only for old I-EPOS. Default is 0.</li>
-<li><cite>alpha</cite>: Weight of unfairness in multi-objective function. 0&lt;= Alpha &lt;= 1. Default is 0.</li>
-<li><cite>beta</cite>: Weight of local cost in multi-objective function. 0&lt;= Beta &lt;= 1. Default is 0.</li>
-<li><cite>numAgents</cite>: Number of participating agents. Default is 100.</li>
-<li><cite>numPlans</cite>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first numPlan rows are read. Default is 16.</li>
-<li><cite>planDim</cite>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!</li>
-<li><cite>numChildren</cite>: Number of children of each inner node. Default is 2.</li>
-<li><cite>shuffle</cite>: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.</li>
-<li><cite>shuffleFile</cite>: The path to a file containing already shuffled agents in one column, no header. Default is null.</li>
-<li><cite>reorganizationSeed</cite>: The seed to be used in Random generator the shuffling is based on. Default is 0.</li>
-<li><cite>enableNEVERstrategy</cite>: Enabling reorganization strategy NEVER. Works only for ModifiableIEPOSAgent. This is default.</li>
-<li><cite>enablePERIODICALLYstrategy</cite>: Enabling reorganization strategy PERIODICALLY with indicated period. Default period is 3, but default strategy is to NEVER reorganize.</li>
-<li><cite>enableCONVERGENCEstrategy</cite>: Enabling reorganization strategy ON_CONVERGENCE with indicated memorization offset. Default is 5, but default strategy is to NEVER reorganize.</li>
-<li><cite>enablePREDEFINEDstrategy</cite>: Enabling starting IEPOS with predefined selected plans, but default strategy is to NEVER reorganize.</li>
-<li><cite>enableGLOBALCOSTREDUCTIONstrategy</cite>: Enabling reorganization strategy based on GLOBAL_COST_REDUCTION strategy with indicated tolerance level. 0 &lt;= Tolerane Level &lt;= 1. Default is 0.5, but default strategy is to NEVER reorganize.</li>
-<li><cite>goalSignalType</cite>: The reference signal, paired with RSS, XCORR or RMSE global cost function, otherwise ignored. Options are: either an integer from [1, 19] to use predetermined signals, or path to a file with the signal in one column. The length of the signal from the file must correspond planDim option. Default is signal type 1.</li>
-<li><cite>setGlobalCostFunc</cite>: The global cost function to be used. Options are (case-sensitive): VAR for variance function, XCORR for negative cross-correlation, RSS for residual sum of squares and RMSE for residual mean square error. Default is VAR. XCORR uses standard normalization by definition, RMSE has its own way of scaling and RSS uses standard normalization by default.</li>
-<li><cite>setScaling</cite>: The scaling technique to be used with RSS function, ignored otherwise. Options are (case-sensitive): STD for standard normalization, MIN-MAX for min-max scaling and UNIT-lENGTH for unit-length scaling. Default is STD.</li>
-<li><cite>setLocalCostFunc</cite>: The local cost function. Options are (case-sensitive): COST for cost plan score, PREF for preference plan score, which is converted to COST by 1 - PREF, INDEX for plan indicies to be used as costs. Default is COST.</li>
-<li><cite>logLevel</cite>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST</li>
+<li><code class="docutils literal notranslate"><span class="pre">h</span></code>: show helptext</li>
+<li><code class="docutils literal notranslate"><span class="pre">dataset</span></code>: Dataset name to be used. This is the name of the directory located inside datasets/ directory thta contains all data. No default value, must be set</li>
+<li><code class="docutils literal notranslate"><span class="pre">numSim</span></code>: Number of simulations. Default is 1.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numIterations</span></code>: Number of iterations. Default is 40.</li>
+<li><code class="docutils literal notranslate"><span class="pre">lambda</span></code>: Lambda preference level. Lambda &gt; 0. Used only for old I-EPOS. Default is 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Weight of unfairness in multi-objective function. 0&lt;= Alpha &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">beta</span></code>: Weight of local cost in multi-objective function. 0&lt;= Beta &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numAgents</span></code>: Number of participating agents. Default is 100.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numPlans</span></code>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first numPlan rows are read. Default is 16.</li>
+<li><code class="docutils literal notranslate"><span class="pre">planDim</span></code>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!</li>
+<li><code class="docutils literal notranslate"><span class="pre">numChildren</span></code>: Number of children of each inner node. Default is 2.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shuffle</span></code>: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shuffleFile</span></code>: The path to a file containing already shuffled agents in one column, no header. Default is null.</li>
+<li><code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code>: The seed to be used in Random generator the shuffling is based on. Default is 0. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableNEVERstrategy</span></code>: Enabling reorganization strategy NEVER. Works only for ModifiableIEPOSAgent. This is default. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-never"><span class="std std-ref">Reorganization Criterion: Never</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enablePERIODICALLYstrategy</span></code>: Enabling reorganization strategy PERIODICALLY with indicated period. Default period is 3, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableCONVERGENCEstrategy</span></code>: Enabling reorganization strategy ON_CONVERGENCE with indicated memorization offset. Default is 5, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableGLOBALCOSTREDUCTIONstrategy</span></code>: Enabling reorganization strategy based on GLOBAL_COST_REDUCTION strategy with indicated tolerance level. 0 &lt;= Tolerane Level &lt;= 1. Default is 0, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">goalSignalType</span></code>: The reference signal, paired with RSS, XCORR or RMSE global cost function, otherwise ignored. Options are: either an integer from [1, 19] to use predetermined signals, or path to a file with the signal in one column. The length of the signal from the file must correspond planDim option. Default is signal type 1. For more information, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setGlobalCostFunc</span></code>: The global cost function to be used. Options are (case-sensitive): VAR for <a class="reference internal" href="global-cost-function.html#global-cost-function-variance"><span class="std std-ref">Variance</span></a>, XCORR for <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, RSS for <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> and RMSE for <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>. Default is VAR. XCORR uses <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a> by definition, RMSE has its own way of scaling and RSS uses standard normalization by default, but can use others. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setScaling</span></code>: The scaling technique to be used with RSS function, ignored otherwise. Options are (case-sensitive): STD for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a>, MIN-MAX for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-min-max"><span class="std std-ref">Min-Max Scaling</span></a> and UNIT-LENGTH for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-unit-length"><span class="std std-ref">Unit-Length Scaling</span></a>. Default is STD. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setLocalCostFunc</span></code>: The local cost function. Options are (case-sensitive): COST for <a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort Local Cost Function</span></a>, PREF for <a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference Local Cost Function</span></a>, which is converted to COST by 1 - PREF, INDEX for plan indicies to be used as costs (see <a class="reference internal" href="local-cost-function.html#local-cost-function-index"><span class="std std-ref">Index Local Cost Function</span></a>). Default is COST. For more information, see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">logLevel</span></code>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST</li>
 </ul>
 </div></blockquote>
 </div>

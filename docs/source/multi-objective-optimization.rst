@@ -1,4 +1,4 @@
-.. _multi-objective-optimization-index:
+.. _multi-objective-optimization-chapter:
 
 ============================
 Multi-Objective Optimization
