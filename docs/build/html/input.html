@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Input &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global Cost Function" href="global-cost-function.html" />
+    <link rel="prev" title="Features" href="features.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plans">Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#incentive-signals">Incentive Signals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Input</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/input.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="input">
+<span id="input-chapter"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plans">
+<span id="input-plans"></span><h2>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="incentive-signals">
+<span id="input-incentive-signals"></span><h2>Incentive Signals<a class="headerlink" href="#incentive-signals" title="Permalink to this headline">¶</a></h2>
+<p>EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is minimization algorithm, the objective is minimizing <em>dissimilarity</em> between them. For more informaiton on dissimilarity measures, please see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>. The incentive signal is taken into account only if one of the following global cost functions are employed: <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> or <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>.</p>
+<p>Incentive signal is forwarded to EPOS via command line argument <code class="docutils literal notranslate"><span class="pre">-goalSignalType</span></code>. This can be followed by:</p>
+<ol class="arabic simple">
+<li>either an integer number between 1 and 19 specifying one of the <strong>synthetic predefined signals</strong>, or</li>
+<li><strong>a path</strong> to a file containing the incentive signal.</li>
+</ol>
+<p>Note that the incentive signal <strong>must</strong> be of the same length as plans. Synthetic predefined incentive signals are constructed with respect to the length of the plans (also forwarded via <code class="docutils literal notranslate"><span class="pre">-planDim</span></code> argument). However, a user must ensure that the length of the incentive signal in the file corresponds to the length of the plans.</p>
+<p>Synthetic incentive signals are given in the class <code class="docutils literal notranslate"><span class="pre">GoalSignalsCollection</span></code> in package <code class="docutils literal notranslate"><span class="pre">func.goalsignals</span></code>, and include the following:</p>
+<ul class="simple">
+<li><strong>sine signals</strong> labeled with numbers 1, 2, and 3</li>
+<li><strong>single impulse signals</strong> labeled with integers from 4 to 10</li>
+<li><strong>monotonically decreasing step-like signals</strong> labeled with integers from 11 to 13</li>
+<li><strong>monotonically increasing step-like signals</strong> labeled with integers from 14 to 17</li>
+<li><strong>double impulse signal</strong> labeled with 18</li>
+<li><strong>mixture of two Gaussian curves signal</strong> labeled with 19</li>
+</ul>
+<p>User-defined incentive signals can be provided to EPOS in a file. The signal is given in a column, one value in each row. The file <strong>cannot</strong> have any headers or more than one column. The number of rows in a file <strong>must</strong> correspond to the length of the plans. If more values are provided, EPOS will throw <code class="docutils literal notranslate"><span class="pre">IndexOutOfBoundsException</span></code>. The <em>full</em> path to the file containing the incentive signal is forwarded to EPOS via <code class="docutils literal notranslate"><span class="pre">-goalSignalType</span></code> command line argument.</p>
+<p>For example, the following are correct ways of providing the incentive signal to EPOS:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">goalSignalType</span> <span class="mi">19</span>
+<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span>   <span class="c1">// full path</span>
+<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span>                                     <span class="c1">// relative path</span>
+</pre></div>
+</div>
+<p>or in <code class="docutils literal notranslate"><span class="pre">Configuration.java</span></code> class:</p>
+<div class="literal-block-wrapper docutils container" id="goal-signal-configuration-java">
+<div class="code-block-caption"><span class="caption-text">Configuration.java</span><a class="headerlink" href="#goal-signal-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span><span class="o">;</span>  <span class="c1">// or</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+<p>And these are the incorrect ways:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">goalSignalType</span> <span class="o">-</span><span class="mi">5</span>                                                              <span class="c1">// negative number</span>
+<span class="o">-</span><span class="n">goalSignalType</span> <span class="mi">20</span>                                                              <span class="c1">// allowed values are integers between 1 and 19</span>
+<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;datasets&quot;</span>                                                      <span class="c1">// the name of the directory containing the file is invalid</span>
+<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal&quot;</span>   <span class="c1">// the file extension must be specified</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="global-cost-function.html" class="btn btn-neutral float-right" title="Global Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="features.html" class="btn btn-neutral" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

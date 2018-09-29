@@ -27,7 +27,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Features" href="features.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -76,23 +77,17 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">EPOS - Economic Planning and Optimized Selections</a><ul>
-<li><a class="reference internal" href="#features">Features</a></li>
-<li><a class="reference internal" href="#logging">Logging</a></li>
-<li><a class="reference internal" href="#advanced-topics">Advanced Topics:</a></li>
-<li><a class="reference internal" href="#other">Other</a></li>
-<li><a class="reference internal" href="#software-artifact">Software Artifact</a></li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#contribute">Contribute</a></li>
-<li><a class="reference internal" href="#support">Support</a></li>
-<li><a class="reference internal" href="#license">License</a></li>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-</div>
+
             
           
         </div>
@@ -158,59 +153,26 @@
   <div class="section" id="epos-economic-planning-and-optimized-selections">
 <h1>EPOS - Economic Planning and Optimized Selections<a class="headerlink" href="#epos-economic-planning-and-optimized-selections" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-</div>
-<div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Experimental and simulation setup: determine the varied parameters.<ul>
-<li><cite>h</cite>: show helptext\</li>
-<li><cite>dataset</cite>: Dataset name to be used. This is the name of the directory located inside datasets/ directory thta contains all data. No default value, must be set\</li>
-<li><cite>numSim</cite>: Number of simulations. Default is 1.\</li>
-<li><cite>numIterations</cite>: Number of iterations. Default is 40.\</li>
-<li><cite>lambda</cite>: Lambda preference level. Lambda &gt; 0. Used only for old I-EPOS. Default is 0.</li>
-<li><cite>alpha</cite>: Weight of unfairness in multi-objective function. 0&lt;= Alpha &lt;= 1. Default is 0.</li>
-<li><cite>beta</cite>: Weight of local cost in multi-objective function. 0&lt;= Beta &lt;= 1. Default is 0.</li>
-<li><cite>numAgents</cite>: Number of participating agents. Default is 100.</li>
-<li><cite>numPlans</cite>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first numPlan rows are read. Default is 16.</li>
-<li><cite>planDim</cite>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!</li>
-<li><cite>numChildren</cite>: Number of children of each inner node. Default is 2.</li>
-<li><cite>shuffle</cite>: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.</li>
-<li><cite>shuffleFile</cite>: The path to a file containing already shuffled agents in one column, no header. Default is null.</li>
-<li><cite>reorganizationSeed</cite>: The seed to be used in Random generator the shuffling is based on. Default is 0.</li>
-<li><cite>enableNEVERstrategy</cite>: Enabling reorganization strategy NEVER. Works only for ModifiableIEPOSAgent. This is default.</li>
-<li><cite>enablePERIODICALLYstrategy</cite>: Enabling reorganization strategy PERIODICALLY with indicated period. Default period is 3, but default strategy is to NEVER reorganize.</li>
-<li><cite>enableCONVERGENCEstrategy</cite>: Enabling reorganization strategy ON_CONVERGENCE with indicated memorization offset. Default is 5, but default strategy is to NEVER reorganize.</li>
-<li><cite>enablePREDEFINEDstrategy</cite>: Enabling starting IEPOS with predefined selected plans, but default strategy is to NEVER reorganize.</li>
-<li><cite>enableGLOBALCOSTREDUCTIONstrategy</cite>: Enabling reorganization strategy based on GLOBAL_COST_REDUCTION strategy with indicated tolerance level. 0 &lt;= Tolerane Level &lt;= 1. Default is 0.5, but default strategy is to NEVER reorganize.</li>
-<li><cite>goalSignalType</cite>: The reference signal, paired with RSS, XCORR or RMSE global cost function, otherwise ignored. Options are: either an integer from [1, 19] to use predetermined signals, or path to a file with the signal in one column. The length of the signal from the file must correspond planDim option. Default is signal type 1.</li>
-<li><cite>setGlobalCostFunc</cite>: The global cost function to be used. Options are (case-sensitive): VAR for variance function, XCORR for negative cross-correlation, RSS for residual sum of squares and RMSE for residual mean square error. Default is VAR. XCORR uses standard normalization by definition, RMSE has its own way of scaling and RSS uses standard normalization by default.</li>
-<li><cite>setScaling</cite>: The scaling technique to be used with RSS function, ignored otherwise. Options are (case-sensitive): STD for standard normalization, MIN-MAX for min-max scaling and UNIT-lENGTH for unit-length scaling. Default is STD.</li>
-<li><cite>setLocalCostFunc</cite>: The local cost function. Options are (case-sensitive): COST for cost plan score, PREF for preference plan score, which is converted to COST by 1 - PREF, INDEX for plan indicies to be used as costs. Default is COST.</li>
-<li><cite>logLevel</cite>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST</li>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#plans">Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#incentive-signals">Incentive Signals</a></li>
 </ul>
 </li>
-<li>Explain input: plans, incentive signal, etc.</li>
-<li>How to use/implement a global cost function</li>
-<li>How to use/implement a local cost function</li>
-<li>How to setup and configure a tree topology</li>
-<li>How to collect global optimality results</li>
-<li>How to configure the alpha and beta parameters and what explain what they mean</li>
-<li>How to control termination criteria,</li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#variance">Variance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#cross-correlation">Cross-Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#residual-sum-of-squares">Residual Sum of Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#root-mean-square-error">Root Mean Square Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#scaling-techniques">Scaling Techniques</a></li>
 </ul>
-</div>
-<div class="section" id="logging">
-<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Selected plans (with their local cost)</li>
-<li>Global cost, local cost, fairness over iterations</li>
-</ul>
-</div>
-<div class="section" id="advanced-topics">
-<h2>Advanced Topics:<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>How to run experiments with EPOS and COHDA</li>
-<li>How to run live</li>
-<li>How to write your own agent</li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
 </ul>
 </div>
 <div class="section" id="other">
@@ -262,6 +224,13 @@ We have a mailing list located at: <a class="reference external" href="mailto:pr
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="features.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>
