@@ -4,6 +4,8 @@
 Global Cost Function
 ====================
 
+Must define global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. 
+
 .. _global-cost-function-variance:
 
 Variance
