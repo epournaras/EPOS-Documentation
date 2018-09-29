@@ -43,3 +43,10 @@ make html
 ```
 
 Generated files are either in `build` directory or directly in `docs` directory, depending on wheather you chose the default settings.
+
+# TODO:
+
+- [ ] Reformat and reorganize the code
+- [ ] Merge multi-objective aspects with the original code
+- [ ] check all input parameters, make sure they work
+- [ ] loggers for repetetive experiments and for single experiments
