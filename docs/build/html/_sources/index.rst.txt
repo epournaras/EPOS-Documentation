@@ -11,15 +11,15 @@ EPOS - Economic Planning and Optimized Selections
    :maxdepth: 2
    :caption: Contents:
 
-   features
+   experimantal-setup
+   command-line-arguments
    input
    global-cost-function
    local-cost-function
    tree-topology
-   output
    termination-criteria
    multi-objective-optimization
-   logging
+   logging-output
    advanced-topics
 
 
@@ -32,6 +32,8 @@ Software Artifact
 -----------------
 
 - Here you can copy paste the content from the following page: http://epos-net.org/software/exemplar/
+
+.. _installation-setup:
 
 Installation
 ------------

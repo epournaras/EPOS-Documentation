@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Global Cost Function" href="global-cost-function.html" />
-    <link rel="prev" title="Features" href="features.html" /> 
+    <link rel="prev" title="Command Line Arguments" href="command-line-arguments.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,7 +80,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#plans">Plans</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#incentive-signals">Incentive Signals</a></li>
@@ -90,7 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
 </ul>
 
             
@@ -159,6 +163,21 @@
 <span id="input-chapter"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="plans">
 <span id="input-plans"></span><h2>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h2>
+<p>Plans are the representation of agents’ possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is <code class="docutils literal notranslate"><span class="pre">_planScore:_planDimension1,</span> <span class="pre">...</span> <span class="pre">,_planDimensionN</span></code>, in which the plan score can be the local cost of the plan or the preference of the user when selecting plans. The possible dataset formats are defined in <code class="docutils literal notranslate"><span class="pre">agent.dataset</span></code> package in the code. In addition, there is a gauusian plan generator in <code class="docutils literal notranslate"><span class="pre">agent.dataset.GaussianDataSet.java</span></code>. For this dataset, you can define the <em>number of agents</em>, <em>number of plans</em>, and <em>number of dimensions</em> using the configuration or the <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Command Line Arguments</span></a>.</p>
+<p>In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. the implemented classes for this can be found at <code class="docutils literal notranslate"><span class="pre">agent.planselection</span></code> package. The main class is <a href="#id1"><span class="problematic" id="id2">``</span></a>MultiObjectiveIeposPlanSelector implements PlanSelector&lt;MultiObjectiveIEPOSAgent&gt; and the main function is:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span>  <span class="n">agent</span><span class="o">.</span><span class="na">getOptimization</span><span class="o">().</span><span class="na">argmin</span><span class="o">(</span><span class="n">agent</span><span class="o">.</span><span class="na">getGlobalCostFunction</span><span class="o">(),</span>
+<span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostFunction</span><span class="o">(),</span>
+<span class="n">agent</span><span class="o">.</span><span class="na">getPossiblePlans</span><span class="o">(),</span>
+<span class="n">otherResponse</span><span class="o">,</span>
+<span class="n">agent</span><span class="o">.</span><span class="na">getUnfairnessWeight</span><span class="o">(),</span>
+<span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostWeight</span><span class="o">(),</span>
+<span class="n">currentDiscomfortSum</span><span class="o">,</span>
+<span class="n">currentDiscomfortSumSqr</span><span class="o">,</span>
+<span class="n">agent</span><span class="o">.</span><span class="na">getNumAgents</span><span class="o">(),</span>
+<span class="n">agent</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS choses the plan with the <code class="docutils literal notranslate"><span class="pre">PlanSelectionOptimizationFunctionCollection.complexFunction1</span></code>. The function works as the following: <span class="math notranslate nohighlight">\((1 - alpha - beta) * global-cost + alpha * unfairness + beta * local-cost\)</span>, the details of which can be found in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p>
 </div>
 <div class="section" id="incentive-signals">
 <span id="input-incentive-signals"></span><h2>Incentive Signals<a class="headerlink" href="#incentive-signals" title="Permalink to this headline">¶</a></h2>
@@ -214,7 +233,7 @@
         <a href="global-cost-function.html" class="btn btn-neutral float-right" title="Global Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="features.html" class="btn btn-neutral" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="command-line-arguments.html" class="btn btn-neutral" title="Command Line Arguments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

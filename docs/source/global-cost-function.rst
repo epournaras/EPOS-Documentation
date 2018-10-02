@@ -4,12 +4,36 @@
 Global Cost Function
 ====================
 
-Must define global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. 
+Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``-setGlobalCostFunc`` indicates your choice of global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more informatin about how to log the global cost, check :ref:`logging-chapter` page.
 
 .. _global-cost-function-variance:
 
 Variance
 ========
+
+The variance implemented in EPOS, within signal :math:`x \in \mathbb{R}^{d}`, is defined as follows:
+
+.. math::
+   :label: equation-var
+
+   \sigma^2 = \frac{\sum\limits_{i=1}^N (X -\mu)^2}{N}
+
+Where signal :math:`x` is an *scaled vectors*, representing the aggregated signal in EPOS.
+
+Intuitively, each vector is *global response*, the sum of all selected plans in the agent network and the idea of minimising the variance of said vector is to make the demand (in case of energy planning) as uniform / flat as possible. 
+
+1. either setting ``-setGlobalCostFunc Variance``, or
+
+2. .. code-block:: java
+      :caption: config.Configuration.java
+      :name: var-configuration-java
+
+      public static DifferentiableCostFunction<Vector> globalCostFunc = 
+                                                            new VarCostFunction();
+
+On how to select a scaling technique, see :ref:`global-cost-function-scaling`.
+
+The exact implementation of the function is given in ``func.VarCostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
 .. _global-cost-function-cross-correlation:
 

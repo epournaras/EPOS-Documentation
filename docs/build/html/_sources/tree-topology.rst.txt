@@ -4,6 +4,22 @@
 Tree Topology
 =============
 
+EPOS organises the agents in a tree structure. In ``config.Configuration`` class, the specifics of the tree is by default defined using the following:
+
+.. code-block:: java
+      :caption: config.Configuration.java
+      :name: tree-initiation
+
+      public static RankPriority priority = RankPriority.HIGH_RANK;
+      public static DescriptorType rank = DescriptorType.RANK;
+      public static TreeType type = TreeType.SORTED_HtL;
+      public static BalanceType balance = BalanceType.WEIGHT_BALANCED;
+      public static int numChildren = 2;
+
+This creates a balance binary tree which sorts the agents based on their rank. If you need to change the topology or modify certain aspects of it check out ``util.TreeArchitecture.java``. 
+
+In addition, each agent in EPOS has two classes^* which take care of the tree communication and keep track of the parent and childern nodes addresses: ``TreeAgent extends Agent<V> implements TreeApplicationInterface`` and ``IterativeTreeAgent extends TreeAgent``. In ``TreeAgent`` the most important functions are the ``public void setTreeView(Finger parent, List<Finger> children)`` and ``public void setParent(Finger parent)`` and ``public void setChildren(List<Finger> list)`` which are called when the ``TreeArchitecture`` is finished bootstrapping and creating the tree. In ``IterativeTreeAgent`` the most important function is the ``public void handleIncomingMessage(Message message)`` which is called whenever a new message is receive by the agent. Here you can track the *to-down* and *bottom-up* phases of EPOS.
+
 .. _tree-topology-reorganization:
 
 Tree Reorganization

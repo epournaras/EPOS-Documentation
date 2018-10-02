@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Command Line Arguments" href="features.html" /> 
+    <link rel="next" title="Initial Setup and Running Experiments" href="experimantal-setup.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,15 +79,15 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
 </ul>
 
@@ -158,7 +158,8 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="input.html#plans">Plans</a></li>
 <li class="toctree-l2"><a class="reference internal" href="input.html#incentive-signals">Incentive Signals</a></li>
@@ -182,19 +183,18 @@
 <li class="toctree-l2"><a class="reference internal" href="tree-topology.html#tree-reorganization">Tree Reorganization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="output.html#global-cost">Global Cost</a></li>
-<li class="toctree-l2"><a class="reference internal" href="output.html#local-cost">Local Cost</a></li>
-<li class="toctree-l2"><a class="reference internal" href="output.html#unfairness">Unfairness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="output.html#selected-plans-distribution">Selected Plans’ Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="output.html#weights">Weights</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#selected-plans-with-their-local-cost">Selected plans (with their local cost)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#global-cost-local-cost-fairness-over-iterations">Global cost, local cost, fairness over iterations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-complex-cost-logger">Global Complex Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-cost-logger">Global Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-response-logger">Global Response Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#indexed-histogram-logger">Indexed Histogram Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#local-cost-logger">Local Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#selected-plans">Selected Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#termination-logger">Termination Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#unfairness-logger">Unfairness Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#weights-alpha-beta-logger">Weights, Alpha, Beta Logger</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a><ul>
@@ -218,7 +218,7 @@
 </ul>
 </div>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<span id="installation-setup"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Install $project by running:</p>
 <blockquote>
 <div>install project</div></blockquote>
@@ -257,7 +257,7 @@ We have a mailing list located at: <a class="reference external" href="mailto:pr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="features.html" class="btn btn-neutral float-right" title="Command Line Arguments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="experimantal-setup.html" class="btn btn-neutral float-right" title="Initial Setup and Running Experiments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

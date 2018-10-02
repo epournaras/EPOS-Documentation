@@ -8,7 +8,24 @@ Input
 
 Plans
 =====
+Plans are the representation of agents' possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is ``_planScore:_planDimension1, ... ,_planDimensionN``, in which the plan score can be the local cost of the plan or the preference of the user when selecting plans. The possible dataset formats are defined in ``agent.dataset`` package in the code. In addition, there is a gauusian plan generator in ``agent.dataset.GaussianDataSet.java``. For this dataset, you can define the *number of agents*, *number of plans*, and *number of dimensions* using the configuration or the :ref:`arguments-chapter`.
 
+In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. the implemented classes for this can be found at ``agent.planselection`` package. The main class is ``MultiObjectiveIeposPlanSelector implements PlanSelector<MultiObjectiveIEPOSAgent> and the main function is:
+
+.. code-block:: java
+
+      int id =  agent.getOptimization().argmin(agent.getGlobalCostFunction(), 
+      agent.getLocalCostFunction(),
+      agent.getPossiblePlans(), 
+      otherResponse, 
+      agent.getUnfairnessWeight(),
+      agent.getLocalCostWeight(),
+      currentDiscomfortSum,
+      currentDiscomfortSumSqr,
+      agent.getNumAgents(),
+      agent);
+
+which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS choses the plan with the ``PlanSelectionOptimizationFunctionCollection.complexFunction1``. The function works as the following: :math:`(1 - alpha - beta) * global-cost + alpha * unfairness + beta * local-cost`, the details of which can be found in :ref:`multi-objective-optimization-chapter`.
 
 .. _input-incentive-signals:
 
