@@ -51,42 +51,109 @@ The global compelex cost logger is implemented in ``agent.logging.GlobalComplexC
 
    \gamma \cdot G^{(t)} + \alpha \cdot U^{(t)} + \beta \cdot L^{(t)}
 
+.. image:: GCC.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
 Global Cost Logger
 ==================
 
 The global compelex cost logger is implemented in ``agent.logging.GlobalCostLogger.java`` and by default, it record the complex cost defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``global-cost.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **ost of the whole system, at each iteration, and accross multiple runs**. In addition, it shows the mean and standard deviation of the cost across different runs. If no specific global cost logger is defined at the ``config.Configuration`` then EPOS assigns ``GlobalComplexCostLogger<Vector> GCXLogger`` as the global cost logger.
+
+.. image:: GC.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
 
 Global Response Logger
 ======================
 
 The global compelex response logger is implemented in ``agent.logging.GlobalResponseCostLogger.java`` and by default, it record the global response defined in :ref:`global-cost-function-chapter`. The output file is named ``global-response-cost.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **aggregated response** of the system at the root which is the sum of all plans. The matrix shows the aggregated response across all dimensions of the plan.
 
+.. image:: GR.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
 Indexed Histogram Logger
 ========================
 
 The global compelex cost logger is implemented in ``agent.logging.PlanFrequencyLogger.java`` and by default, it record the plan frequency defined in :ref:`input-plans`. The output file is named ``indexes-histogram.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **how many times each plan was selected** at the end of each run / simulation.
+
+.. image:: IH.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
 
 Local Cost Logger
 =================
 
 The global compelex cost logger is implemented in ``agent.logging.LocalCostLogger.java`` and by default, it record the local cost defined in :ref:`local-cost-function-chapter`. The output file is named ``local-cost.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **local cost of all agents at each iteration**. In addition, it shows the mean and standard deviation of the cost across different runs.
 
+.. image:: LC.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
 Selected Plans
 ==============
 
 The global compelex cost logger is implemented in ``agent.logging.SelectedPlanLogger.java`` and by default, it record the selected plan index defined in :ref:`input-plans`. The output file is named ``selected-plan.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **selected plan index of each agent at each iteration**.
+
+
+.. image:: SP.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
 
 Termination Logger
 ==================
 
 The global compelex cost logger is implemented in ``agent.logging.TerminationLogger.java`` and by default, it record the complex cost defined in :ref:`termination-criteria-chapter`. The output file is named ``termination.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **at which iteration EPOS terminated** depending on the termination criteria.
 
+
+.. image:: TR.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
 Unfairness Logger
 =================
 
 The global compelex cost logger is implemented in ``agent.logging.UnfairnessCostLogger.java`` and by default, it record the unfairness defined in **??**. The output file is named ``unfairness.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **unfairness of the whole system, at each iteration, and accross multiple runs**. In addition, it shows the mean and standard deviation of the cost across different runs.
 
+
+.. image:: Un.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
 Weights, Alpha, Beta Logger
 ===========================
 
 The global compelex cost logger is implemented in ``agent.logging.WeightsLogger.java`` and by default, it record the complex cost defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``weights-alpha-beta.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **weights, alpha, and beta of each agent** of the whole system. In addition, it shows the mean and standard deviation of the cost across different runs.
+
+
+.. image:: WE.png
+   :width: 600
+   :height: 400px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
