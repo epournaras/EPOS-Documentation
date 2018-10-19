@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Global Cost Function" href="global-cost-function.html" />
-    <link rel="prev" title="Command Line Arguments" href="command-line-arguments.html" /> 
+    <link rel="prev" title="Configuration Parameters" href="command-line-arguments.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,7 +81,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#plans">Plans</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#incentive-signals">Incentive Signals</a></li>
@@ -162,45 +162,38 @@
 <span id="input-chapter"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="plans">
 <span id="input-plans"></span><h2>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h2>
-<p>Plans are the representation of agents’ possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is <code class="docutils literal notranslate"><span class="pre">_planScore:_planDimension1,</span> <span class="pre">...</span> <span class="pre">,_planDimensionN</span></code>, in which the plan score can be the local cost of the plan or the preference of the user when selecting plans. The possible dataset formats are defined in <code class="docutils literal notranslate"><span class="pre">agent.dataset</span></code> package in the code. In addition, there is a gauusian plan generator in <code class="docutils literal notranslate"><span class="pre">agent.dataset.GaussianDataSet.java</span></code>. For this dataset, you can define the <em>number of agents</em>, <em>number of plans</em>, and <em>number of dimensions</em> using the configuration or the <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Command Line Arguments</span></a>.</p>
-<p>In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. the implemented classes for this can be found at <code class="docutils literal notranslate"><span class="pre">agent.planselection</span></code> package. The main class is <a href="#id1"><span class="problematic" id="id2">``</span></a>MultiObjectiveIeposPlanSelector implements PlanSelector&lt;MultiObjectiveIEPOSAgent&gt; and the main function is:</p>
+<p>Plans are the representation of agents’ possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is:</p>
+<blockquote>
+<div><em>planScore</em> : <em>planDimension1</em>, … , <em>planDimensionN</em></div></blockquote>
+<p>in which the plan score can be:</p>
+<ol class="arabic simple">
+<li>discomfort (<a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort Local Cost Function</span></a>) of the plan, or</li>
+<li>preference (<a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference Local Cost Function</span></a>) of the plan</li>
+</ol>
+<p>The possible dataset formats are defined in <code class="docutils literal notranslate"><span class="pre">agent.dataset</span></code> package in the code. In addition, there is a Gaussian plan generator in <code class="docutils literal notranslate"><span class="pre">agent.dataset.GaussianDataSet.java</span></code>. For this dataset, you can define the <em>number of agents</em>, <em>number of plans</em>, and <em>number of dimensions</em> using the configuration or the <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>.</p>
+<p>In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. the implemented classes for this can be found at <code class="docutils literal notranslate"><span class="pre">agent.planselection</span></code> package. The main class is <code class="docutils literal notranslate"><span class="pre">MultiObjectiveIeposPlanSelector</span> <span class="pre">implements</span> <span class="pre">PlanSelector&lt;MultiObjectiveIEPOSAgent&gt;</span></code> and the main function is:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span>  <span class="n">agent</span><span class="o">.</span><span class="na">getOptimization</span><span class="o">().</span><span class="na">argmin</span><span class="o">(</span><span class="n">agent</span><span class="o">.</span><span class="na">getGlobalCostFunction</span><span class="o">(),</span>
-<span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostFunction</span><span class="o">(),</span>
-<span class="n">agent</span><span class="o">.</span><span class="na">getPossiblePlans</span><span class="o">(),</span>
-<span class="n">otherResponse</span><span class="o">,</span>
-<span class="n">agent</span><span class="o">.</span><span class="na">getUnfairnessWeight</span><span class="o">(),</span>
-<span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostWeight</span><span class="o">(),</span>
-<span class="n">currentDiscomfortSum</span><span class="o">,</span>
-<span class="n">currentDiscomfortSumSqr</span><span class="o">,</span>
-<span class="n">agent</span><span class="o">.</span><span class="na">getNumAgents</span><span class="o">(),</span>
-<span class="n">agent</span><span class="o">);</span>
+                                         <span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostFunction</span><span class="o">(),</span>
+                                         <span class="n">agent</span><span class="o">.</span><span class="na">getPossiblePlans</span><span class="o">(),</span>
+                                         <span class="n">otherResponse</span><span class="o">,</span>
+                                         <span class="n">agent</span><span class="o">.</span><span class="na">getUnfairnessWeight</span><span class="o">(),</span>
+                                         <span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostWeight</span><span class="o">(),</span>
+                                         <span class="n">currentDiscomfortSum</span><span class="o">,</span>
+                                         <span class="n">currentDiscomfortSumSqr</span><span class="o">,</span>
+                                         <span class="n">agent</span><span class="o">.</span><span class="na">getNumAgents</span><span class="o">(),</span>
+                                         <span class="n">agent</span><span class="o">);</span>
 </pre></div>
 </div>
-<p>which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS choses the plan with the <code class="docutils literal notranslate"><span class="pre">PlanSelectionOptimizationFunctionCollection.complexFunction1</span></code>. The function works as the following: <span class="math notranslate nohighlight">\((1 - alpha - beta) * global-cost + alpha * unfairness + beta * local-cost\)</span>, the details of which can be found in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p>
+<p>which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS choses the plan with the <code class="docutils literal notranslate"><span class="pre">PlanSelectionOptimizationFunctionCollection.complexFunction1</span></code>. The function works as the following: <span class="math notranslate nohighlight">\((1 - \alpha - \beta) \cdot global\_cost + \alpha \cdot unfairness + \beta \cdot local\_cost\)</span>, the details of which can be found in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p>
 </div>
 <div class="section" id="incentive-signals">
 <span id="input-incentive-signals"></span><h2>Incentive Signals<a class="headerlink" href="#incentive-signals" title="Permalink to this headline">¶</a></h2>
 <p>EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is minimization algorithm, the objective is minimizing <em>dissimilarity</em> between them. For more informaiton on dissimilarity measures, please see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>. The incentive signal is taken into account only if one of the following global cost functions are employed: <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> or <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>.</p>
-<p>Incentive signal is forwarded to EPOS via command line argument <code class="docutils literal notranslate"><span class="pre">-goalSignalType</span></code>. This can be followed by:</p>
-<ol class="arabic simple">
-<li>either an integer number between 1 and 19 specifying one of the <strong>synthetic predefined signals</strong>, or</li>
-<li><strong>a path</strong> to a file containing the incentive signal.</li>
-</ol>
-<p>Note that the incentive signal <strong>must</strong> be of the same length as plans. Synthetic predefined incentive signals are constructed with respect to the length of the plans (also forwarded via <code class="docutils literal notranslate"><span class="pre">-planDim</span></code> argument). However, a user must ensure that the length of the incentive signal in the file corresponds to the length of the plans.</p>
-<p>Synthetic incentive signals are given in the class <code class="docutils literal notranslate"><span class="pre">GoalSignalsCollection</span></code> in package <code class="docutils literal notranslate"><span class="pre">func.goalsignals</span></code>, and include the following:</p>
-<ul class="simple">
-<li><strong>sine signals</strong> labeled with numbers 1, 2, and 3</li>
-<li><strong>single impulse signals</strong> labeled with integers from 4 to 10</li>
-<li><strong>monotonically decreasing step-like signals</strong> labeled with integers from 11 to 13</li>
-<li><strong>monotonically increasing step-like signals</strong> labeled with integers from 14 to 17</li>
-<li><strong>double impulse signal</strong> labeled with 18</li>
-<li><strong>mixture of two Gaussian curves signal</strong> labeled with 19</li>
-</ul>
-<p>User-defined incentive signals can be provided to EPOS in a file. The signal is given in a column, one value in each row. The file <strong>cannot</strong> have any headers or more than one column. The number of rows in a file <strong>must</strong> correspond to the length of the plans. If more values are provided, EPOS will throw <code class="docutils literal notranslate"><span class="pre">IndexOutOfBoundsException</span></code>. The <em>full</em> path to the file containing the incentive signal is forwarded to EPOS via <code class="docutils literal notranslate"><span class="pre">-goalSignalType</span></code> command line argument.</p>
+<p>Incentive signal is forwarded to EPOS via parameter <code class="docutils literal notranslate"><span class="pre">goalSignalPath</span></code> by setting <strong>a path</strong> to a file containing the incentive signal. If the file path is not provided, a first “.target” file in <em>dataset</em> directory will be used as a goal signal. If none “.target” files are found, a <em>zero</em> goal signal is constructed (a signal filled with zeros).</p>
+<p>Note that the incentive signal <strong>must</strong> be of the same length as plans. If it is shorter than <code class="docutils literal notranslate"><span class="pre">planDim</span></code> parameter, it will be padded at the end in a Round-Robyn fashion, if longer, it will be cropped. The signal is given in a column, one value in each row. The file <strong>cannot</strong> have any headers or more than one column.</p>
 <p>For example, the following are correct ways of providing the incentive signal to EPOS:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">goalSignalType</span> <span class="mi">19</span>
-<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span>   <span class="c1">// full path</span>
-<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span>                                     <span class="c1">// relative path</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span>   <span class="c1">// full path</span>
+<span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;datasets/incentive-signal.csv&quot;</span>                                     <span class="c1">// relative path</span>
 </pre></div>
 </div>
 <p>or in <code class="docutils literal notranslate"><span class="pre">Configuration.java</span></code> class:</p>
@@ -212,10 +205,8 @@
 </div>
 </div>
 <p>And these are the incorrect ways:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">goalSignalType</span> <span class="o">-</span><span class="mi">5</span>                                                              <span class="c1">// negative number</span>
-<span class="o">-</span><span class="n">goalSignalType</span> <span class="mi">20</span>                                                              <span class="c1">// allowed values are integers between 1 and 19</span>
-<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;datasets&quot;</span>                                                      <span class="c1">// the name of the directory containing the file is invalid</span>
-<span class="o">-</span><span class="n">goalSignaltype</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal&quot;</span>   <span class="c1">// the file extension must be specified</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;datasets&quot;</span>                                                      <span class="c1">// the name of the directory containing the file is invalid</span>
+<span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal&quot;</span>   <span class="c1">// the file extension must be specified</span>
 </pre></div>
 </div>
 </div>
@@ -232,7 +223,7 @@
         <a href="global-cost-function.html" class="btn btn-neutral float-right" title="Global Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="command-line-arguments.html" class="btn btn-neutral" title="Command Line Arguments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="command-line-arguments.html" class="btn btn-neutral" title="Configuration Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

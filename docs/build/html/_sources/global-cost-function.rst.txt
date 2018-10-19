@@ -4,7 +4,7 @@
 Global Cost Function
 ====================
 
-Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``-setGlobalCostFunc`` indicates your choice of global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more informatin about how to log the global cost, check :ref:`logging-chapter` page.
+Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``globalCostFunction`` indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more informatin about how to log the global cost, check :ref:`logging-chapter` page.
 
 .. _global-cost-function-variance:
 
@@ -51,7 +51,7 @@ where :math:`x_{i}` and :math:`y_{i}` represent the :math:`i^{th}` element of th
 
 Intuitively, one of the vectors is *global response*, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see :ref:`input-incentive-signals`. Note that both vectors are of the same length. This function can be selected in two ways:
 
-1. either setting ``-setGlobalCostFunc XCORR``, or
+1. either setting ``globalCostFunction=XCORR``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -63,7 +63,7 @@ Intuitively, one of the vectors is *global response*, the sum of all selected pl
 
 Note the minus sign in the beginning of the formula. Two vectors have maximal matching when the cross-correlation is maximized, and vice versa, they are told to be *anti-correlated* when the cross-correlation is minimal. Given that EPOS is *minimization* algorithm, and that similarity is improved by *maximizing* the cross-correlation, EPOS actually *minimizes* the negative cross-correlation.
 
-The definition of the function scales the input vectors according to :ref:`global-cost-function-scaling-standard`. If the scaling technique is forwarded via ``-setScaling`` argument, it is ignored.
+The definition of the function scales the input vectors according to :ref:`global-cost-function-scaling-standard`. If the scaling technique is forwarded via ``scaling`` parameter in the configuration file, it is ignored.
 
 The exact implementation of the function is given in ``func.CrossCorrelationFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
@@ -85,7 +85,7 @@ where :math:`s(\cdot)` denotes the scaling technique employed (see :ref:`global-
 
 Intuitively, one of the vectors is *global response*, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see :ref:`input-incentive-signals`. Note that both vectors are of the same length. This function can be selected in two ways:
 
-1. either setting ``-setGlobalCostFunc RSS``, or
+1. either setting ``globalCostFunction=RSS``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -123,7 +123,7 @@ where :math:`T` is transpose operator.
 
 For more information about how to provide an incentive signal, see :ref:`input-incentive-signals`. This function can be selected in two ways:
 
-1. either setting ``-setGlobalCostFunc RMSE``, or
+1. either setting ``globalCostFunction=RMSE``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -132,7 +132,7 @@ For more information about how to provide an incentive signal, see :ref:`input-i
       public static DifferentiableCostFunction<Vector> globalCostFunc =	
                                                             new RMSECostFunction();
 
-Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via ``-setScaling`` argument, it is ignored.
+Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via ``scaling`` parameter in the configuraiton file, it is ignored.
 
 The exact implementation of the function is given in ``func.RMSECostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
@@ -144,7 +144,7 @@ Scaling Techniques
 
 As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with :ref:`global-cost-function-rss`, for any other global cost function it is ignored.
 
-The scaling technique can be selected via ``-setScaling`` command line arfgument. The available options are described below.
+The scaling technique can be selected via ``scaling`` parameter in the configuration file. The available options are described below.
 
 .. _global-cost-function-scaling-standard:
 
@@ -162,7 +162,7 @@ where subtraction and division are performed element-wise with constants :math:`
 
 This standard normalization can be selected in one of the following two ways:
 
-1. either setting ``-setScaling STD``, or
+1. either setting ``scaling=STD``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -190,7 +190,7 @@ where subtraction and division are performed element-wise with constants :math:`
 
 This min-max scaling can be selected in one of the following two ways:
 
-1. either setting ``-setScaling MIN-MAX``, or
+1. either setting ``scaling=MIN-MAX``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -218,7 +218,7 @@ where division is performed element-wise with constant :math:`\left\lVert x \rig
 
 This unit-length scaling can be selected in one of the following two ways:
 
-1. either setting ``-setScaling UNIT-LENGTH``, or
+1. either setting ``scaling=UNIT-LENGTH``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
