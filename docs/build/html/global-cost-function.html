@@ -98,10 +98,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
 </ul>
 
@@ -169,7 +168,7 @@
             
   <div class="section" id="global-cost-function">
 <span id="global-cost-function-chapter"></span><h1>Global Cost Function<a class="headerlink" href="#global-cost-function" title="Permalink to this headline">¶</a></h1>
-<p>Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Command Line Arguments</span></a>, <code class="docutils literal notranslate"><span class="pre">-setGlobalCostFunc</span></code> indicates your choice of global cost function. In order to create your own global cost funtion, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more informatin about how to log the global cost, check <a class="reference internal" href="logging.html#logging-chapter"><span class="std std-ref">Logging</span></a> page.</p>
+<p>Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Command Line Arguments</span></a>, <code class="docutils literal notranslate"><span class="pre">-setGlobalCostFunc</span></code> indicates your choice of global cost function. In order to create your own global cost funtion, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more informatin about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
 <div class="section" id="variance">
 <span id="global-cost-function-variance"></span><h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
 <p>The variance implemented in EPOS, within signal <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
