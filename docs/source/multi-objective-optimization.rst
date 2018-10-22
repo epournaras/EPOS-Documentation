@@ -43,7 +43,7 @@ where :math:`\gamma, \alpha, \beta \in [0, 1]` and it *must* always hold :math:`
 
 By default :math:`\alpha = \beta = 0`, which means that only the global objective is optimized. The weights can be set in one of the following two ways (the example shows setting :math:`\alpha=0.2` and :math:`\beta=0.3`):
 
-1. either setting ``-alpha 0.2 -beta 0.3``, or
+1. either setting ``alpha=0.2`` and ``beta=0.3``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java

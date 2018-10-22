@@ -173,11 +173,12 @@
 <span id="global-cost-function-variance"></span><h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
 <p>The variance implemented in EPOS, within signal <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
 <div class="math notranslate nohighlight" id="equation-equation-var">
-<span class="eqno">(1)<a class="headerlink" href="#equation-equation-var" title="Permalink to this equation">¶</a></span>\[\sigma^2 = \frac{\sum\limits_{i=1}^N (X -\mu)^2}{N}\]</div>
-<p>Where signal <span class="math notranslate nohighlight">\(x\)</span> is an <em>scaled vectors</em>, representing the aggregated signal in EPOS.</p>
+<span class="eqno">(1)<a class="headerlink" href="#equation-equation-var" title="Permalink to this equation">¶</a></span>\[\sigma^2 = \frac{\sum\limits_{i=1}^N (x -\mu)^2}{N}\]</div>
+<p>where signal <span class="math notranslate nohighlight">\(x\)</span> represents the global response in EPOS.</p>
 <p>Intuitively, each vector is <em>global response</em>, the sum of all selected plans in the agent network and the idea of minimising the variance of said vector is to make the demand (in case of energy planning) as uniform / flat as possible.</p>
+<p>This function can be selected in two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-setGlobalCostFunc</span> <span class="pre">Variance</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=VAR</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="var-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#var-configuration-java" title="Permalink to this code">¶</a></div>
@@ -188,7 +189,6 @@
 </div>
 </li>
 </ol>
-<p>On how to select a scaling technique, see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</p>
 <p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
 </div>
 <div class="section" id="cross-correlation">

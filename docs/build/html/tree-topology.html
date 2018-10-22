@@ -81,7 +81,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
@@ -184,7 +184,7 @@
 <p>When certain criterion is met, the reorganization is triggered. Consequently, a new random relative position of agents within the original tree topology is constructed and each agent receives a new set of children and a new parent. The criterion is always evaluated by the current root agent. The current root agent is the one that generates new random relative position of agents within the hierarchy and is the one that notifies the agents that the reorganization is taking place by first notifying its children which then propagate the notification down their subtrees. Note that the actual reorganization takes place during the top-down phase. When an agent receives a notification that the reorganziation is taking place, it sends a request message to the current root, and it responds with a message containg the adresses of new children and a new parent. The reorganization also clears all current and previous selections, responses from subtree and indicator variables.</p>
 <p>The reproducability of experiments in terms of randomness in selecting new relative position of agents when the reorganization is triggered can be controlled via a <em>random generator seed</em>. It can be set via one of the following two ways (the example shows setting the seed to 0):</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-reorganizationSeed</span> <span class="pre">0</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy.reorganizationSeed=0</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="reorganization-seed-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-seed-configuration-java" title="Permalink to this code">¶</a></div>
@@ -199,7 +199,7 @@
 <span id="tree-topology-criterion-periodically"></span><h3>Reorganization Criterion: Periodically<a class="headerlink" href="#reorganization-criterion-periodically" title="Permalink to this headline">¶</a></h3>
 <p>The periodical criterion triggers the reorganization every X iterations. It can be enabled in two ways (the example shows the period of 3):</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-enablePERIODICALLYstrategy</span> <span class="pre">3</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=periodically</span></code> and <code class="docutils literal notranslate"><span class="pre">periodically.reorganizationPeriod=3</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="reorganization-periodically-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-periodically-configuration-java" title="Permalink to this code">¶</a></div>
@@ -215,10 +215,10 @@
 </div>
 <div class="section" id="reorganization-criterion-convergence">
 <span id="tree-topology-criterion-convergence"></span><h3>Reorganization Criterion: Convergence<a class="headerlink" href="#reorganization-criterion-convergence" title="Permalink to this headline">¶</a></h3>
-<p>Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was <em>far enough</em> from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called <em>offset</em> controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, then convergence is detected at iteration <span class="math notranslate nohighlight">\(t\)</span>, the reorganization happens between iterations <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>, and at iteration <span class="math notranslate nohighlight">\(t+1\)</span> the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration <span class="math notranslate nohighlight">\(t+1+\)</span> <em>offset</em>. Note that reverting to the previously memorized state discard local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.</p>
+<p>Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was <em>far enough</em> from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called <em>offset</em> controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, then convergence is detected at iteration <span class="math notranslate nohighlight">\(t\)</span>, the reorganization happens between iterations <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>, and at iteration <span class="math notranslate nohighlight">\(t+1\)</span> the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration <span class="math notranslate nohighlight">\(t+1+\)</span> <em>offset</em>. Note that reverting to the previously memorized state discards local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.</p>
 <p>The convergence reorganization criterion can be enabled in two ways (the example shows the <em>offset</em> of 3):</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-enableCONVERGENCEstrategy</span> <span class="pre">3</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=convergence</span></code> and <code class="docutils literal notranslate"><span class="pre">convergence.memorizationOffset=3</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="reorganization-convergence-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-convergence-configuration-java" title="Permalink to this code">¶</a></div>
@@ -240,7 +240,7 @@
 <p>where <span class="math notranslate nohighlight">\(G^{(t-1)}\)</span> and <span class="math notranslate nohighlight">\(G^{(t)}\)</span> represent the values of the global cost in two consecutive iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. Intuitively, when the relative global cost reduction is <em>low</em>, the system is close to reaching the local minimum, but if it is <em>high</em>, the system takes long steps towards it. More precisely, the reorganization is triggered when the relative global cost reduction in Equation <a class="reference internal" href="#equation-equation-global-cost-reduction">(1)</a> <strong>drops</strong> below a certain <em>threshold</em>. At the iteration immediately after the reorganization, the agents make the same selections as at the iteration prior to the reorganization.</p>
 <p>The reorganization criterion based on the global cost reduction can be enabled in two ways (the example shows the <em>threshold</em> of 0.5):</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-enableGLOBALCOSTREDUCTIONstrategy</span> <span class="pre">0.5</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=globalCostReduction</span></code> <code class="docutils literal notranslate"><span class="pre">globalCost.reductionThreshold=0.5</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="reorganization-reduction-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-reduction-configuration-java" title="Permalink to this code">¶</a></div>
@@ -258,7 +258,7 @@
 <span id="tree-topology-criterion-never"></span><h3>Reorganization Criterion: Never<a class="headerlink" href="#reorganization-criterion-never" title="Permalink to this headline">¶</a></h3>
 <p>By default, reorganizations are disabled. Externally, it can be done in one of the following two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">-enableNEVERstrategy</span></code>, or</p>
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=never</span></code>, or</p>
 </li>
 <li><div class="literal-block-wrapper first docutils container" id="reorganization-never-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-never-configuration-java" title="Permalink to this code">¶</a></div>

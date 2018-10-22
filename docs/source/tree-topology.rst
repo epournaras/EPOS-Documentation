@@ -31,7 +31,7 @@ When certain criterion is met, the reorganization is triggered. Consequently, a 
 
 The reproducability of experiments in terms of randomness in selecting new relative position of agents when the reorganization is triggered can be controlled via a *random generator seed*. It can be set via one of the following two ways (the example shows setting the seed to 0):
 
-1. either setting ``-reorganizationSeed 0``, or
+1. either setting ``strategy.reorganizationSeed=0``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -48,7 +48,7 @@ Reorganization Criterion: Periodically
 
 The periodical criterion triggers the reorganization every X iterations. It can be enabled in two ways (the example shows the period of 3):
 
-1. either setting ``-enablePERIODICALLYstrategy 3``, or
+1. either setting ``strategy=periodically`` and ``periodically.reorganizationPeriod=3``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -65,11 +65,11 @@ Note that the period of reorganizations must be an integer value.
 Reorganization Criterion: Convergence
 -------------------------------------
 
-Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was *far enough* from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called *offset* controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations :math:`t-1` and :math:`t`, then convergence is detected at iteration :math:`t`, the reorganization happens between iterations :math:`t` and :math:`t+1`, and at iteration :math:`t+1` the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration :math:`t+1+` *offset*. Note that reverting to the previously memorized state discard local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.
+Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was *far enough* from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called *offset* controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations :math:`t-1` and :math:`t`, then convergence is detected at iteration :math:`t`, the reorganization happens between iterations :math:`t` and :math:`t+1`, and at iteration :math:`t+1` the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration :math:`t+1+` *offset*. Note that reverting to the previously memorized state discards local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.
 
 The convergence reorganization criterion can be enabled in two ways (the example shows the *offset* of 3):
 
-1. either setting ``-enableCONVERGENCEstrategy 3``, or
+1. either setting ``strategy=convergence`` and ``convergence.memorizationOffset=3``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -97,7 +97,7 @@ where :math:`G^{(t-1)}` and :math:`G^{(t)}` represent the values of the global c
 
 The reorganization criterion based on the global cost reduction can be enabled in two ways (the example shows the *threshold* of 0.5):
 
-1. either setting ``-enableGLOBALCOSTREDUCTIONstrategy 0.5``, or
+1. either setting ``strategy=globalCostReduction`` ``globalCost.reductionThreshold=0.5``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -116,7 +116,7 @@ Reorganization Criterion: Never
 
 By default, reorganizations are disabled. Externally, it can be done in one of the following two ways:
 
-1. either setting ``-enableNEVERstrategy``, or
+1. either setting ``strategy=never``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java

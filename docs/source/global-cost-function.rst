@@ -16,13 +16,15 @@ The variance implemented in EPOS, within signal :math:`x \in \mathbb{R}^{d}`, is
 .. math::
    :label: equation-var
 
-   \sigma^2 = \frac{\sum\limits_{i=1}^N (X -\mu)^2}{N}
+   \sigma^2 = \frac{\sum\limits_{i=1}^N (x -\mu)^2}{N}
 
-Where signal :math:`x` is an *scaled vectors*, representing the aggregated signal in EPOS.
+where signal :math:`x` represents the global response in EPOS.
 
 Intuitively, each vector is *global response*, the sum of all selected plans in the agent network and the idea of minimising the variance of said vector is to make the demand (in case of energy planning) as uniform / flat as possible. 
 
-1. either setting ``-setGlobalCostFunc Variance``, or
+This function can be selected in two ways:
+
+1. either setting ``globalCostFunction=VAR``, or
 
 2. .. code-block:: java
       :caption: config.Configuration.java
@@ -30,8 +32,6 @@ Intuitively, each vector is *global response*, the sum of all selected plans in 
 
       public static DifferentiableCostFunction<Vector> globalCostFunc = 
                                                             new VarCostFunction();
-
-On how to select a scaling technique, see :ref:`global-cost-function-scaling`.
 
 The exact implementation of the function is given in ``func.VarCostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
