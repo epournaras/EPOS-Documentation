@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
   
   
 
@@ -158,7 +160,11 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimantal-setup.html#command-line-setup">Command-Line Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimantal-setup.html#ide-setup">IDE Setup</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="input.html#plans">Plans</a></li>
@@ -213,26 +219,26 @@
 </div>
 <div class="section" id="software-artifact">
 <h2>Software Artifact<a class="headerlink" href="#software-artifact" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Here you can copy paste the content from the following page: <a class="reference external" href="http://epos-net.org/software/exemplar/">http://epos-net.org/software/exemplar/</a></li>
-</ul>
+<p>A software artifact with a Graphical User Interface (GUI) can be acquired via ‘EPOS Exemplar’(<a class="reference external" href="http://epos-net.org/">http://epos-net.org/</a>). The website contains an executable and instructions about the latest artifact version of EPOS. It is advised to use the website software for demonstration purposes. Detailed usage guidelines and explanations regarding the system architectures can also be found in the website.</p>
 </div>
 <div class="section" id="installation">
 <span id="installation-setup"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Install $project by running:</p>
-<blockquote>
-<div>install project</div></blockquote>
+<p>The project can be installed in 2 possible ways:</p>
+<ul class="simple">
+<li>A command line executable, that can be found under the project <a class="reference external" href="https://github.com/epournaras/EPOS/releases">github releases</a>.  Once the <code class="code docutils literal notranslate"><span class="pre">release-x.x.x.zip</span></code> is downloaded and extreacted the user can navigate in the extracted folder and follow the guideline at <a class="reference internal" href="experimantal-setup.html#command-line-setup"><span class="std std-ref">Command-Line Setup</span></a>. For this setup a <a class="reference external" href="https://www.java.com/en/download/">Java 8 or higher</a> should be installed.</li>
+<li>IDE imported source code, that can be found under the tutorial branch of the <a class="reference external" href="https://github.com/epournaras/EPOS/">project github repository</a>. Detailed instructions for getting and importing the source code to an IDE can be found at <a class="reference internal" href="experimantal-setup.html#ide-setup"><span class="std std-ref">IDE Setup</span></a>. For this setup <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">jdk-8uxxx or higher</a> should be installed along with <a class="reference external" href="https://maven.apache.org/">Maven 3.3 or higher</a> and the latest version of <a class="reference external" href="https://git-scm.com/">git</a>.</li>
+</ul>
 </div>
 <div class="section" id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Issue Tracker: github.com/$project/$project/issues</li>
-<li>Source Code: github.com/$project/$project</li>
+<li><a class="reference external" href="https://github.com/epournaras/EPOS/issues">Issue Tracker</a></li>
+<li><a class="reference external" href="https://github.com/epournaras/EPOS">Source Code</a></li>
 </ul>
 </div>
 <div class="section" id="support">
 <h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
-<p>If you are having issues, please let us know.
+<p>We will be happy to support with any issues or questions regarding the project.
 We have a mailing list located at: <a class="reference external" href="mailto:project&#37;&#52;&#48;google-groups&#46;com">project<span>&#64;</span>google-groups<span>&#46;</span>com</a></p>
 </div>
 <div class="section" id="license">
@@ -267,7 +273,7 @@ We have a mailing list located at: <a class="reference external" href="mailto:pr
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic
 
     </p>
   </div>
@@ -286,21 +292,14 @@ We have a mailing list located at: <a class="reference external" href="mailto:pr
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
