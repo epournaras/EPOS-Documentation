@@ -4,7 +4,7 @@
 Logging & Output
 ================
 
-The logging functions in EPOS are expansive and they track, record, and report information about the system at each iteration and also at the end / termination of the simulation. The class implementations can be found at ``agent.logging`` package in the code. In order to initialise and add different loggers to the agent, they need to be added in the ``experiment.MultiObjectiveIEPOSExperiment`` class:
+The logging functions in EPOS are extensive and they track, record, and report information about the system at each iteration and also at the end / termination of the simulation. The class implementations can be found at ``agent.logging`` package in the code. In order to initialise and add different loggers to the agent, they need to be added in the ``experiment.MultiObjectiveIEPOSExperiment`` class:
 
 .. code-block:: java
 

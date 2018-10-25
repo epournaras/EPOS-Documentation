@@ -158,7 +158,7 @@
             
   <div class="section" id="termination-criteria">
 <span id="termination-criteria-chapter"></span><h1>Termination Criteria<a class="headerlink" href="#termination-criteria" title="Permalink to this headline">¶</a></h1>
-<p>Termination criteria in EPOS is defined at two levels, in the agent level, it is defined as the last iteration that changes the global cost of the result. At the simulation level, termination of the simulaiton is when all the iterations are done. The iterations are defined at <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> as <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">int</span> <span class="pre">numIterations</span> <span class="pre">=</span> <span class="pre">40</span></code> by default and can be also set by <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>. Termination is logged by the termination logger implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.TerminationLogger</span></code>. More detailed on loggers can be found in <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
+<p>Termination criteria in EPOS is defined at two levels, in the agent level, it is defined as the last iteration that changes the global cost of the result. At the simulation level, termination of the simulation is when all the iterations are done. The iterations are defined at <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> as <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">int</span> <span class="pre">numIterations</span> <span class="pre">=</span> <span class="pre">40</span></code> by default and can be also set by <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>. Termination is logged by the termination logger implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.TerminationLogger</span></code>. More detailed on loggers can be found in <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
 </div>
 
 
@@ -202,11 +202,21 @@
 
     
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   

@@ -21,7 +21,7 @@ in which the plan score can be:
 
 The possible dataset formats are defined in ``agent.dataset`` package in the code. In addition, there is a Gaussian plan generator in ``agent.dataset.GaussianDataSet.java``. For this dataset, you can define the *number of agents*, *number of plans*, and *number of dimensions* using the configuration or the :ref:`arguments-chapter`.
 
-In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. the implemented classes for this can be found at ``agent.planselection`` package. The main class is ``MultiObjectiveIeposPlanSelector implements PlanSelector<MultiObjectiveIEPOSAgent>`` and the main function is:
+In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. The implemented classes for this can be found at ``agent.planselection`` package. The main class is ``MultiObjectiveIeposPlanSelector implements PlanSelector<MultiObjectiveIEPOSAgent>`` and the main function is:
 
 .. code-block:: java
 
@@ -43,11 +43,11 @@ which return the id of the selected local plan. There are different ways of sele
 Incentive Signals
 =================
 
-EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is minimization algorithm, the objective is minimizing *dissimilarity* between them. For more informaiton on dissimilarity measures, please see :ref:`global-cost-function-chapter`. The incentive signal is taken into account only if one of the following global cost functions are employed: :ref:`global-cost-function-cross-correlation`, :ref:`global-cost-function-rss` or :ref:`global-cost-function-rmse`.
+EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is a minimization algorithm, the objective is the minimization of *dissimilarity* between them. For more informaiton on the dissimilarity measures, please see :ref:`global-cost-function-chapter`. The incentive signal is taken into account only if one of the following global cost functions are employed: :ref:`global-cost-function-cross-correlation`, :ref:`global-cost-function-rss` or :ref:`global-cost-function-rmse`.
 
-Incentive signal is forwarded to EPOS via parameter ``goalSignalPath`` by setting **a path** to a file containing the incentive signal. If the file path is not provided, a first ".target" file in *dataset* directory will be used as a goal signal. If none ".target" files are found, a *zero* goal signal is constructed (a signal filled with zeros).
+The Incentive signal is used within EPOS via the parameter ``goalSignalPath`` by setting **a path** to a file containing the incentive signal. If the file path is not provided, a first ".target" file in *dataset* directory will be used as a goal signal. If none ".target" files are found, a *zero* goal signal is constructed (a signal filled with zeros).
 
-Note that the incentive signal **must** be of the same length as plans. If it is shorter than ``planDim`` parameter, it will be padded at the end in a Round-Robyn fashion, if longer, it will be cropped. The signal is given in a column, one value in each row. The file **cannot** have any headers or more than one column.
+Note that the incentive signal **must** be of the same length as plans. If it is shorter than the ``planDim`` parameter, it will be padded at the end in a Round-Robyn fashion, if longer, it will be cropped. The signal is given in a column, one value in each row. The file **cannot** have any headers or more than one column.
 
 For example, the following are correct ways of providing the incentive signal to EPOS:
 

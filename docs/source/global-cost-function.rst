@@ -4,7 +4,7 @@
 Global Cost Function
 ====================
 
-Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``globalCostFunction`` indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more informatin about how to log the global cost, check :ref:`logging-chapter` page.
+The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``globalCostFunction`` indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more information about how to log the global cost, check :ref:`logging-chapter` page.
 
 .. _global-cost-function-variance:
 
@@ -96,7 +96,7 @@ Intuitively, one of the vectors is *global response*, the sum of all selected pl
 
 On how to select a scaling technique, see :ref:`global-cost-function-scaling`.
 
-The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, whihc inidicates the best possible matching.
+The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which inidicates the best possible matching.
 
 The exact implementation of the function is given in ``func.RSSCostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
@@ -119,7 +119,7 @@ where :math:`\sigma\left(g\right)` and :math:`\sigma\left(h\right)` denote stand
 
    \sqrt{\frac{1}{d} \left(g - x\right)^{T} \left(g - x\right)}
 
-where :math:`T` is transpose operator.
+where :math:`T` is the transpose operator.
 
 For more information about how to provide an incentive signal, see :ref:`input-incentive-signals`. This function can be selected in two ways:
 
@@ -142,7 +142,7 @@ The exact implementation of the function is given in ``func.RMSECostFunction.jav
 Scaling Techniques
 ==================
 
-As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with :ref:`global-cost-function-rss`, for any other global cost function it is ignored.
+As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with the :ref:`global-cost-function-rss`, for any other global cost function it is ignored.
 
 The scaling technique can be selected via ``scaling`` parameter in the configuration file. The available options are described below.
 

@@ -170,7 +170,7 @@
             
   <div class="section" id="global-cost-function">
 <span id="global-cost-function-chapter"></span><h1>Global Cost Function<a class="headerlink" href="#global-cost-function" title="Permalink to this headline">¶</a></h1>
-<p>Global cost function represent the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code> indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more informatin about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
+<p>The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code> indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more information about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
 <div class="section" id="variance">
 <span id="global-cost-function-variance"></span><h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
 <p>The variance implemented in EPOS, within signal <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
@@ -237,7 +237,7 @@
 </li>
 </ol>
 <p>On how to select a scaling technique, see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</p>
-<p>The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, whihc inidicates the best possible matching.</p>
+<p>The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which inidicates the best possible matching.</p>
 <p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.RSSCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
 </div>
 <div class="section" id="root-mean-square-error">
@@ -248,7 +248,7 @@
 <p>where <span class="math notranslate nohighlight">\(\sigma\left(g\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma\left(h\right)\)</span> denote standard deviations of the signals, and <span class="math notranslate nohighlight">\(\mu(g)\)</span> and <span class="math notranslate nohighlight">\(\mu(h)\)</span> their means. Intuitively, you can think of it as <em>scaling the signal</em> <span class="math notranslate nohighlight">\(h\)</span> <em>to the scale of the signal</em> <span class="math notranslate nohighlight">\(g\)</span>. Then, the root mean square error is computed as follows:</p>
 <div class="math notranslate nohighlight" id="equation-equation-rmse">
 <span class="eqno">(5)<a class="headerlink" href="#equation-equation-rmse" title="Permalink to this equation">¶</a></span>\[\sqrt{\frac{1}{d} \left(g - x\right)^{T} \left(g - x\right)}\]</div>
-<p>where <span class="math notranslate nohighlight">\(T\)</span> is transpose operator.</p>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the transpose operator.</p>
 <p>For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. This function can be selected in two ways:</p>
 <ol class="arabic">
 <li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RMSE</span></code>, or</p>
@@ -267,7 +267,7 @@
 </div>
 <div class="section" id="scaling-techniques">
 <span id="global-cost-function-scaling"></span><h2>Scaling Techniques<a class="headerlink" href="#scaling-techniques" title="Permalink to this headline">¶</a></h2>
-<p>As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with <a class="reference internal" href="#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a>, for any other global cost function it is ignored.</p>
+<p>As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with the <a class="reference internal" href="#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a>, for any other global cost function it is ignored.</p>
 <p>The scaling technique can be selected via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuration file. The available options are described below.</p>
 <div class="section" id="standard-normalization">
 <span id="global-cost-function-scaling-standard"></span><h3>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
@@ -376,11 +376,21 @@
 
     
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   

@@ -169,7 +169,7 @@
             
   <div class="section" id="logging-output">
 <span id="logging-chapter"></span><h1>Logging &amp; Output<a class="headerlink" href="#logging-output" title="Permalink to this headline">¶</a></h1>
-<p>The logging functions in EPOS are expansive and they track, record, and report information about the system at each iteration and also at the end / termination of the simulation. The class implementations can be found at <code class="docutils literal notranslate"><span class="pre">agent.logging</span></code> package in the code. In order to initialise and add different loggers to the agent, they need to be added in the <code class="docutils literal notranslate"><span class="pre">experiment.MultiObjectiveIEPOSExperiment</span></code> class:</p>
+<p>The logging functions in EPOS are extensive and they track, record, and report information about the system at each iteration and also at the end / termination of the simulation. The class implementations can be found at <code class="docutils literal notranslate"><span class="pre">agent.logging</span></code> package in the code. In order to initialise and add different loggers to the agent, they need to be added in the <code class="docutils literal notranslate"><span class="pre">experiment.MultiObjectiveIEPOSExperiment</span></code> class:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">LoggingProvider</span><span class="o">&lt;</span><span class="n">MultiObjectiveIEPOSAgent</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;&gt;</span> <span class="n">loggingProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingProvider</span><span class="o">&lt;</span><span class="n">MultiObjectiveIEPOSAgent</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;&gt;();</span>
 <span class="n">GlobalCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span>              <span class="n">GCLogger</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">GlobalCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getGlobalCostPath</span><span class="o">());</span>
 <span class="n">LocalCostMultiObjectiveLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">LCLogger</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">LocalCostMultiObjectiveLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getLocalCostPath</span><span class="o">());</span>
@@ -294,11 +294,21 @@
 
     
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   

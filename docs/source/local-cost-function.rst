@@ -8,7 +8,7 @@ EPOS allows for possible plans of an agent to be *ranked* according to various m
 
 .. _local-cost-function-index:
 
-Index Local Cost Function
+Index-based Local Cost Function
 =========================
 
 This is the simplest form of the local cost function in which the *plan index* indicates the plan cost. In this scenario, if an agent has 10 local plans, they are indexed from 0-9. Recall that the format of the :ref:`input-plans` is as follows:
@@ -31,7 +31,7 @@ The exact implementation of the function is given in ``func.IndexCostFunction.ja
 
 .. _local-cost-function-discomfort:
 
-Discomfort Local Cost Function
+Discomfort-based Local Cost Function
 ==============================
 
 Recall that the *planScore* field in each of the :ref:`input-plans` can have 2 different meanings, depending on the dataset. Discomfort Local Cost Function interprets this score as *discomfort* that should be minimized. 
@@ -53,12 +53,12 @@ The implementation of this function can be found in ``func.PlanDiscomfortFunctio
 
 .. _local-cost-function-preference:
 
-Preference Local Cost Function
+Preference-based Local Cost Function
 ==============================
 
 Another meaning of the *planScore* field in each of the :ref:`input-plans` is *preference score*. Unlike the :ref:`local-cost-function-index` and :ref:`local-cost-function-discomfort` where the lower value of the score is interpreted as better and more comfortable, this function does the opposite: higher value of the score is better, expresses higher comfort and convenience. Intuitively, the plan with higher *preference score* should be selected.
 
-However, as EPOS is minimization algorithm, the *preference score* must be converted to a measure that should be minimized, i.e. discomfort. **The assumption that this implementation of the preference cost function makes is that all preference scores are between 0 and 1!** Then, the *preference score* is converted to discomfort as :math:`1 - planScore`.
+However, as EPOS is a minimization algorithm, the *preference score* must be converted to a measure that should be minimized, i.e. discomfort. **The assumption that this implementation of the preference cost function makes is that all preference scores are between 0 and 1!** Then, the *preference score* is converted to discomfort as :math:`1 - planScore`.
 
 This function can be set in one of the following ways:
 
