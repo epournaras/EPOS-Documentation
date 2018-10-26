@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#selected-plans">Selected Plans</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#termination-logger">Termination Logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#unfairness-logger">Unfairness Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reorganization-logger">Reorganization Logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#weights-alpha-beta-logger">Weights, Alpha, Beta Logger</a></li>
 </ul>
 </li>
@@ -183,7 +184,7 @@
 <span class="n">UnfairnessLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span>              <span class="n">ULogger</span>   <span class="o">=</span> <span class="k">new</span> <span class="n">UnfairnessLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getUnfairnessPath</span><span class="o">());</span>
 <span class="n">GlobalComplexCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span>       <span class="n">GCXLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GlobalComplexCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getGlobalComplexCostPath</span><span class="o">());</span>
 <span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span>                 <span class="n">WLogger</span>   <span class="o">=</span> <span class="k">new</span> <span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getWeightsPath</span><span class="o">());</span>
-
+<span class="n">ReorganizationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span>          <span class="n">RLogger</span>   <span class="o">=</span> <span class="k">new</span> <span class="n">ReorganizationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getReorganizationPath</span><span class="o">());</span>
 
 <span class="n">GCLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
 <span class="n">LCLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
@@ -194,6 +195,8 @@
 <span class="n">ULogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
 <span class="n">GCXLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
 <span class="n">WLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">RLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+
 
 <span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GCLogger</span><span class="o">);</span>
 <span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">LCLogger</span><span class="o">);</span>
@@ -204,6 +207,7 @@
 <span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ULogger</span><span class="o">);</span>
 <span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GCXLogger</span><span class="o">);</span>
 <span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">WLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">RLogger</span><span class="o">);</span>
 </pre></div>
 </div>
 <p>In order to add / develop new loggers to EPOS, the <code class="docutils literal notranslate"><span class="pre">GlobalCostLogger</span></code> template is recommended. In addition to this, each logger, when their <code class="docutils literal notranslate"><span class="pre">print</span></code> function is called, they write their data on output files with address defined in <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> class.</p>
@@ -263,6 +267,13 @@
 <p>The unfairness logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.UnfairnessCostLogger.java</span></code> and by default, it record the unfairness defined in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">unfairness.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is a matrix showing the <strong>unfairness of the whole system, at each iteration, and across multiple runs</strong>. In addition, it shows the mean and standard deviation of the cost across different runs.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/Un.pdf.svg"><img alt="alternate text" src="_images/Un.pdf.svg" /></a>
+</div>
+</div>
+<div class="section" id="reorganization-logger">
+<h2>Reorganization Logger<a class="headerlink" href="#reorganization-logger" title="Permalink to this headline">¶</a></h2>
+<p>This logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.ReorganizationLogger.java</span></code>. For each EPOS run, the logger creates a new column that contains the cumulative number of reorganizations until the iteration index of the first column. More regarding reorganization and tree topology of EPOS can be found at <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/NR.pdf.svg"><img alt="alternate text" src="_images/NR.pdf.svg" /></a>
 </div>
 </div>
 <div class="section" id="weights-alpha-beta-logger">

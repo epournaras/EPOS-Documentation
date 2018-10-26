@@ -18,7 +18,7 @@ The logging functions in EPOS are extensive and they track, record, and report i
   UnfairnessLogger<Vector>              ULogger   = new UnfairnessLogger<Vector>(Configuration.getUnfairnessPath());
   GlobalComplexCostLogger<Vector>       GCXLogger = new GlobalComplexCostLogger<Vector>(Configuration.getGlobalComplexCostPath());
   WeightsLogger<Vector>                 WLogger   = new WeightsLogger<Vector>(Configuration.getWeightsPath());
-        
+  ReorganizationLogger<Vector>          RLogger   = new ReorganizationLogger<Vector>(Configuration.getReorganizationPath());
         
   GCLogger.setRun(Configuration.permutationID);
   LCLogger.setRun(Configuration.permutationID);
@@ -29,6 +29,8 @@ The logging functions in EPOS are extensive and they track, record, and report i
   ULogger.setRun(Configuration.permutationID);
   GCXLogger.setRun(Configuration.permutationID);
   WLogger.setRun(Configuration.permutationID);
+  RLogger.setRun(Configuration.permutationID);
+
         
   loggingProvider.add(GCLogger);
   loggingProvider.add(LCLogger);
@@ -39,6 +41,8 @@ The logging functions in EPOS are extensive and they track, record, and report i
   loggingProvider.add(ULogger);
   loggingProvider.add(GCXLogger);
   loggingProvider.add(WLogger);
+  loggingProvider.add(RLogger);
+
 
 In order to add / develop new loggers to EPOS, the ``GlobalCostLogger`` template is recommended. In addition to this, each logger, when their ``print`` function is called, they write their data on output files with address defined in ``config.Configuration`` class.
 
@@ -125,6 +129,15 @@ The unfairness logger is implemented in ``agent.logging.UnfairnessCostLogger.jav
 
 
 .. figure:: Un.pdf.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+Reorganization Logger
+=====================
+This logger is implemented in ``agent.logging.ReorganizationLogger.java``. For each EPOS run, the logger creates a new column that contains the cumulative number of reorganizations until the iteration index of the first column. More regarding reorganization and tree topology of EPOS can be found at :ref:`tree-topology-reorganization`.
+
+.. figure:: NR.pdf.svg
    :scale: 100 %
    :alt: alternate text
    :align: center
