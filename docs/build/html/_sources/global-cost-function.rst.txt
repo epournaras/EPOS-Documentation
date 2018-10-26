@@ -4,7 +4,7 @@
 Global Cost Function
 ====================
 
-The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``globalCostFunction`` indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the ``func.VarCostFunction`` class as the template. For more information about how to log the global cost, check :ref:`logging-chapter` page.
+The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost function :math:`g(\cdot)` as :math:`g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}`. The classes of pre-implemented global cost functions can be found in ``func`` package in the code. Using :ref:`arguments-chapter`, ``globalCostFunction`` indicates your choice of the global cost function. In order to create your own global cost function, you can use the ``func.VarCostFunction`` class as the template. For more information about how to log the global cost, check :ref:`logging-chapter` page.
 
 .. _global-cost-function-variance:
 
@@ -96,7 +96,7 @@ Intuitively, one of the vectors is *global response*, the sum of all selected pl
 
 On how to select a scaling technique, see :ref:`global-cost-function-scaling`.
 
-The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which inidicates the best possible matching.
+The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which indicates the best possible matching.
 
 The exact implementation of the function is given in ``func.RSSCostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
@@ -132,7 +132,7 @@ For more information about how to provide an incentive signal, see :ref:`input-i
       public static DifferentiableCostFunction<Vector> globalCostFunc =	
                                                             new RMSECostFunction();
 
-Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via ``scaling`` parameter in the configuraiton file, it is ignored.
+Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via ``scaling`` parameter in the configuration file, it is ignored.
 
 The exact implementation of the function is given in ``func.RMSECostFunction.java``. It is the subtype of ``DifferentiableCostFunction<Vector>``.
 
@@ -170,7 +170,7 @@ This standard normalization can be selected in one of the following two ways:
 
       public static UnaryOperator<Vector> normalizer = Vector.standard_normalization;
 
-The implementation of the standard normalization can be found in clas ``data.Vector`` and is implemented as ``UnaryOperator<Vector>`` function.
+The implementation of the standard normalization can be found in class ``data.Vector`` and is implemented as ``UnaryOperator<Vector>`` function.
 
 **Limitations:** The standard deviation of a vector whose all values are equal is 0, and if the standard normalization is applied on such vector, it will result in division by zero. As a solution to this, a small constant (:math:`10^{-9}`) is added in the denominator.
 

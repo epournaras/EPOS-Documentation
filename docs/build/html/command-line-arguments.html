@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -28,6 +30,7 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Input" href="input.html" />
@@ -188,7 +191,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code>: The global cost function to be used. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">VAR</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-variance"><span class="std std-ref">Variance</span></a>, <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, <code class="docutils literal notranslate"><span class="pre">RSS</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> and <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>. Default is <code class="docutils literal notranslate"><span class="pre">VAR</span></code>. <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> uses <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a> by definition, <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> has its own way of scaling and <code class="docutils literal notranslate"><span class="pre">RSS</span></code> uses standard normalization by default, but can use others. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">scaling</span></code>: The scaling technique to be used with <code class="docutils literal notranslate"><span class="pre">RSS</span></code> function, ignored otherwise. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">STD</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a>, <code class="docutils literal notranslate"><span class="pre">MIN-MAX</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-min-max"><span class="std std-ref">Min-Max Scaling</span></a> and <code class="docutils literal notranslate"><span class="pre">UNIT-LENGTH</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-unit-length"><span class="std std-ref">Unit-Length Scaling</span></a>. Default is <code class="docutils literal notranslate"><span class="pre">STD</span></code>. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">goalSignalPath</span></code>: The reference signal, paired with <code class="docutils literal notranslate"><span class="pre">RSS</span></code>, <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> or <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> global cost function, otherwise ignored. A path to a file with the signal in one column. The length of the signal from the file must be of size <code class="docutils literal notranslate"><span class="pre">planDim</span></code>. If shorter, it will be padded in a Round-Robyn manner, if longer, it will be cropped to the size given in <code class="docutils literal notranslate"><span class="pre">planDim</span></code>. For more information, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">localCostFunction</span></code>: The local cost function. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">DISC</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort Local Cost Function</span></a>, <code class="docutils literal notranslate"><span class="pre">PREF</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference Local Cost Function</span></a>, which is converted to <code class="docutils literal notranslate"><span class="pre">DISC</span></code> by 1 - <code class="docutils literal notranslate"><span class="pre">PREF</span></code>, <code class="docutils literal notranslate"><span class="pre">INDEX</span></code> for plan indicies to be used as costs (see <a class="reference internal" href="local-cost-function.html#local-cost-function-index"><span class="std std-ref">Index Local Cost Function</span></a>). Default is <code class="docutils literal notranslate"><span class="pre">DISC</span></code>. For more information, see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">localCostFunction</span></code>: The local cost function. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">DISC</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a>, <code class="docutils literal notranslate"><span class="pre">PREF</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference-based Local Cost Function</span></a>, which is converted to <code class="docutils literal notranslate"><span class="pre">DISC</span></code> by 1 - <code class="docutils literal notranslate"><span class="pre">PREF</span></code>, <code class="docutils literal notranslate"><span class="pre">INDEX</span></code> for plan indices to be used as costs (see <a class="reference internal" href="local-cost-function.html#local-cost-function-index"><span class="std std-ref">Index-based Local Cost Function</span></a>). Default is <code class="docutils literal notranslate"><span class="pre">DISC</span></code>. For more information, see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>.</li>
 </ul>
 </div></blockquote>
 <p>Dynamic and on-the-fly reorganization parameters:</p>
@@ -244,21 +247,11 @@
 
     
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'1.0',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   
@@ -269,7 +262,48 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
 
 </body>
 </html>

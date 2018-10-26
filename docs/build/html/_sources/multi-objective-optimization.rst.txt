@@ -39,7 +39,7 @@ EPOS linearly combines the three objectives in a weighted sum of objectives, for
 
    \gamma \cdot G^{(t)} + \alpha \cdot U^{(t)} + \beta \cdot L^{(t)}
 
-where :math:`\gamma, \alpha, \beta \in [0, 1]` and it *must* always hold :math:`\gamma + \alpha + \beta = 1`. The higher value of the weight expresses stronger preference towards minimizing the corresponding objective. When the value of the weight is 0, the corresponding objective is not optimzied.
+where :math:`\gamma, \alpha, \beta \in [0, 1]` and it *must* always hold :math:`\gamma + \alpha + \beta = 1`. The higher value of the weight expresses stronger preference towards minimizing the corresponding objective. When the value of the weight is 0, the corresponding objective is not optimized.
 
 By default :math:`\alpha = \beta = 0`, which means that only the global objective is optimized. The weights can be set in one of the following two ways (the example shows setting :math:`\alpha=0.2` and :math:`\beta=0.3`):
 

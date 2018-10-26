@@ -44,7 +44,7 @@ Parameters controlling the Objectives:
 
   - ``goalSignalPath``: The reference signal, paired with ``RSS``, ``XCORR`` or ``RMSE`` global cost function, otherwise ignored. A path to a file with the signal in one column. The length of the signal from the file must be of size ``planDim``. If shorter, it will be padded in a Round-Robyn manner, if longer, it will be cropped to the size given in ``planDim``. For more information, see :ref:`input-incentive-signals`.
 
-  - ``localCostFunction``: The local cost function. Options are (case-sensitive): ``DISC`` for :ref:`local-cost-function-discomfort`, ``PREF`` for :ref:`local-cost-function-preference`, which is converted to ``DISC`` by 1 - ``PREF``, ``INDEX`` for plan indicies to be used as costs (see :ref:`local-cost-function-index`). Default is ``DISC``. For more information, see :ref:`local-cost-function-chapter`.
+  - ``localCostFunction``: The local cost function. Options are (case-sensitive): ``DISC`` for :ref:`local-cost-function-discomfort`, ``PREF`` for :ref:`local-cost-function-preference`, which is converted to ``DISC`` by 1 - ``PREF``, ``INDEX`` for plan indices to be used as costs (see :ref:`local-cost-function-index`). Default is ``DISC``. For more information, see :ref:`local-cost-function-chapter`.
 
 Dynamic and on-the-fly reorganization parameters:
 

@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -28,6 +30,7 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Local Cost Function" href="local-cost-function.html" />
@@ -170,7 +173,7 @@
             
   <div class="section" id="global-cost-function">
 <span id="global-cost-function-chapter"></span><h1>Global Cost Function<a class="headerlink" href="#global-cost-function" title="Permalink to this headline">¶</a></h1>
-<p>The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost fucntion <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code> indicates your choice of the global cost function. In order to create your own global cost funtion, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more information about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
+<p>The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code> indicates your choice of the global cost function. In order to create your own global cost function, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more information about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
 <div class="section" id="variance">
 <span id="global-cost-function-variance"></span><h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
 <p>The variance implemented in EPOS, within signal <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
@@ -237,7 +240,7 @@
 </li>
 </ol>
 <p>On how to select a scaling technique, see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</p>
-<p>The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which inidicates the best possible matching.</p>
+<p>The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which indicates the best possible matching.</p>
 <p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.RSSCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
 </div>
 <div class="section" id="root-mean-square-error">
@@ -262,7 +265,7 @@
 </div>
 </li>
 </ol>
-<p>Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuraiton file, it is ignored.</p>
+<p>Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuration file, it is ignored.</p>
 <p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.RMSECostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
 </div>
 <div class="section" id="scaling-techniques">
@@ -287,7 +290,7 @@
 </div>
 </li>
 </ol>
-<p>The implementation of the standard normalization can be found in clas <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p>The implementation of the standard normalization can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
 <p><strong>Limitations:</strong> The standard deviation of a vector whose all values are equal is 0, and if the standard normalization is applied on such vector, it will result in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
 </div>
 <div class="section" id="min-max-scaling">
@@ -376,21 +379,11 @@
 
     
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'1.0',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   
@@ -401,7 +394,48 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
 
 </body>
 </html>

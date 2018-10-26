@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Open Files" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="70d6077a-24dd-4bbf-b4c4-e9d2dfb0b03d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/advanced-topics.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/advanced-topics.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/command-line-arguments.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/command-line-arguments.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/experimantal-setup.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/experimantal-setup.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/global-cost-function.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/global-cost-function.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/input.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/input.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/local-cost-function.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/local-cost-function.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/logging-output.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/logging-output.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/multi-objective-optimization.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/multi-objective-optimization.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/output.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/output.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/termination-criteria.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/termination-criteria.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/tree-topology.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/tree-topology.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/.buildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/command-line-arguments.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/command-line-arguments.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/experimantal-setup.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/experimantal-setup.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/global-cost-function.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/global-cost-function.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/input.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/input.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/local-cost-function.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/local-cost-function.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/logging-output.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/logging-output.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/multi-objective-optimization.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/multi-objective-optimization.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/tree-topology.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/tree-topology.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/basic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/doctools.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/doctools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/documentation_options.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/documentation_options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/searchtools.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/searchtools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/advanced-topics.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/advanced-topics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/command-line-arguments.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/command-line-arguments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/experimantal-setup.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/experimantal-setup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/global-cost-function.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/global-cost-function.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/input.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/input.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/local-cost-function.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/local-cost-function.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/logging-output.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/logging-output.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/multi-objective-optimization.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/multi-objective-optimization.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/output.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/output.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/termination-criteria.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/termination-criteria.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/tree-topology.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/tree-topology.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/command-line-arguments.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/command-line-arguments.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/experimantal-setup.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/experimantal-setup.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/global-cost-function.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/global-cost-function.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/input.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/input.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/local-cost-function.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/local-cost-function.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/logging-output.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/logging-output.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/multi-objective-optimization.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/multi-objective-optimization.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/tree-topology.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/tree-topology.rst" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-992196111">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="png" value="2" />
+          <entry key="rst" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Image" value="2" />
+          <entry key="ReST" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="rst" value="1245" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ReST" value="1245" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1086">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/experimantal-setup.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1442">
+              <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/command-line-arguments.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="40" column="256" selection-start-line="40" selection-start-column="256" selection-end-line="40" selection-end-column="256" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/global-cost-function.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="69" column="346" selection-start-line="69" selection-start-column="346" selection-end-line="69" selection-end-column="346" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/multi-objective-optimization.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/local-cost-function.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="60" column="191" selection-start-line="60" selection-start-column="191" selection-end-line="60" selection-end-column="191" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/output.rst">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/source/logging-output.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/input.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="23" column="168" selection-start-line="23" selection-start-column="168" selection-end-line="23" selection-end-column="168" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/tree-topology.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>GC.</find>
+      <find>gc.p</find>
+      <find>release-0.0.1-example u</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/docs/source/command-line-arguments.rst" />
+        <option value="$PROJECT_DIR$/docs/source/input.rst" />
+        <option value="$PROJECT_DIR$/docs/source/multi-objective-optimization.rst" />
+        <option value="$PROJECT_DIR$/docs/source/tree-topology.rst" />
+        <option value="$PROJECT_DIR$/docs/source/global-cost-function.rst" />
+        <option value="$PROJECT_DIR$/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/docs/source/local-cost-function.rst" />
+        <option value="$PROJECT_DIR$/docs/source/experimantal-setup.rst" />
+        <option value="$PROJECT_DIR$/docs/source/logging-output.rst" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="19" />
+    <option name="y" value="23" />
+    <option name="width" value="1421" />
+    <option name="height" value="799" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="EPOS-Documentation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EPOS-Documentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EPOS-Documentation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EPOS-Documentation" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EPOS-Documentation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EPOS-Documentation" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Course" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="dictionar&#9;FILE&#9;file:///Users/tadev/Repos/EPOS-Documentation/.idea/dictionaries" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="19" y="23" width="1421" height="799" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19714285" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" visible="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/docs/source/advanced-topics.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/GC.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/GCC.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/termination-criteria.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/input.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="23" column="168" selection-start-line="23" selection-start-column="168" selection-end-line="23" selection-end-column="168" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/tree-topology.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/multi-objective-optimization.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/global-cost-function.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="69" column="346" selection-start-line="69" selection-start-column="346" selection-end-line="69" selection-end-column="346" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/local-cost-function.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="60" column="191" selection-start-line="60" selection-start-column="191" selection-end-line="60" selection-end-column="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/output.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1086">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/command-line-arguments.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="40" column="256" selection-start-line="40" selection-start-column="256" selection-end-line="40" selection-end-column="256" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/experimantal-setup.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1442">
+          <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/logging-output.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

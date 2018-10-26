@@ -36,14 +36,14 @@ In addition, at each iteration of EPOS, agents select their preliminary plans an
                                                agent.getNumAgents(),
                                                agent);
 
-which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS choses the plan with the ``PlanSelectionOptimizationFunctionCollection.complexFunction1``. The function works as the following: :math:`(1 - \alpha - \beta) \cdot global\_cost + \alpha \cdot unfairness + \beta \cdot local\_cost`, the details of which can be found in :ref:`multi-objective-optimization-chapter`.
+which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS chooses the plan with the ``PlanSelectionOptimizationFunctionCollection.complexFunction1``. The function works as the following: :math:`(1 - \alpha - \beta) \cdot global\_cost + \alpha \cdot unfairness + \beta \cdot local\_cost`, the details of which can be found in :ref:`multi-objective-optimization-chapter`.
 
 .. _input-incentive-signals:
 
 Incentive Signals
 =================
 
-EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is a minimization algorithm, the objective is the minimization of *dissimilarity* between them. For more informaiton on the dissimilarity measures, please see :ref:`global-cost-function-chapter`. The incentive signal is taken into account only if one of the following global cost functions are employed: :ref:`global-cost-function-cross-correlation`, :ref:`global-cost-function-rss` or :ref:`global-cost-function-rmse`.
+EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is a minimization algorithm, the objective is the minimization of *dissimilarity* between them. For more information on the dissimilarity measures, please see :ref:`global-cost-function-chapter`. The incentive signal is taken into account only if one of the following global cost functions are employed: :ref:`global-cost-function-cross-correlation`, :ref:`global-cost-function-rss` or :ref:`global-cost-function-rmse`.
 
 The Incentive signal is used within EPOS via the parameter ``goalSignalPath`` by setting **a path** to a file containing the incentive signal. If the file path is not provided, a first ".target" file in *dataset* directory will be used as a goal signal. If none ".target" files are found, a *zero* goal signal is constructed (a signal filled with zeros).
 
