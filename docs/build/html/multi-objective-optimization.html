@@ -182,7 +182,7 @@
 <p>EPOS linearly combines the three objectives in a weighted sum of objectives, formulated as follows:</p>
 <div class="math notranslate nohighlight" id="equation-equation-scalarized-objective">
 <span class="eqno">(4)<a class="headerlink" href="#equation-equation-scalarized-objective" title="Permalink to this equation">¶</a></span>\[\gamma \cdot G^{(t)} + \alpha \cdot U^{(t)} + \beta \cdot L^{(t)}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\gamma, \alpha, \beta \in [0, 1]\)</span> and it <em>must</em> always hold <span class="math notranslate nohighlight">\(\gamma + \alpha + \beta = 1\)</span>. The higher value of the weight expresses stronger preference towards minimizing the corresponding objective. When the value of the weight is 0, the corresponding objective is not optimized.</p>
+<p>where <span class="math notranslate nohighlight">\(\gamma, \alpha, \beta \in [0, 1]\)</span> and it <em>must</em> always hold <span class="math notranslate nohighlight">\(\gamma + \alpha + \beta = 1\)</span>. The higher value of the weight expresses stronger preference towards minimizing the corresponding objective. When the value of the weight is 0, the corresponding objective is not optimized. The scalarization of the objectives before combining them in the weighted sum is subject of future work. Depending on the data, users are encouraged to implement their own objective-scalarization scheme(s).</p>
 <p>By default <span class="math notranslate nohighlight">\(\alpha = \beta = 0\)</span>, which means that only the global objective is optimized. The weights can be set in one of the following two ways (the example shows setting <span class="math notranslate nohighlight">\(\alpha=0.2\)</span> and <span class="math notranslate nohighlight">\(\beta=0.3\)</span>):</p>
 <ol class="arabic">
 <li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">alpha=0.2</span></code> and <code class="docutils literal notranslate"><span class="pre">beta=0.3</span></code>, or</p>
@@ -220,7 +220,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
 
     </p>
   </div>
@@ -239,14 +239,21 @@
 
   
 
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

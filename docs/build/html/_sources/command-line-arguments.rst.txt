@@ -18,7 +18,7 @@ General parameters:
 
   - ``numPlans``: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first ``numPlans`` rows are read. Default is 16.
 
-  - ``planDim``: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!
+  - ``planDim``: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. 
 
   - ``logLevel``: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST. The output is printed on the console.
 
@@ -26,7 +26,7 @@ Repetitions and randomness parameters:
 
   - ``numSim``: Number of repetitions, each with different relative position of the agents in the tree. Default is 1.
 
-  - ``shuffle``: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.
+  - ``shuffle``: The number of agent-shuffling to make before assigning them to the tree hierarchy. More info on :ref:`tree-topology-reorganization`. Default is 0.
 
   - ``shuffleFile``: The path to a file containing already shuffled agents in one column, no header. Default is null.
 

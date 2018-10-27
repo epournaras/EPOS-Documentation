@@ -170,7 +170,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">numChildren</span></code>: Number of children of each inner node. Default is 2.</li>
 <li><code class="docutils literal notranslate"><span class="pre">numAgents</span></code>: Number of participating agents. Default is 100.</li>
 <li><code class="docutils literal notranslate"><span class="pre">numPlans</span></code>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first <code class="docutils literal notranslate"><span class="pre">numPlans</span></code> rows are read. Default is 16.</li>
-<li><code class="docutils literal notranslate"><span class="pre">planDim</span></code>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!</li>
+<li><code class="docutils literal notranslate"><span class="pre">planDim</span></code>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset.</li>
 <li><code class="docutils literal notranslate"><span class="pre">logLevel</span></code>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST. The output is printed on the console.</li>
 </ul>
 </div></blockquote>
@@ -178,7 +178,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">numSim</span></code>: Number of repetitions, each with different relative position of the agents in the tree. Default is 1.</li>
-<li><code class="docutils literal notranslate"><span class="pre">shuffle</span></code>: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shuffle</span></code>: The number of agent-shuffling to make before assigning them to the tree hierarchy. More info on <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>. Default is 0.</li>
 <li><code class="docutils literal notranslate"><span class="pre">shuffleFile</span></code>: The path to a file containing already shuffled agents in one column, no header. Default is null.</li>
 <li><code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code>: The seed on which the Random generator for shuffling is based on. Default is 0. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</li>
 </ul>
@@ -226,7 +226,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
 
     </p>
   </div>
@@ -245,14 +245,21 @@
 
   
 
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

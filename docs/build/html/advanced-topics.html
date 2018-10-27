@@ -94,6 +94,13 @@
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tree-reorganization">Tree Reorganization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-periodically">Reorganization Criterion: Periodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-convergence">Reorganization Criterion: Convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-global-cost-reduction">Reorganization Criterion: Global Cost Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-never">Reorganization Criterion: Never</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-run-experiments-with-epos-and-cohda">How to run experiments with EPOS and COHDA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-run-live">How to run live</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-write-your-own-agent">How to write your own agent</a></li>
@@ -165,6 +172,99 @@
             
   <div class="section" id="advanced-topics">
 <span id="advanced-topics-chapter"></span><h1>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tree-reorganization">
+<span id="tree-topology-reorganization"></span><h2>Tree Reorganization<a class="headerlink" href="#tree-reorganization" title="Permalink to this headline">¶</a></h2>
+<p>EPOS is capable of randomly changing the relative position of agents in the tree hierarchy dynamically and on-the-fly during runtime. In other words, the reorganization means that each agent gets assigned a new set of children and a new parent. Note, however, that the overall tree topology is not changed, i.e. if the original hierarchy was balanced binary tree, EPOS ensures it remains balanced binary tree after the reorganization. The reorganization is employed as means of improving the learning capacity of the agents by allowing them to explore new combinations of plans.</p>
+<p>When certain criterion is met, the reorganization is triggered. Consequently, a new random relative position of agents within the original tree topology is constructed and each agent receives a new set of children and a new parent. Implementation-wise, the criterion is always evaluated by the current root agent. The current root agent is the one that generates new random relative position of agents within the hierarchy and is the one that notifies the agents that the reorganization is taking place by first notifying its children which then propagate the notification down their subtrees. Note that the actual reorganization takes place during the top-down phase. When an agent receives a notification that the reorganization is taking place, it sends a request message to the current root, and it responds with a message containing the addresses of new children and a new parent. The reorganization also clears all current and previous selections, responses from subtree and indicator variables.</p>
+<p>The reproducibility of experiments in terms of randomness in selecting new relative position of agents when the reorganization is triggered can be controlled via a <em>random generator seed</em>. It can be set via one of the following two ways (the example shows setting the seed to 0):</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy.reorganizationSeed=0</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="reorganization-seed-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-seed-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">long</span> <span class="n">reorganizationSeed</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The class encapsulating the reorganization functionality is <code class="docutils literal notranslate"><span class="pre">agent.ModifiableIeposAgent&lt;V</span> <span class="pre">extends</span> <span class="pre">DataType&lt;V&gt;&gt;</span></code>. This class handles request and response messages exchanged to obtain a new set of children and a new parent. It also handles various reorganization criteria: <a class="reference internal" href="#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a>, <a class="reference internal" href="#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> and <a class="reference internal" href="#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>.</p>
+<div class="section" id="reorganization-criterion-periodically">
+<span id="tree-topology-criterion-periodically"></span><h3>Reorganization Criterion: Periodically<a class="headerlink" href="#reorganization-criterion-periodically" title="Permalink to this headline">¶</a></h3>
+<p>The periodical criterion triggers the reorganization every X iterations. It can be enabled in two ways (the example shows the period of 3):</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=periodically</span></code> and <code class="docutils literal notranslate"><span class="pre">periodically.reorganizationPeriod=3</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="reorganization-periodically-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-periodically-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="o">.</span><span class="na">PERIODICALLY</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">reorganizationPeriod</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the period of reorganizations must be an integer value.</p>
+</div>
+<div class="section" id="reorganization-criterion-convergence">
+<span id="tree-topology-criterion-convergence"></span><h3>Reorganization Criterion: Convergence<a class="headerlink" href="#reorganization-criterion-convergence" title="Permalink to this headline">¶</a></h3>
+<p>Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was <em>far enough</em> from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called <em>offset</em> controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, then convergence is detected at iteration <span class="math notranslate nohighlight">\(t\)</span>, the reorganization happens between iterations <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>, and at iteration <span class="math notranslate nohighlight">\(t+1\)</span> the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration <span class="math notranslate nohighlight">\(t+1+\)</span> <em>offset</em>. Note that reverting to the previously memorized state discards local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.</p>
+<p>The convergence reorganization criterion can be enabled in two ways (the example shows the <em>offset</em> of 3):</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=convergence</span></code> and <code class="docutils literal notranslate"><span class="pre">convergence.memorizationOffset=3</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="reorganization-convergence-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-convergence-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="o">.</span><span class="na">CONVERGENCE</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">reorganizationOffset</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the offset must be an integer value.</p>
+</div>
+<div class="section" id="reorganization-criterion-global-cost-reduction">
+<span id="tree-topology-criterion-reduction"></span><h3>Reorganization Criterion: Global Cost Reduction<a class="headerlink" href="#reorganization-criterion-global-cost-reduction" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> has one main limitation: all progress EPOS made between the iteration at which the selections are memorized and the iteration at which convergence is detected is discarded after the reorganization. This criterion addresses this problem by allowing the system to trigger reorganizations before converging, hence decreasing the runtime. The idea is that the reorganization should be triggered when the system is <em>too close</em> to the the local minimum, which is measured by the reduction in the global cost in two consecutive iterations:</p>
+<div class="math notranslate nohighlight">
+\[\frac{G^{(t-1)} - G^{(t)}}{G^{(t-1)}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(G^{(t-1)}\)</span> and <span class="math notranslate nohighlight">\(G^{(t)}\)</span> represent the values of the global cost in two consecutive iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. Intuitively, when the relative global cost reduction is <em>low</em>, the system is close to reaching the local minimum, but if it is <em>high</em>, the system takes long steps towards it. More precisely, the reorganization is triggered when the relative global cost reduction in Equation <code class="xref eq docutils literal notranslate"><span class="pre">equation-global-cost-reduction</span></code> <strong>drops</strong> below a certain <em>threshold</em>. At the iteration immediately after the reorganization, the agents make the same selections as at the iteration prior to the reorganization.</p>
+<p>The reorganization criterion based on the global cost reduction can be enabled in two ways (the example shows the <em>threshold</em> of 0.5):</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=globalCostReduction</span></code> <code class="docutils literal notranslate"><span class="pre">globalCost.reductionThreshold=0.5</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="reorganization-reduction-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-reduction-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="o">.</span><span class="na">GLOBAL_COST_REDUCTION</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="n">convergenceTolerance</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the threshold must be a double value between 0 and 1. If the <em>threshold</em> is 0, no reorganization happens, since the relative global cost reduction can never be strictly lower than 0. If the <em>threshold</em> is 1, then reorganizations are guaranteed to happen since the relative global cost reduction is always lower than 1.</p>
+</div>
+<div class="section" id="reorganization-criterion-never">
+<span id="tree-topology-criterion-never"></span><h3>Reorganization Criterion: Never<a class="headerlink" href="#reorganization-criterion-never" title="Permalink to this headline">¶</a></h3>
+<p>By default, reorganizations are disabled. Externally, it can be done in one of the following two ways:</p>
+<ol class="arabic">
+<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">strategy=never</span></code>, or</p>
+</li>
+<li><div class="literal-block-wrapper first docutils container" id="reorganization-never-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-never-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="o">.</span><span class="na">NEVER</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 <div class="section" id="how-to-run-experiments-with-epos-and-cohda">
 <h2>How to run experiments with EPOS and COHDA<a class="headerlink" href="#how-to-run-experiments-with-epos-and-cohda" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -194,7 +294,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
 
     </p>
   </div>
@@ -213,14 +313,21 @@
 
   
 
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -49,7 +49,7 @@ In order to add / develop new loggers to EPOS, the ``GlobalCostLogger`` template
 Global Complex Cost Logger
 ==========================
 
-The global complex cost logger is implemented in ``agent.logging.GlobalComplexCostLogger.java`` and by default, it record the complex cost defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``global-complex-cost.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **complex cost** of the whole system, at each iteration, and across multiple runs. In addition, it shows the mean and standard deviation of the cost across different runs. By default, the *complex cost* is defined as:
+The global complex cost logger is implemented in ``agent.logging.GlobalComplexCostLogger.java`` and by default, it record the complex cost defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``global-complex-cost.csv`` and can be found in this path: ``~/output/``. The .csv file is an matrix showing **complex cost** of the whole system, at each iteration, and across multiple runs. In addition, it shows the mean and standard deviation of the cost across different runs. By default, the *complex cost* (:ref:`multi-objective-optimization-chapter`) is defined as:
 
 .. math::
 
@@ -70,6 +70,12 @@ The global cost logger is implemented in ``agent.logging.GlobalCostLogger.java``
    :alt: alternate text
    :align: center
 
+.. figure:: MULTI-OBJECTIVE-ALL-TOGETHER-ENERGY.png
+   :scale: 70 %
+   :alt: alternate text
+   :align: center
+   
+
 Global Response Logger
 ======================
 
@@ -79,6 +85,11 @@ The global response logger is implemented in ``agent.logging.GlobalResponseCostL
    :scale: 100 %
    :alt: alternate text
    :align: center
+
+.. figure:: RSS-UNIT-LENGTH-PNW-EVENING-SHUFFLE-GENERATION-FAILURE-BOUNDS.png
+   :scale: 70 %
+   :alt: alternate text
+   :align: center   
 
 Indexed Histogram Logger
 ========================
@@ -141,6 +152,11 @@ This logger is implemented in ``agent.logging.ReorganizationLogger.java``. For e
    :scale: 100 %
    :alt: alternate text
    :align: center
+
+.. figure:: TREE-RESTRUCTURING-REORGANIZATIONS-PER-THRESHOLD-GAUSSIAN.png
+   :scale: 70 %
+   :alt: alternate text
+   :align: center   
 
 Weights, Alpha, Beta Logger
 ===========================
