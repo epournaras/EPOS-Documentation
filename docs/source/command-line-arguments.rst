@@ -26,7 +26,7 @@ Repetitions and randomness parameters:
 
   - ``numSim``: Number of repetitions, each with different relative position of the agents in the tree. Default is 1.
 
-  - ``shuffle``: The number of agent-shuffling to make before assigning them to the tree hierarchy. More info on :ref:`tree-topology-reorganization`. Default is 0.
+  - ``shuffle``: The number of agent-shuffling to make before assigning them to the tree hierarchy. More info on :ref:`tree-topology-chapter`. Default is 0.
 
   - ``shuffleFile``: The path to a file containing already shuffled agents in one column, no header. Default is null.
 
