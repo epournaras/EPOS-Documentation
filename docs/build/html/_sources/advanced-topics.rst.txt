@@ -113,10 +113,79 @@ By default, reorganizations are disabled. Externally, it can be done in one of t
 How to run experiments with EPOS and COHDA
 ==========================================
 
-How to run live
-===============
-
 How to write your own agent
 ===========================
+
+EPOS Live with Dynamics (FGCS paper)
+====================================
+
+The section illustrates the steps needed to replicate the experiments in the paper **A self-integration testbed for decentralized socio-technical systems** publised at `Future Generation Computing Systems <https://www.sciencedirect.com/science/article/pii/S0167739X20303435?via%3Dihub>`_.
+
+The sequence diagram for bootstrapping and managing the performed experiments is as follows:
+
+.. figure:: EPOSLive/EPOSwithDynamics.png
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+Parameters for EPOS Live with Dynamics:
+---------------------------------------
+
+The EPOS agent capable of performing these experiment are created by the ``experiment.LivePeerTestbedExperiment`` class. The main differenece is the configuration file, which is the ``LivePeerTestbed.properties``. Within this configutation file, the following parameters are new:
+
+
+.. code-block:: Java
+      :caption: LivePeerTestbed.properties
+      :name: LivePeerTestbed.properties
+
+      userChange=false // enabling user join/leave dynamic
+      joinLeaveRate=19 // maximum number of users that can join/leave at the end of 1 run: numUsersPerRun.get(currentRun)/joinLeaveRate
+      userChangeProb=9 // probability of a user joins/leaves at the end of each run: SecureRandom().nextInt(userChangeProb)==0;
+
+      minNumPeers=150 // given userChange == true, minimum number of active agents at any point in the system
+      maxNumPeers=250 // given userChange == true, maximum number of active agents at any point in the system. Very important in case of computational resource restrictions.
+
+      planChange=false // enabling plan change dynamic
+      newPlanProb=9 // probability of changing plans for each user at the end of each run: (random.nextInt(newPlanProb) + 1) == 1
+
+      weightChange=false // enabling weights change dynamic
+      newWeightProb=9 // probability of changing plans for each user at the end of each run: (random.nextInt(newWeightProb) + 1) == 1
+
+      GCFChangeProb=9 // probability of changing the globalCostFunction at the end of each run: (random.nextInt(GFCChangeProb) + 1) == 1). If `null` no changes are made.
+
+
+Running EPOS Live with Dynamics:
+--------------------------------
+
+The only difference between running EPOS live with dynamics to the normal live version (:ref:`live_run-chapter`), is that the EPOS nodes should be created using the ``experiment.LivePeerTestbedExperiment`` class. To do so, few parameters in the code need to change in ``liveRunUtils.Entities.GatewayServer``:
+
+.. code-block:: Java
+      :caption: Running EPOS live with dynamics - parameter change in GatewayServer
+      :name: LivePeerTestbedExperiment-GW
+
+      // line 94
+      String confPath = rootPath + File.separator + "conf" + File.separator + "LivePeerTestbed.properties";
+
+      // line 170
+      String command = "screen -S peer" + UsersStatus.get(0).index + " -d -m java -Xmx2048m -jar LivePeerNode.jar " + UsersStatus.get(0).index +
+                                    " " + (bootstrapPort + UsersStatus.get(0).index) + " " + numUsersPerRun.get(currentRun) + " " + 0 + " " + currentSim;
+
+
+      // line 469
+      String command = "screen -S peer" + UsersStatus.get(j).index + " -d -m java -Xmx2048m -jar LivePeerNode.jar " + UsersStatus.get(j).index +
+                    " " + peerPort + " " + numUsersPerRun.get(currentRun) + " " + initRun + " " + currentSim;
+
+Additionally, in ``liveRunUtils.Entities.User``:
+
+.. code-block:: Java
+      :caption: Running EPOS live with dynamics - parameter change in User
+      :name: LivePeerTestbedExperiment-User
+
+      // line 85
+      String confPath = rootPath + File.separator + "conf" + File.separator + "LivePeerTestbed.properties";
+
+After these two change, the ``Gateway.jar`` and ``User.jar`` files need to be rebuilt, and then the following command executed: ``java -jar EPOSRequester.jar``. Everything else remains the same as :ref:`live_run-chapter`.
+
+
 
 

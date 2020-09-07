@@ -3,8 +3,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -14,6 +13,11 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
   
     <link rel="shortcut icon" href="_static/Icon16.png"/>
   
@@ -21,39 +25,39 @@
   
 
   
-
-  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Global Cost Function" href="global-cost-function.html" />
     <link rel="prev" title="Configuration Parameters" href="command-line-arguments.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="index.html" class="icon icon-home"> EPOS
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> EPOS
           
 
           
@@ -76,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -104,6 +109,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +148,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Input</li>
     
@@ -169,24 +175,25 @@
 <span id="input-plans"></span><h2>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h2>
 <p>Plans are the representation of agents’ possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is:</p>
 <blockquote>
-<div><em>planScore</em> : <em>planDimension1</em>, … , <em>planDimensionN</em></div></blockquote>
+<div><p><em>planScore</em> : <em>planDimension1</em>, … , <em>planDimensionN</em></p>
+</div></blockquote>
 <p>in which the plan score can be:</p>
 <ol class="arabic simple">
-<li>discomfort (<a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a>) of the plan, or</li>
-<li>preference (<a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference-based Local Cost Function</span></a>) of the plan</li>
+<li><p>discomfort (<a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a>) of the plan, or</p></li>
+<li><p>preference (<a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference-based Local Cost Function</span></a>) of the plan</p></li>
 </ol>
 <p>The possible dataset formats are defined in <code class="docutils literal notranslate"><span class="pre">agent.dataset</span></code> package in the code. In addition, there is a Gaussian plan generator in <code class="docutils literal notranslate"><span class="pre">agent.dataset.GaussianDataSet.java</span></code>. For this dataset, you can define the <em>number of agents</em>, <em>number of plans</em>, and <em>number of dimensions</em> using the configuration or the <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>.</p>
 <p>In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. The implemented classes for this can be found at <code class="docutils literal notranslate"><span class="pre">agent.planselection</span></code> package. The main class is <code class="docutils literal notranslate"><span class="pre">MultiObjectiveIeposPlanSelector</span> <span class="pre">implements</span> <span class="pre">PlanSelector&lt;MultiObjectiveIEPOSAgent&gt;</span></code> and the main function is:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span>  <span class="n">agent</span><span class="o">.</span><span class="na">getOptimization</span><span class="o">().</span><span class="na">argmin</span><span class="o">(</span><span class="n">agent</span><span class="o">.</span><span class="na">getGlobalCostFunction</span><span class="o">(),</span>
-                                         <span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostFunction</span><span class="o">(),</span>
-                                         <span class="n">agent</span><span class="o">.</span><span class="na">getPossiblePlans</span><span class="o">(),</span>
-                                         <span class="n">otherResponse</span><span class="o">,</span>
-                                         <span class="n">agent</span><span class="o">.</span><span class="na">getUnfairnessWeight</span><span class="o">(),</span>
-                                         <span class="n">agent</span><span class="o">.</span><span class="na">getLocalCostWeight</span><span class="o">(),</span>
-                                         <span class="n">currentDiscomfortSum</span><span class="o">,</span>
-                                         <span class="n">currentDiscomfortSumSqr</span><span class="o">,</span>
-                                         <span class="n">agent</span><span class="o">.</span><span class="na">getNumAgents</span><span class="o">(),</span>
-                                         <span class="n">agent</span><span class="o">);</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span>  <span class="n">agent</span><span class="p">.</span><span class="na">getOptimization</span><span class="p">().</span><span class="na">argmin</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">getGlobalCostFunction</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getLocalCostFunction</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getPossiblePlans</span><span class="p">(),</span>
+                                         <span class="n">otherResponse</span><span class="p">,</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getUnfairnessWeight</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getLocalCostWeight</span><span class="p">(),</span>
+                                         <span class="n">currentDiscomfortSum</span><span class="p">,</span>
+                                         <span class="n">currentDiscomfortSumSqr</span><span class="p">,</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getNumAgents</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS chooses the plan with the <code class="docutils literal notranslate"><span class="pre">PlanSelectionOptimizationFunctionCollection.complexFunction1</span></code>. The function works as the following: <span class="math notranslate nohighlight">\((1 - \alpha - \beta) \cdot global\_cost + \alpha \cdot unfairness + \beta \cdot local\_cost\)</span>, the details of which can be found in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p>
@@ -204,8 +211,8 @@
 <p>or in <code class="docutils literal notranslate"><span class="pre">Configuration.java</span></code> class:</p>
 <div class="literal-block-wrapper docutils container" id="goal-signal-configuration-java">
 <div class="code-block-caption"><span class="caption-text">Configuration.java</span><a class="headerlink" href="#goal-signal-configuration-java" title="Permalink to this code">¶</a></div>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span><span class="o">;</span>  <span class="c1">// or</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span><span class="p">;</span>  <span class="c1">// or</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -228,7 +235,7 @@
         <a href="global-cost-function.html" class="btn btn-neutral float-right" title="Global Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="command-line-arguments.html" class="btn btn-neutral" title="Configuration Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="command-line-arguments.html" class="btn btn-neutral float-left" title="Configuration Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -237,11 +244,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+        
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -253,34 +268,16 @@
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>  
+  </script>
+
+  
+  
+    
+    
 
   <style>
     /* Sidebar header (and topbar for mobile) */

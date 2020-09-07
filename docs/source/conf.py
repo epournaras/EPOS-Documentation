@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'EPOS'
-copyright = '2018, Evangelos Pournaras & Jovan Nikolic'
-author = 'Evangelos Pournaras & Jovan Nikolic'
+copyright = '2018, Evangelos Pournara, Jovan Nikolic & Farzam Fanitabasi'
+author = 'Evangelos Pournaras, Jovan Nikolic & Farzam Fanitabasi'
 
 # The short X.Y version
 version = ''
@@ -136,7 +136,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'EPOS.tex', 'EPOS Documentation',
-     'Evangelos Pournaras \\& Jovan Nikolic', 'manual'),
+     'Evangelos Pournaras \\ Jovan Nikolic \\ & Farzam Fanitabasi', 'manual'),
 ]
 
 

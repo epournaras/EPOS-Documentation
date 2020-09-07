@@ -3,8 +3,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -14,6 +13,11 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
   
     <link rel="shortcut icon" href="_static/Icon16.png"/>
   
@@ -21,39 +25,39 @@
   
 
   
-
-  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Local Cost Function" href="local-cost-function.html" />
     <link rel="prev" title="Input" href="input.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="index.html" class="icon icon-home"> EPOS
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> EPOS
           
 
           
@@ -76,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -112,6 +117,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -150,7 +156,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Global Cost Function</li>
     
@@ -183,12 +189,11 @@
 <p>Intuitively, each vector is <em>global response</em>, the sum of all selected plans in the agent network and the idea of minimising the variance of said vector is to make the demand (in case of energy planning) as uniform / flat as possible.</p>
 <p>This function can be selected in two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=VAR</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="var-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=VAR</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="var-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#var-configuration-java" title="Permalink to this code">¶</a></div>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
-                                                      <span class="k">new</span> <span class="n">VarCostFunction</span><span class="o">();</span>
+                                                      <span class="k">new</span> <span class="n">VarCostFunction</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -204,12 +209,11 @@
 <p>where <span class="math notranslate nohighlight">\(x_{i}\)</span> and <span class="math notranslate nohighlight">\(y_{i}\)</span> represent the <span class="math notranslate nohighlight">\(i^{th}\)</span> element of the two vectors, <span class="math notranslate nohighlight">\(\mu(x)\)</span> and <span class="math notranslate nohighlight">\(\mu(y)\)</span> their respective means and <span class="math notranslate nohighlight">\(\sigma\left(x\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma\left(y\right)\)</span> their standard deviations. Both vectors are of the same length <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <p>Intuitively, one of the vectors is <em>global response</em>, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. Note that both vectors are of the same length. This function can be selected in two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=XCORR</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="cross-correlation-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=XCORR</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="cross-correlation-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#cross-correlation-configuration-java" title="Permalink to this code">¶</a></div>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
-                                                      <span class="k">new</span> <span class="n">CrossCorrelationFunction</span><span class="o">();</span>
+                                                      <span class="k">new</span> <span class="n">CrossCorrelationFunction</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -228,12 +232,11 @@
 <p>where <span class="math notranslate nohighlight">\(s(\cdot)\)</span> denotes the scaling technique employed (see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>), and <span class="math notranslate nohighlight">\(T\)</span> denotes the transpose operator. Vectors <span class="math notranslate nohighlight">\(s(x)\)</span> and <span class="math notranslate nohighlight">\(s(y)\)</span> are referred to as <em>scaled vectors</em>, and the difference <span class="math notranslate nohighlight">\(s(x) - s(y)\)</span> as the <strong>residual</strong> between scaled vectors. Note that both vectors <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> <strong>must</strong> be of the same length <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <p>Intuitively, one of the vectors is <em>global response</em>, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. Note that both vectors are of the same length. This function can be selected in two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RSS</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="rss-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RSS</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="rss-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#rss-configuration-java" title="Permalink to this code">¶</a></div>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
-                                                      <span class="k">new</span> <span class="n">RSSCostFunction</span><span class="o">();</span>
+                                                      <span class="k">new</span> <span class="n">RSSCostFunction</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -254,12 +257,11 @@
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is the transpose operator.</p>
 <p>For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. This function can be selected in two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RMSE</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="rmse-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RMSE</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="rmse-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#rmse-configuration-java" title="Permalink to this code">¶</a></div>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
-                                                      <span class="k">new</span> <span class="n">RMSECostFunction</span><span class="o">();</span>
+                                                      <span class="k">new</span> <span class="n">RMSECostFunction</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -280,11 +282,10 @@
 <p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(\mu(x)\)</span> and <span class="math notranslate nohighlight">\(\sigma(x)\)</span>, respectively. Note that vector <span class="math notranslate nohighlight">\(n(x)\)</span> is also <span class="math notranslate nohighlight">\(d\)</span>-dimensional vector. Moreover, the values in <span class="math notranslate nohighlight">\(n(x)\)</span> have the mean of 0 and the standard deviation of 1. Note that values in <span class="math notranslate nohighlight">\(n(x)\)</span> can be negative, but always between -1 and 1.</p>
 <p>This standard normalization can be selected in one of the following two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">scaling=STD</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="std-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=STD</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="std-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#std-configuration-java" title="Permalink to this code">¶</a></div>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">standard_normalization</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">standard_normalization</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -301,11 +302,10 @@
 <p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(x_{min}\)</span> and <span class="math notranslate nohighlight">\(x_{max} - x_{min}\)</span>, respectively. The values in <span class="math notranslate nohighlight">\(m(x)\)</span> are always non-negative. More precisely, min-max scaling maps <span class="math notranslate nohighlight">\(x_{min}\)</span> to 0 and <span class="math notranslate nohighlight">\(x_{max}\)</span> to 1.</p>
 <p>This min-max scaling can be selected in one of the following two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">scaling=MIN-MAX</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="min-max-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=MIN-MAX</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="min-max-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#min-max-configuration-java" title="Permalink to this code">¶</a></div>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">min_max_normalization</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">min_max_normalization</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -322,11 +322,10 @@
 <p>where division is performed element-wise with constant <span class="math notranslate nohighlight">\(\left\lVert x \right\rVert\)</span>. The Euclidean norm of the resulting vector <span class="math notranslate nohighlight">\(u(x)\)</span> has the Euclidean norm of 1, <span class="math notranslate nohighlight">\(\left\lVert u(x) \right\rVert = 1\)</span>. The absolute value of every element in <span class="math notranslate nohighlight">\(u(x)\)</span> is between 0 and 1.</p>
 <p>This unit-length scaling can be selected in one of the following two ways:</p>
 <ol class="arabic">
-<li><p class="first">either setting <code class="docutils literal notranslate"><span class="pre">scaling=UNIT-LENGTH</span></code>, or</p>
-</li>
-<li><div class="literal-block-wrapper first docutils container" id="unit-length-configuration-java">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=UNIT-LENGTH</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="unit-length-configuration-java">
 <div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#unit-length-configuration-java" title="Permalink to this code">¶</a></div>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="na">unit_length_normalization</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">unit_length_normalization</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -349,7 +348,7 @@
         <a href="local-cost-function.html" class="btn btn-neutral float-right" title="Local Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="input.html" class="btn btn-neutral" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-left" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -358,11 +357,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+        
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -374,34 +381,16 @@
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>  
+  </script>
+
+  
+  
+    
+    
 
   <style>
     /* Sidebar header (and topbar for mobile) */
