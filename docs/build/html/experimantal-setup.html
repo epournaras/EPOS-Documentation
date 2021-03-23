@@ -3,7 +3,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -13,11 +14,6 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
   
     <link rel="shortcut icon" href="_static/Icon16.png"/>
   
@@ -25,21 +21,22 @@
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Configuration Parameters" href="command-line-arguments.html" />
@@ -57,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> EPOS
+            <a href="index.html" class="icon icon-home"> EPOS
           
 
           
@@ -80,7 +77,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -106,13 +102,13 @@
 <li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -151,7 +147,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Initial Setup and Running Experiments</li>
     
@@ -198,14 +194,14 @@
     │       ├── agent_9.plans
     │       ├── agent_10.plans
     │       └── goal.target
-    ├── epos-tutorial.jar
+    ├── IEPOS-Tutorial.jar
 </pre></div>
 </div>
 <p>In the <code class="code docutils literal notranslate"><span class="pre">datasets</span></code> folder, we can find the datasets that EPOS will operate on during execution. Each dataset folder should be named with alphanumeric characters and have no spaces or special characters in its name. E.g. <code class="code docutils literal notranslate"><span class="pre">abd123</span></code> is a preferable folder name, whereas <code class="code docutils literal notranslate"><span class="pre">123$&#64;</span> <span class="pre">123</span></code> is not. Detailed information regarding the datasets and the EPOS input is found at <a class="reference internal" href="input.html#input-chapter"><span class="std std-ref">Input</span></a>.</p>
-<p>In the <code class="code docutils literal notranslate"><span class="pre">conf</span></code> folder, the configuration files that parametrize the execution of the <code class="code docutils literal notranslate"><span class="pre">epos-tutorial.jar</span></code> can be found. The files <code class="code docutils literal notranslate"><span class="pre">log4j.properties</span></code>, <code class="code docutils literal notranslate"><span class="pre">measurement.conf</span></code> and <code class="code docutils literal notranslate"><span class="pre">protopeer.conf</span></code> are relevant to the EPOS runtime parameters and usually do not need to be changed. The <code class="code docutils literal notranslate"><span class="pre">epos.properties</span></code> file is Java properties file with the format <code class="code docutils literal notranslate"><span class="pre">key=value</span></code> for each line. Extensive documentation and explanation regarding the configurations can be found at <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>.</p>
-<p>The executable <code class="code docutils literal notranslate"><span class="pre">epos-tutorial.jar</span></code> can be run via the following commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">java –jar epos-tutorial.jar #default configuration in conf/epos.properties</span>
-<span class="go">java –jar epos-tutorial.jar “path/to/conf” #configuration loaded from specific file</span>
+<p>In the <code class="code docutils literal notranslate"><span class="pre">conf</span></code> folder, the configuration files that parametrize the execution of the <code class="code docutils literal notranslate"><span class="pre">IEPOS-Tutorial.jar</span></code> can be found. The files <code class="code docutils literal notranslate"><span class="pre">log4j.properties</span></code>, <code class="code docutils literal notranslate"><span class="pre">measurement.conf</span></code> and <code class="code docutils literal notranslate"><span class="pre">protopeer.conf</span></code> are relevant to the EPOS runtime parameters and usually do not need to be changed. The <code class="code docutils literal notranslate"><span class="pre">epos.properties</span></code> file is Java properties file with the format <code class="code docutils literal notranslate"><span class="pre">key=value</span></code> for each line. Extensive documentation and explanation regarding the configurations can be found at <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>.</p>
+<p>The executable <code class="code docutils literal notranslate"><span class="pre">IEPOS-Tutorial.jar</span></code> can be run via the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">java –jar IEPOS-Tutorial.jar #default configuration in conf/epos.properties</span>
+<span class="go">java –jar IEPOS-Tutorial.jar “path/to/conf” #configuration loaded from specific file</span>
 </pre></div>
 </div>
 <p>After executing the Jar for the first time the release folder has the following format:</p>
@@ -213,7 +209,7 @@
     ├── conf
     ├── datasets
     │   └── gaussian
-    ├── epos-tutorial.jar
+    ├── IEPOS-Tutorial.jar
     ├── log
     │   └── debug.log
     └── output
@@ -236,19 +232,19 @@
 <div class="section" id="example-run">
 <h3>Example run<a class="headerlink" href="#example-run" title="Permalink to this headline">¶</a></h3>
 <p>After downloading, extracting and entering the release, an example command line run can be done as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> release-0.0.1 user$ ls <span class="c1">#this will use the conf/epos.properties configuration</span>
-<span class="go">conf datasets epos-tutorial.jar &gt; release-0.0.1 user$ java –jar epos-tutorial.jar</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt; Release-0.0.2 user$ ls #this will use the conf/epos.properties configuration</span>
+<span class="go">conf datasets IEPOS-Tutorial.jar &gt; Release-0.0.2 user$ java –jar IEPOS-Tutorial.jar</span>
 <span class="go">WARNING or INFO logs about config loading …</span>
 <span class="go">Current config …</span>
 <span class="go">Simulation 1</span>
 <span class="go">IEPOS Finished! It took: 0 seconds.</span>
-<span class="gp">&gt;</span> release-0.0.1 user$ ls
+<span class="go">&gt; Release-0.0.2 user$ ls</span>
 <span class="go">conf datasets epos-tutorial.jar log output</span>
-<span class="gp">&gt;</span> release-0.0.1 user$ <span class="nb">cd</span> output
-<span class="gp">&gt;</span> release-0.0.1 user$ ls
+<span class="go">&gt; Release-0.0.2 user$ cd output</span>
+<span class="go">&gt; Release-0.0.2 user$ ls</span>
 <span class="go">gaussian_1538679318</span>
-<span class="gp">&gt;</span> release-0.0.1 user$ <span class="nb">cd</span> gaussian_1538679318
-<span class="gp">&gt;</span> release-0.0.1 user$ ls <span class="c1">#check the output of the current run</span>
+<span class="go">&gt; Release-0.0.2 user$ cd gaussian_1538679318</span>
+<span class="go">&gt; Release-0.0.2 user$ ls #check the output of the current run</span>
 <span class="go">global-complex-cost.csv local-cost.csv          unfairness.csv</span>
 <span class="go">global-cost.csv         num-reorganizations.csv used_conf.txt</span>
 <span class="go">global-response.csv     selected-plans.csv      weights-alpha-beta.csv</span>
@@ -261,7 +257,7 @@
 <div class="section" id="ide-setup">
 <span id="id2"></span><h2>IDE Setup<a class="headerlink" href="#ide-setup" title="Permalink to this headline">¶</a></h2>
 <p>To download and use the EPOS source code, the following command line steps are recommended:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b tutorial --single-branch https://github.com/epournaras/EPOS</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/epournaras/EPOS</span>
 <span class="go">cd EPOS</span>
 <span class="go">mvn clean install –U #or where the project pom.xml is</span>
 </pre></div>
@@ -310,19 +306,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -333,6 +321,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

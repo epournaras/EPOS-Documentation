@@ -34,19 +34,19 @@ Once the :code:`release-x.x.x.zip` is unpacked, then a folder with the following
 	│       ├── agent_9.plans
 	│       ├── agent_10.plans
 	│       └── goal.target
-	├── epos-tutorial.jar
+	├── IEPOS-Tutorial.jar
 
 
 In the :code:`datasets` folder, we can find the datasets that EPOS will operate on during execution. Each dataset folder should be named with alphanumeric characters and have no spaces or special characters in its name. E.g. :code:`abd123` is a preferable folder name, whereas :code:`123$@ 123` is not. Detailed information regarding the datasets and the EPOS input is found at :ref:`input-chapter`.
 
-In the :code:`conf` folder, the configuration files that parametrize the execution of the :code:`epos-tutorial.jar` can be found. The files :code:`log4j.properties`, :code:`measurement.conf` and :code:`protopeer.conf` are relevant to the EPOS runtime parameters and usually do not need to be changed. The :code:`epos.properties` file is Java properties file with the format :code:`key=value` for each line. Extensive documentation and explanation regarding the configurations can be found at :ref:`arguments-chapter`. 
+In the :code:`conf` folder, the configuration files that parametrize the execution of the :code:`IEPOS-Tutorial.jar` can be found. The files :code:`log4j.properties`, :code:`measurement.conf` and :code:`protopeer.conf` are relevant to the EPOS runtime parameters and usually do not need to be changed. The :code:`epos.properties` file is Java properties file with the format :code:`key=value` for each line. Extensive documentation and explanation regarding the configurations can be found at :ref:`arguments-chapter`. 
 
-The executable :code:`epos-tutorial.jar` can be run via the following commands:
+The executable :code:`IEPOS-Tutorial.jar` can be run via the following commands:
 
 .. code-block:: console
 
- 	java –jar epos-tutorial.jar #default configuration in conf/epos.properties
- 	java –jar epos-tutorial.jar “path/to/conf” #configuration loaded from specific file
+ 	java –jar IEPOS-Tutorial.jar #default configuration in conf/epos.properties
+ 	java –jar IEPOS-Tutorial.jar “path/to/conf” #configuration loaded from specific file
 
 After executing the Jar for the first time the release folder has the following format:
 
@@ -56,7 +56,7 @@ After executing the Jar for the first time the release folder has the following 
 	├── conf
 	├── datasets
 	│   └── gaussian
-	├── epos-tutorial.jar
+	├── IEPOS-Tutorial.jar
 	├── log
 	│   └── debug.log
 	└── output
@@ -85,19 +85,19 @@ After downloading, extracting and entering the release, an example command line 
 
 .. code-block:: console
 
-	> release-0.0.1 user$ ls #this will use the conf/epos.properties configuration
-	conf datasets epos-tutorial.jar> release-0.0.1 user$ java –jar epos-tutorial.jar
+	> Release-0.0.2 user$ ls #this will use the conf/epos.properties configuration
+	conf datasets IEPOS-Tutorial.jar> Release-0.0.2 user$ java –jar IEPOS-Tutorial.jar
 	WARNING or INFO logs about config loading …
 	Current config …
 	Simulation 1
 	IEPOS Finished! It took: 0 seconds.
-	> release-0.0.1 user$ ls
+	> Release-0.0.2 user$ ls
   	conf datasets epos-tutorial.jar log output
-	> release-0.0.1 user$ cd output
-	> release-0.0.1 user$ ls
+	> Release-0.0.2 user$ cd output
+	> Release-0.0.2 user$ ls
 	gaussian_1538679318
-	> release-0.0.1 user$ cd gaussian_1538679318
-	> release-0.0.1 user$ ls #check the output of the current run
+	> Release-0.0.2 user$ cd gaussian_1538679318
+	> Release-0.0.2 user$ ls #check the output of the current run
 	global-complex-cost.csv	local-cost.csv		unfairness.csv
 	global-cost.csv		num-reorganizations.csv	used_conf.txt
 	global-response.csv	selected-plans.csv	weights-alpha-beta.csv
@@ -114,7 +114,7 @@ To download and use the EPOS source code, the following command line steps are r
 
 .. code-block:: console
 	
-	git clone -b tutorial --single-branch https://github.com/epournaras/EPOS
+	git clone https://github.com/epournaras/EPOS
 	cd EPOS
 	mvn clean install –U #or where the project pom.xml is
 
