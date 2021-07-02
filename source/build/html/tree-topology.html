@@ -1,0 +1,277 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tree Topology &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Termination Criteria" href="termination-criteria.html" />
+    <link rel="prev" title="Local Cost Function" href="local-cost-function.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tree Topology</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tree-topology.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tree-topology">
+<span id="tree-topology-chapter"></span><h1>Tree Topology<a class="headerlink" href="#tree-topology" title="Permalink to this headline">¶</a></h1>
+<p>EPOS organises the agents in a tree structure that is employed to guide the communication and information exchange up and down the tree. Aggregated knowlede is propagated in a bottom-up fashion, while feedback is propagated top-down. Consequently, the tree properties, such as the number of children of the agents, how balanced the tree is and the properties of the agents’ plans, all play a significant role in the optimization process.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> class, the specifics of the tree is by default defined using the following:</p>
+<div class="literal-block-wrapper docutils container" id="tree-initiation">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#tree-initiation" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">RankPriority</span> <span class="n">priority</span> <span class="o">=</span> <span class="n">RankPriority</span><span class="p">.</span><span class="na">HIGH_RANK</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">DescriptorType</span> <span class="n">rank</span> <span class="o">=</span> <span class="n">DescriptorType</span><span class="p">.</span><span class="na">RANK</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">TreeType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">TreeType</span><span class="p">.</span><span class="na">SORTED_HtL</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">BalanceType</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">BalanceType</span><span class="p">.</span><span class="na">WEIGHT_BALANCED</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">numChildren</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>This creates a balanced binary tree which sorts the agents based on their rank. Note that the tree “structure” is generated from top to bottom, but the structure is <strong>populated</strong> by agents in a breadth-first bottom-up manner. In other words, the first agent in the sorted-by-rank agent-list will be associated to the left-most <em>leaf</em> (node without children), and the last one to the root spot. If you need to change the topology or modify certain aspects of it check out <code class="docutils literal notranslate"><span class="pre">util.TreeArchitecture.java</span></code>.</p>
+<p>For the sake of statistical significance, the experiments should often be repeated multiple times with enabling randomness. If the tree “structure” remains the same, the randomness can be neabled by shuffling the sorted-by-rank list of agents which will consequently change the relative position of the agents within the tree structure and result in potentially different optimization process. The shuffling of this list is controlled by the <cite>shuffle</cite> parameter in the property file (for more info, check <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>), which indicates how many times the list should be randomly shuffled. The shuffling uses a <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Generator</span></code> that is initialized by a seed given by the <code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code> parameter in the property file. When EPOS is repeated with the same set of values for <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> and <code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code> parameters, the same solutions are generated, enabling reproducability of the simulations. The results of repeating EPOS with various <code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code> values are shown below.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/RSS-MIN-MAX-ENERGY-SIGNAL-5-BOUNDS.png"><img alt="alternate text" src="_images/RSS-MIN-MAX-ENERGY-SIGNAL-5-BOUNDS.png" style="width: 420.0px; height: 420.0px;" /></a>
+</div>
+<p>Moreover, EPOS can perform dynamic and on-the-fly agent shuffling when some criteria are met. For more info, see <a class="reference internal" href="advanced-topics.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</p>
+<p>In addition, each agent in EPOS has two classes which take care of the tree communication and keep track of the parent and children nodes addresses: <code class="docutils literal notranslate"><span class="pre">TreeAgent</span> <span class="pre">extends</span> <span class="pre">Agent&lt;V&gt;</span> <span class="pre">implements</span> <span class="pre">TreeApplicationInterface</span></code> and <code class="docutils literal notranslate"><span class="pre">IterativeTreeAgent</span> <span class="pre">extends</span> <span class="pre">TreeAgent</span></code>. In <code class="docutils literal notranslate"><span class="pre">TreeAgent</span></code> the most important functions are the <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">setTreeView(Finger</span> <span class="pre">parent,</span> <span class="pre">List&lt;Finger&gt;</span> <span class="pre">children)</span></code> and <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">setParent(Finger</span> <span class="pre">parent)</span></code> and <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">setChildren(List&lt;Finger&gt;</span> <span class="pre">list)</span></code> which are called when the <code class="docutils literal notranslate"><span class="pre">TreeArchitecture</span></code> is finished bootstrapping and creating the tree. In <code class="docutils literal notranslate"><span class="pre">IterativeTreeAgent</span></code> the most important function is the <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">handleIncomingMessage(Message</span> <span class="pre">message)</span></code> which is called whenever a new message is receive by the agent. Here you can track the <em>to-down</em> and <em>bottom-up</em> phases of EPOS.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="termination-criteria.html" class="btn btn-neutral float-right" title="Termination Criteria" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="local-cost-function.html" class="btn btn-neutral float-left" title="Local Cost Function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

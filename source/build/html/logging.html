@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Logging &amp; Output &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Logging &amp; Output</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/logging.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logging-output">
+<span id="logging-chapter"></span><h1>Logging &amp; Output<a class="headerlink" href="#logging-output" title="Permalink to this headline">¶</a></h1>
+<p>The logging functions in EPOS are expansive and they track, record, and report information about the system at each iteration and also at the end / termination of the simulation. The class implementations can be found at <code class="docutils literal notranslate"><span class="pre">agent.logging</span></code> package in the code. In order to initialise and add different loggers to the agnet, they need to be added in the <code class="docutils literal notranslate"><span class="pre">experiment.MultiObjectiveIEPOSExperiment</span></code> class:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">LoggingProvider</span><span class="o">&lt;</span><span class="n">MultiObjectiveIEPOSAgent</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;&gt;</span> <span class="n">loggingProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingProvider</span><span class="o">&lt;</span><span class="n">MultiObjectiveIEPOSAgent</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;&gt;();</span>
+<span class="n">GlobalCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">GCLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GlobalCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getGlobalCostPath</span><span class="o">());</span>
+<span class="n">LocalCostMultiObjectiveLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">LCLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LocalCostMultiObjectiveLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getLocalCostPath</span><span class="o">());</span>
+<span class="n">TerminationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">TLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TerminationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getTerminationPath</span><span class="o">());</span>
+<span class="n">SelectedPlanLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">SPLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SelectedPlanLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getSelectedPlansPath</span><span class="o">(),</span> <span class="n">config</span><span class="o">.</span><span class="na">numAgents</span><span class="o">);</span>
+<span class="n">GlobalResponseVectorLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">GRVLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GlobalResponseVectorLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getGlobalResponsePath</span><span class="o">());</span>
+<span class="n">PlanFrequencyLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">DstLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlanFrequencyLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getDistributionPath</span><span class="o">());</span>
+<span class="n">UnfairnessLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">ULogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UnfairnessLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getUnfairnessPath</span><span class="o">());</span>
+<span class="n">GlobalComplexCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">GCXLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GlobalComplexCostLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getGlobalComplexCostPath</span><span class="o">());</span>
+<span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">WLogger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">getWeightsPath</span><span class="o">());</span>
+
+
+<span class="n">GCLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">LCLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">TLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">SPLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">GRVLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">DstLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">ULogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">GCXLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+<span class="n">WLogger</span><span class="o">.</span><span class="na">setRun</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">permutationID</span><span class="o">);</span>
+
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GCLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">LCLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">TLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">SPLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GRVLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">DstLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ULogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GCXLogger</span><span class="o">);</span>
+<span class="n">loggingProvider</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">WLogger</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>In order to add / develop new loggers to EPOS, the <code class="docutils literal notranslate"><span class="pre">GlobalCostLogger</span></code> template is recommended. In addition to this, each logger, when their <code class="docutils literal notranslate"><span class="pre">print</span></code> function is called, they write their data on output files with address defined in <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> class.</p>
+<div class="section" id="global-complex-cost-logger">
+<h2>Global Complex Cost Logger<a class="headerlink" href="#global-complex-cost-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.GlobalComplexCostLogger.java</span></code> and by default, it record the complex cost defined in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">global-complex-cost.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>complex cost</strong> of the whole system, at each iteration, and accross multiple runs. In addition, it shows the mean and standard deviation of the cost across different runs. By default, the <em>complex cost</em> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\gamma \cdot G^{(t)} + \alpha \cdot U^{(t)} + \beta \cdot L^{(t)}\]</div>
+</div>
+<div class="section" id="global-cost-logger">
+<h2>Global Cost Logger<a class="headerlink" href="#global-cost-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.GlobalCostLogger.java</span></code> and by default, it record the complex cost defined in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">global-cost.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>ost of the whole system, at each iteration, and accross multiple runs</strong>. In addition, it shows the mean and standard deviation of the cost across different runs. If no specific global cost logger is defined at the <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> then EPOS assigns <code class="docutils literal notranslate"><span class="pre">GlobalComplexCostLogger&lt;Vector&gt;</span> <span class="pre">GCXLogger</span></code> as the global cost logger.</p>
+</div>
+<div class="section" id="global-response-logger">
+<h2>Global Response Logger<a class="headerlink" href="#global-response-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex response logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.GlobalResponseCostLogger.java</span></code> and by default, it record the global response defined in <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">global-response-cost.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>aggregated response</strong> of the system at the root which is the sum of all plans. The matrix shows the aggregated response across all dimensions of the plan.</p>
+</div>
+<div class="section" id="indexed-histogram-logger">
+<h2>Indexed Histogram Logger<a class="headerlink" href="#indexed-histogram-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.PlanFrequencyLogger.java</span></code> and by default, it record the plan frequency defined in <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">indexes-histogram.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>how many times each plan was selected</strong> at the end of each run / simulation.</p>
+</div>
+<div class="section" id="local-cost-logger">
+<h2>Local Cost Logger<a class="headerlink" href="#local-cost-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.LocalCostLogger.java</span></code> and by default, it record the local cost defined in <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">local-cost.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>local cost of all agents at each iteration</strong>. In addition, it shows the mean and standard deviation of the cost across different runs.</p>
+</div>
+<div class="section" id="selected-plans">
+<h2>Selected Plans<a class="headerlink" href="#selected-plans" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.SelectedPlanLogger.java</span></code> and by default, it record the selected plan index defined in <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">selected-plan.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>selected plan index of each agent at each iteration</strong>.</p>
+</div>
+<div class="section" id="termination-logger">
+<h2>Termination Logger<a class="headerlink" href="#termination-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.TerminationLogger.java</span></code> and by default, it record the complex cost defined in <a class="reference internal" href="termination-criteria.html#termination-criteria-chapter"><span class="std std-ref">Termination Criteria</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">termination.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>at which iteration EPOS terminated</strong> depending on the termination criteria.</p>
+</div>
+<div class="section" id="unfairness-logger">
+<h2>Unfairness Logger<a class="headerlink" href="#unfairness-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.UnfairnessCostLogger.java</span></code> and by default, it record the unfairness defined in <strong>??</strong>. The output file is named <code class="docutils literal notranslate"><span class="pre">unfairness.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>unfairness of the whole system, at each iteration, and accross multiple runs</strong>. In addition, it shows the mean and standard deviation of the cost across different runs.</p>
+</div>
+<div class="section" id="weights-alpha-beta-logger">
+<h2>Weights, Alpha, Beta Logger<a class="headerlink" href="#weights-alpha-beta-logger" title="Permalink to this headline">¶</a></h2>
+<p>The global compelex cost logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.WeightsLogger.java</span></code> and by default, it record the complex cost defined in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>. The output file is named <code class="docutils literal notranslate"><span class="pre">weights-alpha-beta.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>. The .csv file is an matrix showing <strong>weights, alpha, and beta of each agent</strong> of the whole system. In addition, it shows the mean and standard deviation of the cost across different runs.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

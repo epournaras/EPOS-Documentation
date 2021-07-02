@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command Line Arguments &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Input" href="input.html" />
+    <link rel="prev" title="EPOS - Economic Planning and Optimized Selections" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Line Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Command Line Arguments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/features.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line-arguments">
+<span id="arguments-chapter"></span><h1>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h1>
+<p>EPOS has the following command line arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">h</span></code>: show helptext</li>
+<li><code class="docutils literal notranslate"><span class="pre">dataset</span></code>: Dataset name to be used. This is the name of the directory located inside datasets/ directory thta contains all data. No default value, must be set</li>
+<li><code class="docutils literal notranslate"><span class="pre">numSim</span></code>: Number of simulations. Default is 1.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numIterations</span></code>: Number of iterations. Default is 40.</li>
+<li><code class="docutils literal notranslate"><span class="pre">lambda</span></code>: Lambda preference level. Lambda &gt; 0. Used only for old I-EPOS. Default is 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Weight of unfairness in multi-objective function. 0&lt;= Alpha &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">beta</span></code>: Weight of local cost in multi-objective function. 0&lt;= Beta &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numAgents</span></code>: Number of participating agents. Default is 100.</li>
+<li><code class="docutils literal notranslate"><span class="pre">numPlans</span></code>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first numPlan rows are read. Default is 16.</li>
+<li><code class="docutils literal notranslate"><span class="pre">planDim</span></code>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset. Default to -1 and must be set!</li>
+<li><code class="docutils literal notranslate"><span class="pre">numChildren</span></code>: Number of children of each inner node. Default is 2.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shuffle</span></code>: The number of the shuffles to make before assigning agents to the tree hierarchy. Default is 0.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shuffleFile</span></code>: The path to a file containing already shuffled agents in one column, no header. Default is null.</li>
+<li><code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code>: The seed to be used in Random generator the shuffling is based on. Default is 0. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableNEVERstrategy</span></code>: Enabling reorganization strategy NEVER. Works only for ModifiableIEPOSAgent. This is default. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-never"><span class="std std-ref">Reorganization Criterion: Never</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enablePERIODICALLYstrategy</span></code>: Enabling reorganization strategy PERIODICALLY with indicated period. Default period is 3, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableCONVERGENCEstrategy</span></code>: Enabling reorganization strategy ON_CONVERGENCE with indicated memorization offset. Default is 5, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enableGLOBALCOSTREDUCTIONstrategy</span></code>: Enabling reorganization strategy based on GLOBAL_COST_REDUCTION strategy with indicated tolerance level. 0 &lt;= Tolerane Level &lt;= 1. Default is 0, but default strategy is to NEVER reorganize. For more information, see <a class="reference internal" href="tree-topology.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a> and <a class="reference internal" href="tree-topology.html#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">goalSignalType</span></code>: The reference signal, paired with RSS, XCORR or RMSE global cost function, otherwise ignored. Options are: either an integer from [1, 19] to use predetermined signals, or path to a file with the signal in one column. The length of the signal from the file must correspond planDim option. Default is signal type 1. For more information, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setGlobalCostFunc</span></code>: The global cost function to be used. Options are (case-sensitive): VAR for <a class="reference internal" href="global-cost-function.html#global-cost-function-variance"><span class="std std-ref">Variance</span></a>, XCORR for <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, RSS for <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> and RMSE for <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>. Default is VAR. XCORR uses <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a> by definition, RMSE has its own way of scaling and RSS uses standard normalization by default, but can use others. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setScaling</span></code>: The scaling technique to be used with RSS function, ignored otherwise. Options are (case-sensitive): STD for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a>, MIN-MAX for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-min-max"><span class="std std-ref">Min-Max Scaling</span></a> and UNIT-LENGTH for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-unit-length"><span class="std std-ref">Unit-Length Scaling</span></a>. Default is STD. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">setLocalCostFunc</span></code>: The local cost function. Options are (case-sensitive): COST for <a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort Local Cost Function</span></a>, PREF for <a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference Local Cost Function</span></a>, which is converted to COST by 1 - PREF, INDEX for plan indicies to be used as costs (see <a class="reference internal" href="local-cost-function.html#local-cost-function-index"><span class="std std-ref">Index Local Cost Function</span></a>). Default is COST. For more information, see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">logLevel</span></code>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST</li>
+</ul>
+</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="input.html" class="btn btn-neutral float-right" title="Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="EPOS - Economic Planning and Optimized Selections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournaras &amp; Jovan Nikolic.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

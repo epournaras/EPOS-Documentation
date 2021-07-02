@@ -1,0 +1,301 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration Parameters &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Input" href="input.html" />
+    <link rel="prev" title="Initial Setup and Running Experiments" href="experimantal-setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuration Parameters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/command-line-arguments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration-parameters">
+<span id="arguments-chapter"></span><h1>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this headline">¶</a></h1>
+<p>EPOS has the following configuration parameters in <code class="docutils literal notranslate"><span class="pre">epos.properties</span></code> file within <code class="docutils literal notranslate"><span class="pre">conf</span></code> directory:</p>
+<p>General parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code>: Dataset name to be used. This is the name of the directory located inside <code class="docutils literal notranslate"><span class="pre">datasets</span></code> directory that contains all data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numIterations</span></code>: Number of iterations. Default is 40.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numChildren</span></code>: Number of children of each inner node. Default is 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numAgents</span></code>: Number of participating agents. Default is 100.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numPlans</span></code>: The maximum number of possible plans per agent. Lower than this is possible. If more exist in the file, only first <code class="docutils literal notranslate"><span class="pre">numPlans</span></code> rows are read. Default is 16.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">planDim</span></code>: Dimension of every possible plan of every agent. Must be equal across the agents and must correspond to the dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logLevel</span></code>: The log level. Options are (case-sensitive): SEVERE, ALL, INFO, WARNING, FINE, FINER, FINEST. The output is printed on the console.</p></li>
+</ul>
+</div></blockquote>
+<p>Repetitions and randomness parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numSim</span></code>: Number of repetitions, each with different relative position of the agents in the tree. Default is 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shuffle</span></code>: The number of agent-shuffling to make before assigning them to the tree hierarchy. More info on <a class="reference internal" href="tree-topology.html#tree-topology-chapter"><span class="std std-ref">Tree Topology</span></a>. Default is 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shuffleFile</span></code>: The path to a file containing already shuffled agents in one column, no header. Default is null.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reorganizationSeed</span></code>: The seed on which the Random generator for shuffling is based on. Default is 0. For more information, see <a class="reference internal" href="advanced-topics.html#tree-topology-reorganization"><span class="std std-ref">Tree Reorganization</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Parameters controlling the Objectives:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Weight of unfairness in multi-objective function. 0&lt;= <code class="docutils literal notranslate"><span class="pre">alpha</span></code> &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>: Weight of local cost in multi-objective function. 0&lt;= <code class="docutils literal notranslate"><span class="pre">beta</span></code> &lt;= 1. Default is 0. For more information, see <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code>: The global cost function to be used. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">VAR</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-variance"><span class="std std-ref">Variance</span></a>, <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, <code class="docutils literal notranslate"><span class="pre">RSS</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> and <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>. Default is <code class="docutils literal notranslate"><span class="pre">VAR</span></code>. <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> uses <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a> by definition, <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> has its own way of scaling and <code class="docutils literal notranslate"><span class="pre">RSS</span></code> uses standard normalization by default, but can use others. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scaling</span></code>: The scaling technique to be used with <code class="docutils literal notranslate"><span class="pre">RSS</span></code> function, ignored otherwise. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">STD</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a>, <code class="docutils literal notranslate"><span class="pre">MIN-MAX</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-min-max"><span class="std std-ref">Min-Max Scaling</span></a> and <code class="docutils literal notranslate"><span class="pre">UNIT-LENGTH</span></code> for <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling-unit-length"><span class="std std-ref">Unit-Length Scaling</span></a>. Default is <code class="docutils literal notranslate"><span class="pre">STD</span></code>. For more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">goalSignalPath</span></code>: The reference signal, paired with <code class="docutils literal notranslate"><span class="pre">RSS</span></code>, <code class="docutils literal notranslate"><span class="pre">XCORR</span></code> or <code class="docutils literal notranslate"><span class="pre">RMSE</span></code> global cost function, otherwise ignored. A path to a file with the signal in one column. The length of the signal from the file must be of size <code class="docutils literal notranslate"><span class="pre">planDim</span></code>. If shorter, it will be padded in a Round-Robyn manner, if longer, it will be cropped to the size given in <code class="docutils literal notranslate"><span class="pre">planDim</span></code>. For more information, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localCostFunction</span></code>: The local cost function. Options are (case-sensitive): <code class="docutils literal notranslate"><span class="pre">DISC</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a>, <code class="docutils literal notranslate"><span class="pre">PREF</span></code> for <a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference-based Local Cost Function</span></a>, which is converted to <code class="docutils literal notranslate"><span class="pre">DISC</span></code> by 1 - <code class="docutils literal notranslate"><span class="pre">PREF</span></code>, <code class="docutils literal notranslate"><span class="pre">INDEX</span></code> for plan indices to be used as costs (see <a class="reference internal" href="local-cost-function.html#local-cost-function-index"><span class="std std-ref">Index-based Local Cost Function</span></a>). Default is <code class="docutils literal notranslate"><span class="pre">DISC</span></code>. For more information, see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Dynamic and on-the-fly reorganization parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">strategy</span></code>: The strategy for triggering reorganizations on-the-fly. The options include: <code class="docutils literal notranslate"><span class="pre">never</span></code> to disable reorganizations, <code class="docutils literal notranslate"><span class="pre">periodically</span></code> for <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a>, <code class="docutils literal notranslate"><span class="pre">convergence</span></code> for <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> and <code class="docutils literal notranslate"><span class="pre">globalCostReduction</span></code> for <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodically.reorganizationPeriod</span></code>: Sets the period of the reorganizations when <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a> strategy is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">convergence.memorizationOffset</span></code>: Sets the memorization offset when <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> strategy is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">globalCost.reductionThreshold</span></code>: Sets the threshold when <a class="reference internal" href="advanced-topics.html#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>  strategy is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strategy.reorganizationSeed</span></code>: The random generator seed controlling the randomness in reorganizations. Default is 0.</p></li>
+</ul>
+</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="input.html" class="btn btn-neutral float-right" title="Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="experimantal-setup.html" class="btn btn-neutral float-left" title="Initial Setup and Running Experiments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

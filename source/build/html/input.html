@@ -1,0 +1,314 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Input &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global Cost Function" href="global-cost-function.html" />
+    <link rel="prev" title="Configuration Parameters" href="command-line-arguments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plans">Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#incentive-signals">Incentive Signals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Input</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/input.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="input">
+<span id="input-chapter"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plans">
+<span id="input-plans"></span><h2>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h2>
+<p>Plans are the representation of agents’ possible actions. In EPOS, the plans are in form of n-dimensional vectors, which are read from the datasets. In each dataset, each agent has a certain number of plans, and each plan will have a certain of dimensions. A typical plan format is:</p>
+<blockquote>
+<div><p><em>planScore</em> : <em>planDimension1</em>, … , <em>planDimensionN</em></p>
+</div></blockquote>
+<p>in which the plan score can be:</p>
+<ol class="arabic simple">
+<li><p>discomfort (<a class="reference internal" href="local-cost-function.html#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a>) of the plan, or</p></li>
+<li><p>preference (<a class="reference internal" href="local-cost-function.html#local-cost-function-preference"><span class="std std-ref">Preference-based Local Cost Function</span></a>) of the plan</p></li>
+</ol>
+<p>The possible dataset formats are defined in <code class="docutils literal notranslate"><span class="pre">agent.dataset</span></code> package in the code. In addition, there is a Gaussian plan generator in <code class="docutils literal notranslate"><span class="pre">agent.dataset.GaussianDataSet.java</span></code>. For this dataset, you can define the <em>number of agents</em>, <em>number of plans</em>, and <em>number of dimensions</em> using the configuration or the <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>.</p>
+<p>In addition, at each iteration of EPOS, agents select their preliminary plans and report them to their parent. The implemented classes for this can be found at <code class="docutils literal notranslate"><span class="pre">agent.planselection</span></code> package. The main class is <code class="docutils literal notranslate"><span class="pre">MultiObjectiveIeposPlanSelector</span> <span class="pre">implements</span> <span class="pre">PlanSelector&lt;MultiObjectiveIEPOSAgent&gt;</span></code> and the main function is:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">id</span> <span class="o">=</span>  <span class="n">agent</span><span class="p">.</span><span class="na">getOptimization</span><span class="p">().</span><span class="na">argmin</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">getGlobalCostFunction</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getLocalCostFunction</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getPossiblePlans</span><span class="p">(),</span>
+                                         <span class="n">otherResponse</span><span class="p">,</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getUnfairnessWeight</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getLocalCostWeight</span><span class="p">(),</span>
+                                         <span class="n">currentDiscomfortSum</span><span class="p">,</span>
+                                         <span class="n">currentDiscomfortSumSqr</span><span class="p">,</span>
+                                         <span class="n">agent</span><span class="p">.</span><span class="na">getNumAgents</span><span class="p">(),</span>
+                                         <span class="n">agent</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>which return the id of the selected local plan. There are different ways of selecting the local plan, however by default EPOS chooses the plan with the <code class="docutils literal notranslate"><span class="pre">PlanSelectionOptimizationFunctionCollection.complexFunction1</span></code>. The function works as the following: <span class="math notranslate nohighlight">\((1 - \alpha - \beta) \cdot global\_cost + \alpha \cdot unfairness + \beta \cdot local\_cost\)</span>, the details of which can be found in <a class="reference internal" href="multi-objective-optimization.html#multi-objective-optimization-chapter"><span class="std std-ref">Multi-Objective Optimization</span></a>.</p>
+</div>
+<div class="section" id="incentive-signals">
+<span id="input-incentive-signals"></span><h2>Incentive Signals<a class="headerlink" href="#incentive-signals" title="Permalink to this headline">¶</a></h2>
+<p>EPOS is able to guide the selections of agents towards a certain predefined goal. The goal is given as a reference incentive signal, and the agents make selections towards the best matching between their joint selections and the reference signal. As EPOS is a minimization algorithm, the objective is the minimization of <em>dissimilarity</em> between them. For more information on the dissimilarity measures, please see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>. The incentive signal is taken into account only if one of the following global cost functions are employed: <a class="reference internal" href="global-cost-function.html#global-cost-function-cross-correlation"><span class="std std-ref">Cross-Correlation</span></a>, <a class="reference internal" href="global-cost-function.html#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a> or <a class="reference internal" href="global-cost-function.html#global-cost-function-rmse"><span class="std std-ref">Root Mean Square Error</span></a>.</p>
+<p>The Incentive signal is used within EPOS via the parameter <code class="docutils literal notranslate"><span class="pre">goalSignalPath</span></code> by setting <strong>a path</strong> to a file containing the incentive signal. If the file path is not provided, a first “.target” file in <em>dataset</em> directory will be used as a goal signal. If none “.target” files are found, a <em>zero</em> goal signal is constructed (a signal filled with zeros).</p>
+<p>Note that the incentive signal <strong>must</strong> be of the same length as plans. If it is shorter than the <code class="docutils literal notranslate"><span class="pre">planDim</span></code> parameter, it will be padded at the end in a Round-Robyn fashion, if longer, it will be cropped. The signal is given in a column, one value in each row. The file <strong>cannot</strong> have any headers or more than one column.</p>
+<p>For example, the following are correct ways of providing the incentive signal to EPOS:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span>   <span class="c1">// full path</span>
+<span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;datasets/incentive-signal.csv&quot;</span>                                     <span class="c1">// relative path</span>
+</pre></div>
+</div>
+<p>or in <code class="docutils literal notranslate"><span class="pre">Configuration.java</span></code> class:</p>
+<div class="literal-block-wrapper docutils container" id="goal-signal-configuration-java">
+<div class="code-block-caption"><span class="caption-text">Configuration.java</span><a class="headerlink" href="#goal-signal-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal.csv&quot;</span><span class="p">;</span>  <span class="c1">// or</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">goalSignalFilename</span> <span class="o">=</span> <span class="s">&quot;datasets/incentive-signal.csv&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>And these are the incorrect ways:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;datasets&quot;</span>                                                      <span class="c1">// the name of the directory containing the file is invalid</span>
+<span class="n">goalSignalPath</span><span class="o">=</span><span class="s">&quot;/home/user/Documents/EPOS-project/datasets/incentive-signal&quot;</span>   <span class="c1">// the file extension must be specified</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="global-cost-function.html" class="btn btn-neutral float-right" title="Global Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="command-line-arguments.html" class="btn btn-neutral float-left" title="Configuration Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

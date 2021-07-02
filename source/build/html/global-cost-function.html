@@ -1,0 +1,427 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Global Cost Function &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Local Cost Function" href="local-cost-function.html" />
+    <link rel="prev" title="Input" href="input.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Global Cost Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#variance">Variance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cross-correlation">Cross-Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#residual-sum-of-squares">Residual Sum of Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-mean-square-error">Root Mean Square Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scaling-techniques">Scaling Techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-normalization">Standard Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#min-max-scaling">Min-Max Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-length-scaling">Unit-Length Scaling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Global Cost Function</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/global-cost-function.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="global-cost-function">
+<span id="global-cost-function-chapter"></span><h1>Global Cost Function<a class="headerlink" href="#global-cost-function" title="Permalink to this headline">¶</a></h1>
+<p>The global cost function represents the performance of EPOS at the end of each iteration and it is typically defined as: global cost function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> as <span class="math notranslate nohighlight">\(g \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented global cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">globalCostFunction</span></code> indicates your choice of the global cost function. In order to create your own global cost function, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more information about how to log the global cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
+<div class="section" id="variance">
+<span id="global-cost-function-variance"></span><h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
+<p>The variance implemented in EPOS, within signal <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-var">
+<span class="eqno">(1)<a class="headerlink" href="#equation-equation-var" title="Permalink to this equation">¶</a></span>\[\sigma^2 = \frac{\sum\limits_{i=1}^N (x -\mu)^2}{N}\]</div>
+<p>where signal <span class="math notranslate nohighlight">\(x\)</span> represents the global response in EPOS.</p>
+<p>Intuitively, each vector is <em>global response</em>, the sum of all selected plans in the agent network and the idea of minimising the variance of said vector is to make the demand (in case of energy planning) as uniform / flat as possible.</p>
+<p>This function can be selected in two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=VAR</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="var-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#var-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
+                                                      <span class="k">new</span> <span class="n">VarCostFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
+</div>
+<div class="section" id="cross-correlation">
+<span id="global-cost-function-cross-correlation"></span><h2>Cross-Correlation<a class="headerlink" href="#cross-correlation" title="Permalink to this headline">¶</a></h2>
+<p>The cross-correlation implemented in EPOS, between signals <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span> and <span class="math notranslate nohighlight">\(y \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-cross-correlation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-equation-cross-correlation" title="Permalink to this equation">¶</a></span>\[- \frac{1}{d} \sum_{i = 1}^{d} \frac{1}{\sigma\left(x\right) \sigma\left(y\right)} \left(x_{i} - \mu(x)\right) \left(y_{i} - \mu(y)\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{i}\)</span> and <span class="math notranslate nohighlight">\(y_{i}\)</span> represent the <span class="math notranslate nohighlight">\(i^{th}\)</span> element of the two vectors, <span class="math notranslate nohighlight">\(\mu(x)\)</span> and <span class="math notranslate nohighlight">\(\mu(y)\)</span> their respective means and <span class="math notranslate nohighlight">\(\sigma\left(x\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma\left(y\right)\)</span> their standard deviations. Both vectors are of the same length <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>Intuitively, one of the vectors is <em>global response</em>, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. Note that both vectors are of the same length. This function can be selected in two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=XCORR</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="cross-correlation-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#cross-correlation-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
+                                                      <span class="k">new</span> <span class="n">CrossCorrelationFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note the minus sign in the beginning of the formula. Two vectors have maximal matching when the cross-correlation is maximized, and vice versa, they are told to be <em>anti-correlated</em> when the cross-correlation is minimal. Given that EPOS is <em>minimization</em> algorithm, and that similarity is improved by <em>maximizing</em> the cross-correlation, EPOS actually <em>minimizes</em> the negative cross-correlation.</p>
+<p>The definition of the function scales the input vectors according to <a class="reference internal" href="#global-cost-function-scaling-standard"><span class="std std-ref">Standard Normalization</span></a>. If the scaling technique is forwarded via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuration file, it is ignored.</p>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.CrossCorrelationFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
+<p><strong>Limitations:</strong> Recall that the standard deviation of the vector that contains the same value <span class="math notranslate nohighlight">\(\forall i \in \{1, 2, \ldots d\}\)</span>, is 0. Consequently, the denominator in Equation <a class="reference internal" href="#equation-equation-cross-correlation">(2)</a> is 0, and we have division by zero. To overcome this limitation, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added to the denominator.</p>
+</div>
+<div class="section" id="residual-sum-of-squares">
+<span id="global-cost-function-rss"></span><h2>Residual Sum of Squares<a class="headerlink" href="#residual-sum-of-squares" title="Permalink to this headline">¶</a></h2>
+<p>The residual sum of squares implemented in EPOS, between signals <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span> and <span class="math notranslate nohighlight">\(y \in \mathbb{R}^{d}\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-rss">
+<span class="eqno">(3)<a class="headerlink" href="#equation-equation-rss" title="Permalink to this equation">¶</a></span>\[RSS(x, y, s(\cdot)) = \left(s(x) - s(y)\right)^{T} \left(s(x) - s(y)\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(s(\cdot)\)</span> denotes the scaling technique employed (see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>), and <span class="math notranslate nohighlight">\(T\)</span> denotes the transpose operator. Vectors <span class="math notranslate nohighlight">\(s(x)\)</span> and <span class="math notranslate nohighlight">\(s(y)\)</span> are referred to as <em>scaled vectors</em>, and the difference <span class="math notranslate nohighlight">\(s(x) - s(y)\)</span> as the <strong>residual</strong> between scaled vectors. Note that both vectors <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> <strong>must</strong> be of the same length <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>Intuitively, one of the vectors is <em>global response</em>, the sum of all selected plans in the agent network, and the other vector is the incentive signal. For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. Note that both vectors are of the same length. This function can be selected in two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RSS</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="rss-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#rss-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
+                                                      <span class="k">new</span> <span class="n">RSSCostFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>On how to select a scaling technique, see <a class="reference internal" href="#global-cost-function-scaling"><span class="std std-ref">Scaling Techniques</span></a>.</p>
+<p>The residual sum of squares measures dissimilarity between the shapes of the two vectors. In other words, the matching between the two signals is the highest when the value of the function is minimized. The range of values the function can have is only lower-bounded by 0, which indicates the best possible matching.</p>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.RSSCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
+</div>
+<div class="section" id="root-mean-square-error">
+<span id="global-cost-function-rmse"></span><h2>Root Mean Square Error<a class="headerlink" href="#root-mean-square-error" title="Permalink to this headline">¶</a></h2>
+<p>This similarity measure function is specific because it uses its own scaling technique. If the incentive signal (see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>) is denoted as <span class="math notranslate nohighlight">\(h \in \mathbb{R}^{d}\)</span> and the EPOS response is given as <span class="math notranslate nohighlight">\(g \in \mathbb{R}^{d}\)</span>, then the scaled shape to match, <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, is constructed as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-rmse-scaling">
+<span class="eqno">(4)<a class="headerlink" href="#equation-equation-rmse-scaling" title="Permalink to this equation">¶</a></span>\[x = \frac{\sigma\left(g\right)}{\sigma\left(h\right)} \left(h - \mu(h)\right) + \mu(g)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\left(g\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma\left(h\right)\)</span> denote standard deviations of the signals, and <span class="math notranslate nohighlight">\(\mu(g)\)</span> and <span class="math notranslate nohighlight">\(\mu(h)\)</span> their means. Intuitively, you can think of it as <em>scaling the signal</em> <span class="math notranslate nohighlight">\(h\)</span> <em>to the scale of the signal</em> <span class="math notranslate nohighlight">\(g\)</span>. Then, the root mean square error is computed as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-rmse">
+<span class="eqno">(5)<a class="headerlink" href="#equation-equation-rmse" title="Permalink to this equation">¶</a></span>\[\sqrt{\frac{1}{d} \left(g - x\right)^{T} \left(g - x\right)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the transpose operator.</p>
+<p>For more information about how to provide an incentive signal, see <a class="reference internal" href="input.html#input-incentive-signals"><span class="std std-ref">Incentive Signals</span></a>. This function can be selected in two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">globalCostFunction=RMSE</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="rmse-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#rmse-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">DifferentiableCostFunction</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span> <span class="o">=</span>
+                                                      <span class="k">new</span> <span class="n">RMSECostFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Intuitively, this function measures the dissimilarity between the EPOS response and the scaled incentive signal. The values of the function are lower-bounded by 0, which also indicates the best matching. Also, given that it has its own scaling technique, if the scaling technique is forwarded via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuration file, it is ignored.</p>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.RMSECostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">DifferentiableCostFunction&lt;Vector&gt;</span></code>.</p>
+</div>
+<div class="section" id="scaling-techniques">
+<span id="global-cost-function-scaling"></span><h2>Scaling Techniques<a class="headerlink" href="#scaling-techniques" title="Permalink to this headline">¶</a></h2>
+<p>As means to improve the shape-matching between the signals with values of different magnitudes, three different scaling techniques are introduced. The scaling is considered only with the <a class="reference internal" href="#global-cost-function-rss"><span class="std std-ref">Residual Sum of Squares</span></a>, for any other global cost function it is ignored.</p>
+<p>The scaling technique can be selected via <code class="docutils literal notranslate"><span class="pre">scaling</span></code> parameter in the configuration file. The available options are described below.</p>
+<div class="section" id="standard-normalization">
+<span id="global-cost-function-scaling-standard"></span><h3>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
+<p>The standard normalization <span class="math notranslate nohighlight">\(n(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, with the mean value <span class="math notranslate nohighlight">\(\mu(x)\)</span> and the standard deviation <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-std-normalization">
+<span class="eqno">(6)<a class="headerlink" href="#equation-equation-std-normalization" title="Permalink to this equation">¶</a></span>\[n(x) = \frac{x - \mu(x)}{\sigma(x)}\]</div>
+<p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(\mu(x)\)</span> and <span class="math notranslate nohighlight">\(\sigma(x)\)</span>, respectively. Note that vector <span class="math notranslate nohighlight">\(n(x)\)</span> is also <span class="math notranslate nohighlight">\(d\)</span>-dimensional vector. Moreover, the values in <span class="math notranslate nohighlight">\(n(x)\)</span> have the mean of 0 and the standard deviation of 1. Note that values in <span class="math notranslate nohighlight">\(n(x)\)</span> can be negative, but always between -1 and 1.</p>
+<p>This standard normalization can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=STD</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="std-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#std-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">standard_normalization</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the standard normalization can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> The standard deviation of a vector whose all values are equal is 0, and if the standard normalization is applied on such vector, it will result in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
+</div>
+<div class="section" id="min-max-scaling">
+<span id="global-cost-function-scaling-min-max"></span><h3>Min-Max Scaling<a class="headerlink" href="#min-max-scaling" title="Permalink to this headline">¶</a></h3>
+<p>The min-max scaling <span class="math notranslate nohighlight">\(m(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, where <span class="math notranslate nohighlight">\(x_{min}\)</span> is the minimal value found in <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(x_{max}\)</span> is the maximal value found in <span class="math notranslate nohighlight">\(x\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-min-max">
+<span class="eqno">(7)<a class="headerlink" href="#equation-equation-min-max" title="Permalink to this equation">¶</a></span>\[m(x) = \frac{x - x_{min}}{x_{max} - x_{min}}\]</div>
+<p>where subtraction and division are performed element-wise with constants <span class="math notranslate nohighlight">\(x_{min}\)</span> and <span class="math notranslate nohighlight">\(x_{max} - x_{min}\)</span>, respectively. The values in <span class="math notranslate nohighlight">\(m(x)\)</span> are always non-negative. More precisely, min-max scaling maps <span class="math notranslate nohighlight">\(x_{min}\)</span> to 0 and <span class="math notranslate nohighlight">\(x_{max}\)</span> to 1.</p>
+<p>This min-max scaling can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=MIN-MAX</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="min-max-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#min-max-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">min_max_normalization</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the min-max scaling can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> For a vector whose values are all equal, it holds that <span class="math notranslate nohighlight">\(x_{min} = x_{max}\)</span>, hence if the min-max scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
+</div>
+<div class="section" id="unit-length-scaling">
+<span id="global-cost-function-scaling-unit-length"></span><h3>Unit-Length Scaling<a class="headerlink" href="#unit-length-scaling" title="Permalink to this headline">¶</a></h3>
+<p>The unit-length scaling <span class="math notranslate nohighlight">\(u(\cdot)\)</span> of a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{d}\)</span>, whose Euclidean (<span class="math notranslate nohighlight">\(L_{2}\)</span>) norm is <span class="math notranslate nohighlight">\(\left\lVert x \right\rVert\)</span>, is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-unit-length">
+<span class="eqno">(8)<a class="headerlink" href="#equation-equation-unit-length" title="Permalink to this equation">¶</a></span>\[u(x) = \frac{x}{\left\lVert x \right\rVert}\]</div>
+<p>where division is performed element-wise with constant <span class="math notranslate nohighlight">\(\left\lVert x \right\rVert\)</span>. The Euclidean norm of the resulting vector <span class="math notranslate nohighlight">\(u(x)\)</span> has the Euclidean norm of 1, <span class="math notranslate nohighlight">\(\left\lVert u(x) \right\rVert = 1\)</span>. The absolute value of every element in <span class="math notranslate nohighlight">\(u(x)\)</span> is between 0 and 1.</p>
+<p>This unit-length scaling can be selected in one of the following two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">scaling=UNIT-LENGTH</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="unit-length-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#unit-length-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">.</span><span class="na">unit_length_normalization</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of the unit-length scaling can be found in class <code class="docutils literal notranslate"><span class="pre">data.Vector</span></code> and is implemented as <code class="docutils literal notranslate"><span class="pre">UnaryOperator&lt;Vector&gt;</span></code> function.</p>
+<p><strong>Limitations:</strong> A vector whose all values are 0, has the Euclidean norm of 0, and if the unit-length scaling is applied on such vector, it results in division by zero. As a solution to this, a small constant (<span class="math notranslate nohighlight">\(10^{-9}\)</span>) is added in the denominator.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="local-cost-function.html" class="btn btn-neutral float-right" title="Local Cost Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="input.html" class="btn btn-neutral float-left" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

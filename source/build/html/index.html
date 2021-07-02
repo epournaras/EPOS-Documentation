@@ -1,0 +1,361 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EPOS - Economic Planning and Optimized Selections &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Initial Setup and Running Experiments" href="experimantal-setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>EPOS - Economic Planning and Optimized Selections</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="epos-economic-planning-and-optimized-selections">
+<h1>EPOS - Economic Planning and Optimized Selections<a class="headerlink" href="#epos-economic-planning-and-optimized-selections" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experimantal-setup.html#command-line-setup">Command-Line Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimantal-setup.html#ide-setup">IDE Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#plans">Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#incentive-signals">Incentive Signals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#variance">Variance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#cross-correlation">Cross-Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#residual-sum-of-squares">Residual Sum of Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#root-mean-square-error">Root Mean Square Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-cost-function.html#scaling-techniques">Scaling Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local-cost-function.html#index-based-local-cost-function">Index-based Local Cost Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-cost-function.html#discomfort-based-local-cost-function">Discomfort-based Local Cost Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-cost-function.html#preference-based-local-cost-function">Preference-based Local Cost Function</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-complex-cost-logger">Global Complex Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-cost-logger">Global Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#global-response-logger">Global Response Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#indexed-histogram-logger">Indexed Histogram Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#local-cost-logger">Local Cost Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#selected-plans">Selected Plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#termination-logger">Termination Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#unfairness-logger">Unfairness Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#reorganization-logger">Reorganization Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-output.html#weights-alpha-beta-logger">Weights, Alpha, Beta Logger</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="LiveRun.html#what-is-live-run">What is Live Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LiveRun.html#basic-setup-and-live-experiment">Basic Setup and Live Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LiveRun.html#main-differences-to-the-simulation-code">Main Differences to the Simulation Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced-topics.html#tree-reorganization">Tree Reorganization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-topics.html#how-to-run-experiments-with-epos-and-cohda">How to run experiments with EPOS and COHDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-topics.html#how-to-write-your-own-agent">How to write your own agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-topics.html#epos-live-with-dynamics-fgcs-paper">EPOS Live with Dynamics (FGCS paper)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The project can be installed in 2 possible ways:</p>
+<ul class="simple">
+<li><p>A command line executable, that can be found under the project <a class="reference external" href="https://github.com/epournaras/EPOS/releases">github releases</a>.  Once the <code class="code docutils literal notranslate"><span class="pre">release-x.x.x.zip</span></code> is downloaded and extracted the user can navigate in the extracted folder and follow the guideline at <a class="reference internal" href="experimantal-setup.html#command-line-setup"><span class="std std-ref">Command-Line Setup</span></a>. For this setup a <a class="reference external" href="https://www.java.com/en/download/">Java 8 or higher</a> should be installed.</p></li>
+<li><p>IDE imported source code, that can be found under the <a class="reference external" href="https://github.com/epournaras/EPOS">master branch</a> of the <a class="reference external" href="https://github.com/epournaras/EPOS/">project github repository</a>. Detailed instructions for getting and importing the source code to an IDE can be found at <a class="reference internal" href="experimantal-setup.html#ide-setup"><span class="std std-ref">IDE Setup</span></a>. For this setup <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">jdk-8uxxx or higher</a> should be installed along with <a class="reference external" href="https://maven.apache.org/">Maven 3.3 or higher</a> and the latest version of <a class="reference external" href="https://git-scm.com/">git</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="open-datasets">
+<h2>Open Datasets<a class="headerlink" href="#open-datasets" title="Permalink to this headline">¶</a></h2>
+<p><strong>Agent-based Planning Portfolio</strong>: <a class="reference external" href="https://doi.org/10.6084/m9.figshare.7806548.v4">https://doi.org/10.6084/m9.figshare.7806548.v4</a></p>
+<p><strong>Optimality Benchmark for Combinatorial Optimization</strong>: <a class="reference external" href="https://doi.org/10.6084/m9.figshare.7803005.v3">https://doi.org/10.6084/m9.figshare.7803005.v3</a></p>
+<p><strong>EPOS Software Artifact</strong>: <a class="reference external" href="https://doi.org/10.6084/m9.figshare.7800701.v1">https://doi.org/10.6084/m9.figshare.7800701.v1</a></p>
+<p><strong>EPOS Research Guideline</strong>: <a class="reference external" href="https://doi.org/10.6084/m9.figshare.12443507.v3">https://doi.org/10.6084/m9.figshare.12443507.v3</a></p>
+</div>
+<div class="section" id="software-artifact">
+<h2>Software Artifact<a class="headerlink" href="#software-artifact" title="Permalink to this headline">¶</a></h2>
+<p>An earlier software artifact with a Graphical User Interface (GUI) can be acquired via <a class="reference external" href="http://epos-net.org/software/exemplar/">EPOS Exemplar</a>. The website contains an executable and instructions about the latest artifact version of EPOS. It is advised to use the website software for demonstration purposes. Detailed usage guidelines and explanations regarding the system architectures can also be found in the website.</p>
+</div>
+<div class="section" id="contribute">
+<span id="installation-setup"></span><h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/epournaras/EPOS/issues">Issue Tracker</a></p></li>
+<li><p><a class="reference external" href="https://github.com/epournaras/EPOS">Source Code</a></p></li>
+</ul>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>For any question please contact us: <a class="reference external" href="mailto:mail&#37;&#52;&#48;epos-net&#46;org">mail<span>&#64;</span>epos-net<span>&#46;</span>org</a></p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The project is licensed under the GPL-2.0 license.</p>
+</div>
+<div class="section" id="publications">
+<h2>Publications<a class="headerlink" href="#publications" title="Permalink to this headline">¶</a></h2>
+<p>Evangelos Pournaras, Peter Pilgerstorfer and Thomas Asikis, <a class="reference external" href="http://evangelospournaras.com/wordpress/wp-content/uploads/2018/09/Decentralized-Collective-Learning-for-Self-managed-Sharing-Economies.pdf">Decentralized Collective Learning for Self-managed Sharing Economies</a>, ACM Transactions of Autonomous and Adaptive Systems,  2018, ACM,</p>
+<p>Evangelos Pournaras, <a class="reference external" href="https://evangelospournaras.com/wordpress/wp-content/uploads/2020/07/Collective-Learning-A-10-Year-Odyssey-to-Human-centered-Distributed-Intelligence.pdf">Collective Learning: A 10-Year Odyssey to Human-centered Distributed Intelligence</a>, IEEE International Conference on Autonomic Computing and Self-Organizing Systems (ACSOS 2020), Washington, USA, August 2020 © IEEE</p>
+<div class="section" id="indices-and-tables">
+<h3>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="experimantal-setup.html" class="btn btn-neutral float-right" title="Initial Setup and Running Experiments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

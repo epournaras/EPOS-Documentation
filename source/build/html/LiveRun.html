@@ -1,0 +1,687 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Live Experiment &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Topics" href="advanced-topics.html" />
+    <link rel="prev" title="Logging &amp; Output" href="logging-output.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Live Experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-live-run">What is Live Run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-entities-and-classes">New Entities and Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bootsrapping-and-managing-epos-runs">Bootsrapping and Managing EPOS Runs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-setup-and-live-experiment">Basic Setup and Live Experiment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#live-run-logging-and-database-setup">Live Run Logging and Database Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-epos-live">Running EPOS Live</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#main-differences-to-the-simulation-code">Main Differences to the Simulation Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#changes-in-the-live-experiment">Changes in the Live Experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changes-in-the-agents">Changes in the Agents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Live Experiment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/LiveRun.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="live-experiment">
+<span id="live-run-chapter"></span><h1>Live Experiment<a class="headerlink" href="#live-experiment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-live-run">
+<span id="live-run-intro"></span><h2>What is Live Run<a class="headerlink" href="#what-is-live-run" title="Permalink to this headline">¶</a></h2>
+<p>In the live run, each EPOS agent is a single JVM object, and unlike the simulation scenario, the communication takes place over the network. This creates a more realistic illustration of how EPOS would operate give real-world system operation. To enable EPOS live run, many challenges had to be addressed; including network delays, asynchronous message handling, size of JVM object, and many more. The following sections present and overview of some of these challanges, subsequent changes, and how to deploy EPOS Live.</p>
+<p>EPOS live consists of 4 entities: <strong>Service Operator</strong>, <strong>Gateway</strong> <strong>Application Agent</strong>, and <strong>Service Agent</strong>. Toghether, these 4 entities interact and interoperate with each other to deliver the EPOS service. A high-level conceuptual description of these entities is as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Service Operator</strong>: The EPOS system and agents are deployed and managed by the service operator, which can be a third-party mediator in sensing-as-a-service scenarios, or a community in case of participatory sensing applications. Examples of third-party mediators include companies such as Waze, Uber, and SwissMobility, while environmental monitoring, and urban sensing are examples of participatory sensing applications deployed and managed by service communities.</p></li>
+<li><p><strong>Gateway</strong>: Acts as a bootstrapping proxy, connecting the EPOS agents to the corresponding application agent. The gateway is agnostic of data, the internal processes of IoT applications and decentralized services.</p></li>
+<li><p><strong>Application Agent</strong>: a piece of software lying on each user’s IoT device, acting as the middleware for communication with the EPOS agents. These IoT devices provide sensing and actuation capabilities. They are of different types (e.g., sensors, mobile phones) andgeo-spatially distributed.</p></li>
+<li><p><strong>Service Agent</strong>: (AKA EPOS agent) one-to-one counterparts to each application agent. Each EPOS agent has the following tasks:(i) Receiving data from the corresponding application agent (IoT device). (ii) Executing EPOS by interacting and cooperatingwith other EPOS agents. Finally, (iii) Providing the outcome of in terms of selected plans to the application agent. Note that in production-ready systems, both the application and EPOS agents can run on the same computational node to reduce latency and provide data locality, i.e. on a user’s device such as a smartphone, or at two remote nodes, i.e. on a user’sdevice, a cloud node, or a crowdsourced community server</p></li>
+</ol>
+<div class="section" id="new-entities-and-classes">
+<span id="live-run-entities"></span><h3>New Entities and Classes<a class="headerlink" href="#new-entities-and-classes" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Service Operator</strong>: The main class encapsulating the gateway functionality is <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Entities.EPOSRequester</span></code>. EPOS requester is the main entity starting the live operations. The main task of service operator is to:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Initialize the gateway and application agent:</p></li>
+</ul>
+</div></blockquote>
+<div class="literal-block-wrapper docutils container" id="eposrequester">
+<div class="code-block-caption"><span class="caption-text">Initializeing the gateway and application agent:</span><a class="headerlink" href="#eposrequester" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Runtime</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">().</span><span class="na">exec</span><span class="p">(</span><span class="s">&quot;screen -S GateWay -d -m java -Xmx1024m -jar GateWay.jar&quot;</span><span class="p">);</span>
+<span class="n">Runtime</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">().</span><span class="na">exec</span><span class="p">(</span><span class="s">&quot;screen -S Users -d -m java -Xmx2048m -jar IEPOSUsers.jar &quot;</span><span class="o">+</span><span class="n">currentSim</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt>Additionally, service operator takes care of the following tasks:</dt><dd><ul class="simple">
+<li><p>Request certain number of runs (config.maxRuns) and simulations (config.maxSims) from the gateway (<code class="docutils literal notranslate"><span class="pre">requestEPOS(createMessage(config,</span> <span class="pre">numPeers));</span></code>).</p></li>
+<li><p>Tracking current run and simulation as well as the status of the system.</p></li>
+<li><p>In case of config changes, announcing the to the gateway and changing the config file (<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">void</span> <span class="pre">checkConfigChanges()</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<ol class="arabic simple" start="2">
+<li><p><strong>Gateway</strong>: The main class encapsulating the gateway functionality is <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Entities.GatewayServer</span></code>. The gateway acts as the manager of the system, and takes care of the following tasks:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Receives the <code class="docutils literal notranslate"><span class="pre">eposRequestMessage</span></code> from system operator (<code class="docutils literal notranslate"><span class="pre">EPOSRequester</span></code>)</p></li>
+<li><p>Initiates n = numAgents EPOS Agents.</p></li>
+<li><p>Initially, only the boostrap agent is initialized, after it reaches the running state, the rest of the EPOS agents are initialized as well.</p></li>
+<li><p>gateway checks to see if all EPOS agents are running, and have their treeView set. This step utilizes the <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Messages.InformGatewayMessage</span></code>.</p></li>
+<li><p>Receives the register messages from application agents, assignes each application agent to an EPOS agent, and informs the user of the address (<code class="docutils literal notranslate"><span class="pre">liveRunUtils.Messages.InformUserMessage</span></code>).</p></li>
+<li><p>The gateway also checks to see if all EPOS agents have their plans set.</p></li>
+<li><p>If treeView and plans are set, sends the <code class="docutils literal notranslate"><span class="pre">ReadyToRunMessage</span></code> to all EPOS agents. The leafs will start the EPOS iterations.</p></li>
+<li><p>If there are new application agents joining/or leaving, informs the bootstrap agent (<code class="docutils literal notranslate"><span class="pre">liveRunUtils.Messages.InformBootstrap</span></code>) to generate a new treeView.</p></li>
+<li><p>Teeps track of the status of each agent during the runs and simulations. This is done via the <code class="docutils literal notranslate"><span class="pre">liveRunUtils.DataStructures.EPOSPeerStatus</span></code> structure:</p></li>
+</ul>
+</div></blockquote>
+<div class="literal-block-wrapper docutils container" id="epospeerstatus">
+<div class="code-block-caption"><span class="caption-text">stored information for each EPOS agent (initial values)</span><a class="headerlink" href="#epospeerstatus" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="n">index</span><span class="p">;</span> <span class="c1">// ID</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">run</span><span class="p">;</span> <span class="c1">// current run</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">initRun</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// when the agent joined EPOS network</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">leaveRun</span><span class="o">=</span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span> <span class="c1">// when the agent will leave the network</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="n">status</span><span class="p">;</span> <span class="c1">// current status: joining, leaving, treeViewSet, waiting for plans, ...</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="n">isleaf</span><span class="p">;</span> <span class="c1">// is the agent a leaf in the tree topology</span>
+<span class="kd">public</span> <span class="n">NetworkAddress</span> <span class="n">address</span><span class="p">;</span> <span class="c1">// EPOS agent network address</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">peerPort</span><span class="p">;</span> <span class="c1">// EPOS agent network port</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Application Agent</strong>: the main class encapsulating the application agnet functionality is <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Entities.User</span></code>. In the user class, the <code class="docutils literal notranslate"><span class="pre">initiateUsers</span></code> function creates <code class="docutils literal notranslate"><span class="pre">numUsersPerRun</span></code> application agents:</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="initiateusers">
+<div class="code-block-caption"><span class="caption-text">initiate application agents</span><a class="headerlink" href="#initiateusers" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">initiateUsers</span><span class="p">(){</span>
+  <span class="n">Users</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">UserStatus</span><span class="o">&gt;</span><span class="p">(</span><span class="n">numUsersPerRun</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentRun</span><span class="p">));</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">numUsersPerRun</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentRun</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">UserStatus</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserStatus</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;initiated&quot;</span><span class="p">,</span> <span class="n">UserAddress</span><span class="p">);</span>
+      <span class="n">Users</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">user</span><span class="p">);}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Each application agent is then given its local plans. In the next step, each appliation agent vis the <code class="docutils literal notranslate"><span class="pre">registerUsers</span></code> function registers itself with the <code class="docutils literal notranslate"><span class="pre">Gateway</span></code> and received the address of its assigned EPOS Agnet. After this assingment, in case the EPOS agent does not have the local plans, the application agent submits the plans to the EPOS agent. The status of Application agents and their assigned EPOS agents are stored and updated in the <code class="docutils literal notranslate"><span class="pre">liveRunUtils.DataStructures.UserStatus</span></code> class:</p>
+<div class="literal-block-wrapper docutils container" id="userstatus">
+<div class="code-block-caption"><span class="caption-text">stored information for each application agent (initial values)</span><a class="headerlink" href="#userstatus" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="n">index</span><span class="p">;</span> <span class="c1">// ID</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">run</span><span class="p">;</span> <span class="c1">// current run</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">leaveRun</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span> <span class="c1">// if the agent will leave at a specific run</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="n">status</span><span class="p">;</span> <span class="c1">// current status: acvite, leaving, waiting for plans, ...</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="n">planStatus</span> <span class="o">=</span> <span class="s">&quot;needPlans&quot;</span><span class="p">;</span>  <span class="c1">// change status for local plans</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="n">weightStatus</span> <span class="o">=</span> <span class="s">&quot;noNewWeights&quot;</span><span class="p">;</span> <span class="c1">// change status for alpha and beta</span>
+<span class="kd">public</span> <span class="n">ZMQAddress</span> <span class="n">assignedPeerAddress</span><span class="p">;</span> <span class="c1">// assigned EPOS agent network address</span>
+<span class="kd">public</span> <span class="n">ZMQAddress</span> <span class="n">userAddress</span><span class="p">;</span> <span class="c1">// application agent network address</span>
+</pre></div>
+</div>
+</div>
+<p>After the initialization and assingment of EPOS agent, each application agent submits its local plans and weights (:math: <cite>alpha’ and :math: `beta</cite>) via the:</p>
+<div class="literal-block-wrapper docutils container" id="plansetmessage">
+<div class="code-block-caption"><span class="caption-text">sending plans to the EPOS agent</span><a class="headerlink" href="#plansetmessage" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PlanSetMessage</span> <span class="kd">extends</span> <span class="n">Message</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">status</span><span class="p">;</span>
+  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Plan</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;&gt;</span> <span class="n">possiblePlans</span><span class="p">;</span>
+
+  <span class="kd">public</span> <span class="nf">PlanSetMessage</span><span class="p">(</span><span class="n">String</span> <span class="n">stat</span><span class="p">){</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">stat</span><span class="p">;}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>At the end of each run, the EPOS agent sends the selected plan back to the application agent.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Service/EPOS Agent implementation</strong>: The main class encapsulating the EPOS agent functionality is <code class="docutils literal notranslate"><span class="pre">agent.MultiObjectiveIEPOSAgent</span></code>. This class handles the calculation of multi-objective cost of each local plan and selection of the best plan at each iteration. The <code class="docutils literal notranslate"><span class="pre">agent.IterativeTreeAgent</span></code> handles the iterative communication between the agent’s parent and childern and well as the initial bootstrapping. To see the changes in the <code class="docutils literal notranslate"><span class="pre">IterativeTreeAgent</span></code> check <a class="reference internal" href="#live-run-changes"><span class="std std-ref">Main Differences to the Simulation Code</span></a>.</p></li>
+</ol>
+</div>
+<div class="section" id="bootsrapping-and-managing-epos-runs">
+<span id="live-run-bootstrapping"></span><h3>Bootsrapping and Managing EPOS Runs<a class="headerlink" href="#bootsrapping-and-managing-epos-runs" title="Permalink to this headline">¶</a></h3>
+<p>The sequence diagram for bootstrapping and managind EPOS runs is as follows:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EPOSnoDynamics.png"><img alt="alternate text" src="_images/EPOSnoDynamics.png" style="width: 1163.0px; height: 1122.0px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="basic-setup-and-live-experiment">
+<span id="live-run-setup"></span><h2>Basic Setup and Live Experiment<a class="headerlink" href="#basic-setup-and-live-experiment" title="Permalink to this headline">¶</a></h2>
+<p>In order to perform live experiments, 3 prequisite steps are required:</p>
+<ol class="arabic simple">
+<li><p>Setup the database (check <a class="reference internal" href="#live-run-logging"><span class="std std-ref">Live Run Logging and Database Setup</span></a>)</p></li>
+<li><p>Run the persistant daemon (check <a class="reference internal" href="#live-run-logging"><span class="std std-ref">Live Run Logging and Database Setup</span></a> step 4)</p></li>
+<li><p>Run EPOS Live jar file (check <a class="reference internal" href="#live-run-eposlive"><span class="std std-ref">Running EPOS Live</span></a>)</p></li>
+</ol>
+<div class="section" id="live-run-logging-and-database-setup">
+<span id="live-run-logging"></span><h3>Live Run Logging and Database Setup<a class="headerlink" href="#live-run-logging-and-database-setup" title="Permalink to this headline">¶</a></h3>
+<p>Before running EPOS live, few steps need to be taken first:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Start DB</strong>: Depending on your installation of postgresSQL, the starting command for the DB differs. For installations on Mac OSX via homebrew, the following command works: <code class="docutils literal notranslate"><span class="pre">pg_ctl</span> <span class="pre">-D</span> <span class="pre">/usr/local/var/postgres</span> <span class="pre">start</span></code>.</p></li>
+<li><p><strong>CheckDB</strong>: Enter database via the following commands: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/tmp;</span> <span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">postgres</span> <span class="pre">psql</span></code>.</p></li>
+<li><p><strong>Create the database and tables</strong>: The tables and sql definitions are in the <code class="docutils literal notranslate"><span class="pre">/sql/definitions/create.database.sql</span></code>. After running the SQL commands, check (via <code class="docutils literal notranslate"><span class="pre">\dt</span></code>) to see if all tables are created correctly.</p></li>
+<li><p><strong>Launch the daemon</strong>: Launch the persistance daemon for the database. To do so run <code class="docutils literal notranslate"><span class="pre">./start.daemon.sh</span> <span class="pre">deployments/localhost</span></code>. The setting to this daemon can be changes in <code class="docutils literal notranslate"><span class="pre">/deployments/localhost/conf/daemon.conf</span></code>.</p></li>
+</ol>
+</div></blockquote>
+<p>If everything is correct, you should see the daemon listening and waitnig for the incoming messages. For more instructions and explanations on the logging system, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a>.</p>
+<p>In order to make the deployment and experimentation in EPOS Live easier, the deployment setup uses JAR files. To run EPOS Live, firstcheck <code class="docutils literal notranslate"><span class="pre">/conf/eposLive.properties</span></code>. The live deployment uses this file rather than <code class="docutils literal notranslate"><span class="pre">epos.properties</span></code>. The new parameters include:</p>
+<div class="literal-block-wrapper docutils container" id="eposlive-properties">
+<div class="code-block-caption"><span class="caption-text">new parameters in eposLive.properties</span><a class="headerlink" href="#eposlive-properties" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">maxNumRuns</span><span class="o">=</span><span class="m">50000</span> <span class="c1"># each run is the completetion of numIterations EPOS</span>
+
+<span class="nv">EPOSRequesterIP</span><span class="o">=</span><span class="m">127</span>.0.0.1 <span class="c1"># localhost</span>
+<span class="nv">EPOSRequesterPort</span><span class="o">=</span><span class="m">54321</span> <span class="c1"># make sure the port is free</span>
+<span class="nv">EPOSRequesterPeerID</span><span class="o">=</span>-100 <span class="c1"># makes querying the logs easier</span>
+
+<span class="nv">UserIP</span><span class="o">=</span><span class="m">127</span>.0.0.1 <span class="c1"># localhost</span>
+<span class="nv">UserPeerID</span><span class="o">=</span>-200 <span class="c1"># make sure the port is free</span>
+<span class="nv">UserPort</span><span class="o">=</span><span class="m">15545</span> <span class="c1"># makes querying the logs easier</span>
+
+<span class="nv">GateWayIP</span><span class="o">=</span><span class="m">127</span>.0.0.1 <span class="c1"># localhost</span>
+<span class="nv">GateWayPort</span><span class="o">=</span><span class="m">12345</span> <span class="c1"># make sure the port is free</span>
+<span class="nv">GateWayPeerID</span><span class="o">=</span>-300 <span class="c1"># makes querying the logs easier</span>
+
+<span class="nv">persistenceDaemonIP</span><span class="o">=</span><span class="m">127</span>.0.0.1 <span class="c1"># localhost</span>
+<span class="nv">persistenceDaemonPort</span><span class="o">=</span><span class="m">7433</span> <span class="c1"># make sure the port is free</span>
+
+<span class="nv">bootstrapPort</span><span class="o">=</span><span class="m">12000</span> <span class="c1"># make sure the port is free (peer0)</span>
+<span class="nv">sleepSecondBetweenRuns</span><span class="o">=</span><span class="m">15</span> <span class="c1"># seconds</span>
+</pre></div>
+</div>
+</div>
+<p>Make sure the ports and IP’s are open and accessible (check firewall setting).</p>
+</div>
+<div class="section" id="running-epos-live">
+<span id="live-run-eposlive"></span><h3>Running EPOS Live<a class="headerlink" href="#running-epos-live" title="Permalink to this headline">¶</a></h3>
+<p>After setting up the database and daemon, you can run <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-jar</span> <span class="pre">EPOSRequester.jar</span></code>. This commands runs the <code class="docutils literal notranslate"><span class="pre">EPOSRequester</span></code> class, which in turn initiates the gateway and application agents. The gateway will interact with the application agents and creates the EPOS agents. All the mentioned entities as well as the EPOS agenst are initiated inside their own screen (make sure you install screen on your workstation). To check to see everything is working run <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-ls</span></code>. To connect to a specific screen run <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-r</span> <span class="pre">-S</span> <span class="pre">[name]</span></code>. You should now see logs being written to the database in the daemon screen. You can stop everything (except <code class="docutils literal notranslate"><span class="pre">EPOSRequester</span></code> and the daemon) by executing <code class="docutils literal notranslate"><span class="pre">./killAll.sh</span></code>.</p>
+<p>You can alway do new experiments by changing the config file.</p>
+<p>If you want to change the code and then run EPOS live again, it is advise to create the 4 jar files with each build of the code. The 4 jar files are: <code class="docutils literal notranslate"><span class="pre">EPOSRequester.jar</span></code> which is the EPOSRequester class and represents the system operator, <code class="docutils literal notranslate"><span class="pre">GateWay.jar</span></code> which is the GatewayServer class and represents the Gateway, <code class="docutils literal notranslate"><span class="pre">IEPOSNode.jar</span></code> which are the EPOS agents. Note that each agent is a separate JVM object and experiments with high number of agents required extensive computational resources. And lastly <code class="docutils literal notranslate"><span class="pre">IEPOSUsers.jar</span></code> which is the User class and represents the application agents. In essence, This class is the event generator of the system.</p>
+</div>
+</div>
+<div class="section" id="main-differences-to-the-simulation-code">
+<span id="live-run-changes"></span><h2>Main Differences to the Simulation Code<a class="headerlink" href="#main-differences-to-the-simulation-code" title="Permalink to this headline">¶</a></h2>
+<p>The additional classes are all under the <code class="docutils literal notranslate"><span class="pre">liveRunUtils</span></code> package. The package has three main sections: <code class="docutils literal notranslate"><span class="pre">DataStructures</span></code>, <code class="docutils literal notranslate"><span class="pre">Entities</span></code>, and <code class="docutils literal notranslate"><span class="pre">Messages</span></code>.</p>
+<p>Within the <code class="docutils literal notranslate"><span class="pre">DataStructures</span></code>, the <code class="docutils literal notranslate"><span class="pre">EPOSPeerStatus</span></code> and <code class="docutils literal notranslate"><span class="pre">UserStatus</span></code> are used by the Gateway and User (application agents), respectively, to keep track of the current status of the EPOS and application agents. The <code class="docutils literal notranslate"><span class="pre">ExtendedTreeViewRequest</span></code> extends the normal <code class="docutils literal notranslate"><span class="pre">treeViewRequest</span></code> by also communicating the <code class="docutils literal notranslate"><span class="pre">peerID</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">Entities</span></code> packages, the new entities (e.g., EPOSRequester, User, and Gateway) are implemented. Lastly, within the <code class="docutils literal notranslate"><span class="pre">Messages</span></code> package, different message types are implemented.</p>
+<div class="section" id="changes-in-the-live-experiment">
+<span id="live-run-liveexp"></span><h3>Changes in the Live Experiment<a class="headerlink" href="#changes-in-the-live-experiment" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">experiment.LiveRun</span></code> the following are changed:</p></li>
+</ol>
+<p>This class now initiates only 1 EPOS agent. It is initiated by receiving four arguments:</p>
+<div class="literal-block-wrapper docutils container" id="experiment-liverun-init">
+<div class="code-block-caption"><span class="caption-text">Initiating single EPOS agent</span><a class="headerlink" href="#experiment-liverun-init" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span> <span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span> <span class="c1">// peerID</span>
+<span class="n">peerPort</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">?</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span> <span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">:</span> <span class="mi">0</span> <span class="p">);</span> <span class="c1">// local port</span>
+<span class="n">numAgents</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="o">?</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span> <span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span> <span class="p">:</span> <span class="mi">0</span> <span class="p">);</span> <span class="c1">// number of agents currently in the system</span>
+<span class="n">initRun</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="o">?</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span> <span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">)</span> <span class="p">:</span> <span class="mi">0</span> <span class="p">);</span> <span class="c1">// from which run should the EPOS agent join</span>
+<span class="n">initSim</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="o">?</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span> <span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">)</span> <span class="p">:</span> <span class="mi">0</span> <span class="p">);</span> <span class="c1">// from which sim should the EPOS agent join</span>
+</pre></div>
+</div>
+</div>
+<p>After this, each EPOS agent creates a ZMQ context and it persistant client:</p>
+<div class="literal-block-wrapper docutils container" id="experiment-liverun-zmq">
+<div class="code-block-caption"><span class="caption-text">ZMQ context and persistant client</span><a class="headerlink" href="#experiment-liverun-zmq" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ZMQ.Context <span class="nv">zmqContext</span> <span class="o">=</span> ZMQ.context<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+runEPOSLive <span class="nv">EPOSapp</span> <span class="o">=</span> new runEPOSLive<span class="o">()</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, this class calls the <code class="docutils literal notranslate"><span class="pre">EPOSapp.runEPOS(liveConf,protopeer_conf,zmqContext,numChildren,numIterations,numAgents,initRun,initSim,createAgent,config);</span></code>.</p>
+<ol class="arabic simple" start="2">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">experiment.runEPOSLive</span></code> the following are changed:</p></li>
+</ol>
+<p>In contrast to the simulation EPOS, this class initializes a liveEnvironment protopeer experiment (<code class="docutils literal notranslate"><span class="pre">Experiment.initEnvironment();</span></code>). Additionally, it stores the relevant configurations:</p>
+<div class="literal-block-wrapper docutils container" id="experiment-liverun-config">
+<div class="code-block-caption"><span class="caption-text">Storing configurations</span><a class="headerlink" href="#experiment-liverun-config" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">synchronized</span> <span class="p">(</span><span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">())</span> <span class="p">{</span>
+      <span class="c1">// get Protopeer configuration values</span>
+      <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIndex</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">myIndex</span><span class="p">;</span>
+      <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerPort</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">myPort</span><span class="p">;</span>
+      <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerZeroPort</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="na">bootstrapPort</span><span class="p">;</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hi, I&#39;m peer with the index &quot;</span> <span class="o">+</span> <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIndex</span><span class="p">);</span>
+      <span class="c1">// set IP addresses</span>
+      <span class="k">try</span> <span class="p">{</span>
+          <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIP</span> <span class="o">=</span> <span class="n">InetAddress</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">liveConf</span><span class="p">.</span><span class="na">myIP</span><span class="p">);</span>
+          <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerZeroIP</span> <span class="o">=</span> <span class="n">InetAddress</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">liveConf</span><span class="p">.</span><span class="na">bootstrapIP</span><span class="p">);</span>
+
+          <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;runDias::peerIP = &quot;</span> <span class="o">+</span> <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIP</span><span class="p">);</span>
+          <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;runDias::peerZeroIP = &quot;</span> <span class="o">+</span> <span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerZeroIP</span><span class="p">);</span>
+
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">UnknownHostException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;runDias::excepton setting host name : &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+          <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Additionally, the <code class="docutils literal notranslate"><span class="pre">createPeer</span></code> function is modified:</p>
+<div class="literal-block-wrapper docutils container" id="experiment-liverun-createpeer">
+<div class="code-block-caption"><span class="caption-text">Create peer</span><a class="headerlink" href="#experiment-liverun-createpeer" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">Peer</span> <span class="nf">createPeer</span><span class="p">(</span><span class="kt">int</span> <span class="n">peerIndex</span><span class="p">,</span> <span class="n">Experiment</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+
+          <span class="n">Peer</span> <span class="n">newPeer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Peer</span><span class="p">(</span><span class="n">peerIndex</span><span class="p">);</span>
+          <span class="c1">// create a class for persisting message to PostgreSQL</span>
+          <span class="kd">final</span> <span class="kt">int</span> <span class="n">persistenceClientOutputQueueSize</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+          <span class="kd">final</span> <span class="kt">int</span> <span class="n">diasNetworkId</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="kd">final</span> <span class="n">String</span> <span class="n">daemonConnectString</span> <span class="o">=</span> <span class="s">&quot;tcp://&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">.</span><span class="na">persistenceDaemonIP</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span> <span class="o">+</span> <span class="n">config</span><span class="p">.</span><span class="na">persistenceDaemonPort</span><span class="p">;</span>
+          <span class="n">PersistenceClient</span> <span class="n">persistenceClient</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+          <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">persistenceActive</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">persistenceActive</span><span class="p">,</span>   <span class="c1">// all perisistence will be disabled if this is false</span>
+                  <span class="n">persistMessages</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">persistMessages</span><span class="p">,</span>
+                  <span class="n">eventLogging</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">eventLogging</span><span class="p">,</span>
+                  <span class="n">vizPersistence</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">vizPersistence</span><span class="p">;</span>
+          <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">persistAggregationEvent</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">persistAggregationEvent</span><span class="p">,</span>
+                  <span class="n">rawLog</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">rawLog</span><span class="p">,</span>
+                  <span class="n">persistPSSSamples</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">persistPSSSamples</span><span class="p">;</span>
+          <span class="kd">final</span> <span class="kt">int</span> <span class="n">rawLogLevel</span> <span class="o">=</span> <span class="n">liveConf</span><span class="p">.</span><span class="na">rawLogLevel</span><span class="p">;</span>
+
+          <span class="c1">// connect to PostgreSQL logging daemon</span>
+          <span class="k">if</span><span class="p">(</span> <span class="n">persistenceActive</span> <span class="p">)</span> <span class="p">{</span>
+              <span class="n">persistenceClient</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PersistenceClient</span><span class="p">(</span> <span class="n">zmqContext</span><span class="p">,</span> <span class="n">daemonConnectString</span><span class="p">,</span> <span class="n">persistenceClientOutputQueueSize</span> <span class="p">);</span>
+              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="s">&quot;persistenceClient created&quot;</span> <span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="n">newPeer</span><span class="p">.</span><span class="na">SetQueueSizeIn</span><span class="p">(</span><span class="n">protopeer_conf</span><span class="p">.</span><span class="na">queueSizeIn</span><span class="p">);</span> <span class="c1">// queue size for incoming messages</span>
+          <span class="n">newPeer</span><span class="p">.</span><span class="na">SetQueueSizeOut</span><span class="p">(</span><span class="n">protopeer_conf</span><span class="p">.</span><span class="na">queueSizeOut</span><span class="p">);</span> <span class="c1">// queue size for outgoing messages</span>
+          <span class="n">newPeer</span><span class="p">.</span><span class="na">SetOnFullQueueWait</span><span class="p">(</span><span class="n">protopeer_conf</span><span class="p">.</span><span class="na">onFullQueueWait</span><span class="p">);</span> <span class="c1">// on full queue, drop or wait</span>
+          <span class="n">newPeer</span><span class="p">.</span><span class="na">SetQueueVerbose</span><span class="p">(</span><span class="n">protopeer_conf</span><span class="p">.</span><span class="na">queueVerbose</span><span class="p">);</span>
+          <span class="n">newPeer</span><span class="p">.</span><span class="na">addPersistenceClient</span><span class="p">(</span><span class="n">persistenceClient</span><span class="p">,</span> <span class="n">diasNetworkId</span><span class="p">);</span> <span class="c1">// persistant client for each EPOS agent</span>
+          <span class="n">Agent</span> <span class="n">newAgent</span> <span class="o">=</span> <span class="n">createAgent</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">myIndex</span><span class="p">);</span>
+          <span class="n">newAgent</span><span class="p">.</span><span class="na">addPersistenceClient</span><span class="p">(</span><span class="n">persistenceClient</span><span class="p">);</span>
+          <span class="n">newAgent</span><span class="p">.</span><span class="na">setActiveRun</span><span class="p">(</span><span class="n">initRun</span><span class="p">);</span> <span class="c1">// current run of the system (when the EPOS agent is joining)</span>
+          <span class="n">newAgent</span><span class="p">.</span><span class="na">setActiveSim</span><span class="p">(</span><span class="n">initSim</span><span class="p">);</span> <span class="c1">// current sim of the system (when the EPOS agent is joining)</span>
+          <span class="n">architecture</span><span class="p">.</span><span class="na">addPeerlets</span><span class="p">(</span><span class="n">newPeer</span><span class="p">,</span> <span class="n">newAgent</span><span class="p">,</span> <span class="n">myIndex</span><span class="p">,</span> <span class="n">numAgents</span><span class="p">);</span>
+
+          <span class="k">return</span> <span class="n">newPeer</span><span class="p">;</span>
+      <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="changes-in-the-agents">
+<span id="live-run-agentchanges"></span><h3>Changes in the Agents<a class="headerlink" href="#changes-in-the-agents" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">agent</span></code> the following are changed:</p></li>
+</ol>
+<p>The constructor is modified not to require the local plans on initialization:</p>
+<div class="literal-block-wrapper docutils container" id="agent-initialization">
+<div class="code-block-caption"><span class="caption-text">Agent initialization</span><a class="headerlink" href="#agent-initialization" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Agent</span><span class="p">(</span><span class="n">CostFunction</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">globalCostFunc</span><span class="p">,</span> <span class="n">PlanCostFunction</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">localCostFunc</span><span class="p">,</span> <span class="n">AgentLoggingProvider</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Agent</span><span class="o">&gt;</span> <span class="n">loggingProvider</span><span class="p">,</span> <span class="kt">long</span> <span class="n">seed</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">(</span><span class="n">globalCostFunc</span><span class="p">,</span> <span class="n">localCostFunc</span><span class="p">,</span> <span class="n">loggingProvider</span><span class="p">);</span>
+    <span class="n">random</span><span class="p">.</span><span class="na">setSeed</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>In addition, the following function are added to handle different changes of parameters/plans during runtime:</p>
+<div class="literal-block-wrapper docutils container" id="agent-dynamics">
+<div class="code-block-caption"><span class="caption-text">Agent dynamics</span><a class="headerlink" href="#agent-dynamics" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">addPlans</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Plan</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">possiblePlans</span><span class="p">){</span>
+  <span class="c1">// the plans for each peer is sent via the corresponding user via messaging</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">possiblePlans</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">possiblePlans</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">possiblePlans</span><span class="p">);</span>
+  <span class="n">plansAreSet</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="c1">// informing the gateway that the plans are set</span>
+  <span class="n">getPeer</span><span class="p">().</span><span class="na">sendMessage</span><span class="p">(</span><span class="n">GatewayAddress</span><span class="p">,</span> <span class="k">new</span> <span class="n">InformGatewayMessage</span><span class="p">(</span><span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIndex</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">activeRun</span><span class="p">,</span> <span class="s">&quot;plansSet&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="o">*****</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setReadyToRun</span><span class="p">(){</span>
+  <span class="c1">// ready to run (start iterations), as told by the gateway</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">readyToRun</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">*****</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeGlobalCostFunc</span><span class="p">(</span><span class="n">String</span> <span class="n">func</span><span class="p">){</span>
+  <span class="c1">// changing the global cost function, as instructed by the gateway</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;VAR&quot;</span><span class="p">)){</span>
+      <span class="k">this</span><span class="p">.</span><span class="na">globalCostFunc</span> <span class="o">=</span> <span class="p">(</span><span class="n">CostFunction</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">new</span> <span class="n">VarCostFunction</span><span class="p">();</span>
+      <span class="p">((</span><span class="n">HasGoal</span><span class="p">)</span> <span class="n">globalCostFunc</span><span class="p">).</span><span class="na">populateGoalSignal</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;RMSE&quot;</span><span class="p">)){</span>
+      <span class="k">this</span><span class="p">.</span><span class="na">globalCostFunc</span> <span class="o">=</span> <span class="p">(</span><span class="n">CostFunction</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">new</span> <span class="n">RMSECostFunction</span><span class="p">();</span>
+      <span class="p">((</span><span class="n">HasGoal</span><span class="p">)</span> <span class="n">globalCostFunc</span><span class="p">).</span><span class="na">populateGoalSignal</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">treeAgent</span></code> the following are changed:</p></li>
+</ol>
+<p>The only change is in the <code class="docutils literal notranslate"><span class="pre">setTreeView</span></code> function, where after the treeView is set, the EPOS agent informs the gateway the indeed it has its treeView and knows its parent and children.</p>
+<div class="literal-block-wrapper docutils container" id="treeagent-treeview">
+<div class="code-block-caption"><span class="caption-text">TreeAgent changes</span><a class="headerlink" href="#treeagent-treeview" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTreeView</span><span class="p">(</span><span class="n">Finger</span> <span class="n">parent</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Finger</span><span class="o">&gt;</span> <span class="n">children</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">isLiveRun</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// in case of a new run, the tree structure might change. Hence the treeView is reset</span>
+      <span class="n">resetTreeView</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">setParent</span><span class="p">(</span><span class="n">parent</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">setChildren</span><span class="p">(</span><span class="n">children</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Configuration</span><span class="p">.</span><span class="na">isLiveRun</span><span class="p">)</span> <span class="p">{</span><span class="n">treeViewIsSet</span><span class="p">();}</span>
+  <span class="n">treeViewIsSet</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">isLiveRun</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// informing the gateway that the peer has its treeView set</span>
+      <span class="n">ZMQAddress</span> <span class="n">dest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ZMQAddress</span><span class="p">(</span><span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerZeroIP</span><span class="p">,</span> <span class="n">Configuration</span><span class="p">.</span><span class="na">GateWayPort</span><span class="p">);</span>
+      <span class="n">getPeer</span><span class="p">().</span><span class="na">sendMessage</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="k">new</span> <span class="n">InformGatewayMessage</span><span class="p">(</span><span class="n">MainConfiguration</span><span class="p">.</span><span class="na">getSingleton</span><span class="p">().</span><span class="na">peerIndex</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">activeRun</span><span class="p">,</span> <span class="s">&quot;treeViewSet&quot;</span><span class="p">,</span> <span class="n">isLeaf</span><span class="p">()));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">IterativeTreeAgent</span></code> the following are changed:</p></li>
+</ol>
+<p>The changes in the <code class="docutils literal notranslate"><span class="pre">IterativeTreeAgent</span></code> are all regarding to the bootstrapping and managing EPOS runs. This process is explained in more details in <a class="reference internal" href="#live-run-bootstrapping"><span class="std std-ref">Bootsrapping and Managing EPOS Runs</span></a></p>
+<ol class="arabic simple" start="4">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MultiObjectiveAgent</span></code> the following are changed:</p></li>
+</ol>
+<p>The main change in the <code class="docutils literal notranslate"><span class="pre">MultiObjectiveAgent</span></code> is in regards to the logging. As the logging is not done live via the database, and simple text-processing techniques of simulation EPOS is no longer feasible and efficient, the logging is done at the top-down phase:</p>
+<div class="literal-block-wrapper docutils container" id="multiobjectiveagent-logging">
+<div class="code-block-caption"><span class="caption-text">MultiObjectiveAgent logging</span><a class="headerlink" href="#multiobjectiveagent-logging" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">DownMessage</span><span class="o">&gt;</span> <span class="nf">down</span><span class="p">(</span><span class="n">DownMessage</span> <span class="n">parentMsg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">updateGlobalResponse</span><span class="p">(</span><span class="n">parentMsg</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">updateGlobalDiscomfortScores</span><span class="p">(</span><span class="n">parentMsg</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">approveOrRejectChanges</span><span class="p">(</span><span class="n">parentMsg</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="na">processDownMessageMore</span><span class="p">(</span><span class="n">parentMsg</span><span class="p">);</span>
+
+  <span class="c1">// logging for the live implementation</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="na">Configuration</span><span class="p">.</span><span class="na">isLiveRun</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="n">GlobalCostLogger</span><span class="p">().</span><span class="na">DBlog</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">globalCostFunc</span><span class="p">.</span><span class="na">calcCost</span><span class="p">(</span><span class="n">globalResponse</span><span class="p">));</span>
+      <span class="k">new</span> <span class="n">GlobalComplexCostLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBlog</span><span class="p">((</span><span class="n">Agent</span><span class="p">)</span> <span class="k">this</span><span class="p">);</span>
+      <span class="k">new</span> <span class="n">GlobalResponseVectorLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBlog</span><span class="p">((</span><span class="n">Agent</span><span class="p">)</span> <span class="k">this</span><span class="p">,</span> <span class="n">globalResponse</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span><span class="p">);</span>
+      <span class="k">new</span> <span class="n">LocalCostMultiObjectiveLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBLog</span><span class="p">((</span><span class="n">Agent</span><span class="p">)</span> <span class="k">this</span><span class="p">,</span> <span class="n">PlanSelectionOptimizationFunctionCollection</span><span class="p">.</span><span class="na">localCost</span><span class="p">(</span><span class="n">getGlobalDiscomfortSum</span><span class="p">(),</span> <span class="n">numAgents</span><span class="p">));</span>
+      <span class="k">new</span> <span class="n">SelectedPlanLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBLog</span><span class="p">((</span><span class="n">MultiObjectiveIEPOSAgent</span><span class="p">)</span> <span class="k">this</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">globalResponse</span> <span class="o">==</span> <span class="n">prevAggregatedResponse</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// the run has terminated, logging</span>
+          <span class="k">new</span> <span class="n">TerminationLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBLog</span><span class="p">((</span><span class="n">Agent</span><span class="p">)</span> <span class="k">this</span><span class="p">,</span> <span class="n">iteration</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iteration</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">new</span> <span class="n">UnfairnessLogger</span><span class="o">&lt;&gt;</span><span class="p">().</span><span class="na">DBLog</span><span class="p">((</span><span class="n">Agent</span><span class="p">)</span> <span class="k">this</span><span class="p">,</span> <span class="n">PlanSelectionOptimizationFunctionCollection</span><span class="p">.</span><span class="na">unfairness</span><span class="p">(</span><span class="n">getGlobalDiscomfortSum</span><span class="p">(),</span> <span class="n">getGlobalDiscomfortSumSqr</span><span class="p">(),</span> <span class="n">numAgents</span><span class="p">));</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">informChildren</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Each of the loggers are included with the <code class="docutils literal notranslate"><span class="pre">DBLog(.)</span></code> function. These logging classes also have the corresponding SQL template that they send to the persistant daemon on initialization. For example, the <code class="docutils literal notranslate"><span class="pre">GlobalCostLogger</span></code> is modified accordingly:</p>
+<div class="literal-block-wrapper docutils container" id="globalcostlogger-dblog">
+<div class="code-block-caption"><span class="caption-text">GlobalCostLogger DBLog()</span><a class="headerlink" href="#globalcostlogger-dblog" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">Agent</span> <span class="n">agent</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">costFunction</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">costFunction</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="na">getGlobalCostFunction</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="na">Configuration</span><span class="p">.</span><span class="na">isLiveRun</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// given that the current run is live, creates the sql template for this logger</span>
+      <span class="n">sql_insert_template_custom</span>  <span class="o">=</span> <span class="s">&quot;INSERT INTO GlobalCostLogger(sim,run,peer,iteration,cost) VALUES({sim}, {run}, {peer}, {iteration}, {cost});&quot;</span><span class="p">;</span>
+      <span class="n">agent</span><span class="p">.</span><span class="na">getPersistenceClient</span><span class="p">().</span><span class="na">sendSqlInsertTemplate</span><span class="p">(</span> <span class="k">new</span> <span class="n">SqlInsertTemplate</span><span class="p">(</span> <span class="s">&quot;GlobalCostLogger&quot;</span><span class="p">,</span> <span class="n">sql_insert_template_custom</span> <span class="p">)</span> <span class="p">);}</span>
+<span class="p">}</span>
+<span class="o">*****</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">DBlog</span><span class="p">(</span><span class="n">Agent</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">agent</span><span class="p">,</span> <span class="kt">double</span> <span class="n">cost</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">isRepresentative</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+      <span class="n">record</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;sim&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">activeSim</span><span class="p">));</span>
+      <span class="n">record</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;run&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">activeRun</span><span class="p">));</span>
+      <span class="n">record</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;peer&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">getPeer</span><span class="p">().</span><span class="na">getIndexNumber</span><span class="p">()));</span>
+      <span class="n">record</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;iteration&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">agent</span><span class="p">.</span><span class="na">getIteration</span><span class="p">()));</span>
+      <span class="n">record</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;cost&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">cost</span><span class="p">));</span>
+      <span class="c1">// fills the sql template (refer to the init function for the template</span>
+      <span class="n">agent</span><span class="p">.</span><span class="na">getPersistenceClient</span><span class="p">().</span><span class="na">sendSqlDataItem</span><span class="p">(</span><span class="k">new</span> <span class="n">SqlDataItem</span><span class="p">(</span><span class="s">&quot;GlobalCostLogger&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">));</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advanced-topics.html" class="btn btn-neutral float-right" title="Advanced Topics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logging-output.html" class="btn btn-neutral float-left" title="Logging &amp; Output" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Local Cost Function &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tree Topology" href="tree-topology.html" />
+    <link rel="prev" title="Global Cost Function" href="global-cost-function.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Local Cost Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#index-based-local-cost-function">Index-based Local Cost Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discomfort-based-local-cost-function">Discomfort-based Local Cost Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preference-based-local-cost-function">Preference-based Local Cost Function</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Local Cost Function</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/local-cost-function.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="local-cost-function">
+<span id="local-cost-function-chapter"></span><h1>Local Cost Function<a class="headerlink" href="#local-cost-function" title="Permalink to this headline">¶</a></h1>
+<p>EPOS allows for possible plans of an agent to be <em>ranked</em> according to various measures of <em>cost</em>. In general, plans of lower cost are considered better, more convenient or more comfortable, whereas plans with higher cost are considered worse, less convenient and more uncomfortable. This <em>cost</em> can be generated before execution and by the user, such as plan preference, or it can be generated by the agent and while runtime, such as plan indexes. The function that abstracts this functionality is <em>local cost function</em>, <span class="math notranslate nohighlight">\(l(\cdot)\)</span> as <span class="math notranslate nohighlight">\(l \colon \mathbb{R}^{d} \rightarrow \mathbb{R}\)</span>. The classes of pre-implemented local cost functions can be found in <code class="docutils literal notranslate"><span class="pre">func</span></code> package in the code. Using <a class="reference internal" href="command-line-arguments.html#arguments-chapter"><span class="std std-ref">Configuration Parameters</span></a>, <code class="docutils literal notranslate"><span class="pre">localCostFunction</span></code> indicates your choice of the local cost function. In order to create your own global cost function, you can use the <code class="docutils literal notranslate"><span class="pre">func.VarCostFunction</span></code> class as the template. For more information about how to log the local cost, check <a class="reference internal" href="logging-output.html#logging-chapter"><span class="std std-ref">Logging &amp; Output</span></a> page.</p>
+<div class="section" id="index-based-local-cost-function">
+<span id="local-cost-function-index"></span><h2>Index-based Local Cost Function<a class="headerlink" href="#index-based-local-cost-function" title="Permalink to this headline">¶</a></h2>
+<p>This is the simplest form of the local cost function in which the <em>plan index</em> indicates the plan cost. In this scenario, if an agent has 10 local plans, they are indexed from 0-9. Recall that the format of the <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a> is as follows:</p>
+<blockquote>
+<div><p><em>planScore</em> : <em>planDimension1</em>, … , <em>planDimensionN</em>.</p>
+</div></blockquote>
+<p>In this case, <em>planScore</em> is ignored, and the index of the plan is used instead. The plan with lower index is considered better, more convenient or more comfortable. Intuitively, the index local cost function enables <em>linear</em> scale of plan “costs”.</p>
+<p>This function can be set in one of the following ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">localCostFunction=INDEX</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="index-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#index-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">PlanCostFunction</span> <span class="n">localCostFunc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IndexCostFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.IndexCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">PlanCostFunction</span></code>.</p>
+</div>
+<div class="section" id="discomfort-based-local-cost-function">
+<span id="local-cost-function-discomfort"></span><h2>Discomfort-based Local Cost Function<a class="headerlink" href="#discomfort-based-local-cost-function" title="Permalink to this headline">¶</a></h2>
+<p>Recall that the <em>planScore</em> field in each of the <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a> can have 2 different meanings, depending on the dataset. Discomfort Local Cost Function interprets this score as <em>discomfort</em> that should be minimized.</p>
+<p>Depending on the dataset, discomfort can have different meanings. For example in the case of energy usage planning, given that user has multiple alternative plans, the discomfort is how different the alternative plan is to the originally intended one. Also, discomfort can express the distance between citizens’ houses and bike stations.</p>
+<p>This function can be set in one of the following ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">localCostFunction=DISC</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="discomfort-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#discomfort-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">PlanCostFunction</span> <span class="n">localCostFunc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlanDiscomfortFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The implementation of this function can be found in <code class="docutils literal notranslate"><span class="pre">func.PlanDiscomfortFunction.java</span></code>, and it is the subtype of <code class="docutils literal notranslate"><span class="pre">PlanCostFunction</span></code>.</p>
+</div>
+<div class="section" id="preference-based-local-cost-function">
+<span id="local-cost-function-preference"></span><h2>Preference-based Local Cost Function<a class="headerlink" href="#preference-based-local-cost-function" title="Permalink to this headline">¶</a></h2>
+<p>Another meaning of the <em>planScore</em> field in each of the <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a> is <em>preference score</em>. Unlike the <a class="reference internal" href="#local-cost-function-index"><span class="std std-ref">Index-based Local Cost Function</span></a> and <a class="reference internal" href="#local-cost-function-discomfort"><span class="std std-ref">Discomfort-based Local Cost Function</span></a> where the lower value of the score is interpreted as better and more comfortable, this function does the opposite: higher value of the score is better, expresses higher comfort and convenience. Intuitively, the plan with higher <em>preference score</em> should be selected.</p>
+<p>However, as EPOS is a minimization algorithm, the <em>preference score</em> must be converted to a measure that should be minimized, i.e. discomfort. <strong>The assumption that this implementation of the preference cost function makes is that all preference scores are between 0 and 1!</strong> Then, the <em>preference score</em> is converted to discomfort as <span class="math notranslate nohighlight">\(1 - planScore\)</span>.</p>
+<p>This function can be set in one of the following ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">localCostFunction=PREF</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="preference-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#preference-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">PlanCostFunction</span> <span class="n">localCostFunc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlanPreferenceFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Depending on the dataset, preference can have different meanings. For example in the case of energy usage planning, given that user has multiple alternative plans, the preference is how comfortable (similar) the alternative plan is to the originally intended one. Or, in the bike-sharing scenario, preference score can abstract the likelihood of choosing certain bike station.</p>
+<p>The exact implementation of the function is given in <code class="docutils literal notranslate"><span class="pre">func.PreferenceCostFunction.java</span></code>. It is the subtype of <code class="docutils literal notranslate"><span class="pre">PlanCostFunction</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tree-topology.html" class="btn btn-neutral float-right" title="Tree Topology" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="global-cost-function.html" class="btn btn-neutral float-left" title="Global Cost Function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

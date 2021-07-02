@@ -1,0 +1,295 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Multi-Objective Optimization &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logging &amp; Output" href="logging-output.html" />
+    <link rel="prev" title="Termination Criteria" href="termination-criteria.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-topics.html">Advanced Topics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Multi-Objective Optimization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/multi-objective-optimization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multi-objective-optimization">
+<span id="multi-objective-optimization-chapter"></span><h1>Multi-Objective Optimization<a class="headerlink" href="#multi-objective-optimization" title="Permalink to this headline">¶</a></h1>
+<p>EPOS is capable of optimizing three different objectives:</p>
+<ol class="arabic simple">
+<li><p>The <strong>global objective</strong> is abstracted and expressed by a global cost function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> (Fore more information, see <a class="reference internal" href="global-cost-function.html#global-cost-function-chapter"><span class="std std-ref">Global Cost Function</span></a>), that takes as an argument the global response, <span class="math notranslate nohighlight">\(\mathbb{g}\)</span> (the sum of all selected plans of the agents, see <a class="reference internal" href="input.html#input-plans"><span class="std std-ref">Plans</span></a>). The value of the global objective is called <em>global cost</em> and is computed as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-equation-global-cost">
+<span class="eqno">(1)<a class="headerlink" href="#equation-equation-global-cost" title="Permalink to this equation">¶</a></span>\[G^{(t)} = g(\mathbb{g}^{(t)}), \quad G^{(t)} \in \mathbb{R}.\]</div>
+<ol class="arabic simple" start="2">
+<li><p>The <strong>local objective</strong> is formulated as minimizing the average cost of all selected plans. The value of the local objective is called <em>local cost</em> and its value is computed as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-equation-local-cost">
+<span class="eqno">(2)<a class="headerlink" href="#equation-equation-local-cost" title="Permalink to this equation">¶</a></span>\[L^{(t)} = \frac{1}{N} \sum_{i = 1}^{N} l(s_{i}^{(t)}), \quad L^{(t)} \in \mathbb{R},\]</div>
+<p>where <span class="math notranslate nohighlight">\(l(\cdot)\)</span> is the local cost function (see <a class="reference internal" href="local-cost-function.html#local-cost-function-chapter"><span class="std std-ref">Local Cost Function</span></a>) that extracts the cost of the selected plan <span class="math notranslate nohighlight">\(s_{i}\)</span> of the agent <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(t\)</span>. The number of agents in the hierarchy is denoted with <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<ol class="arabic simple" start="3">
+<li><p>The <strong>unfairness</strong> objective is formulated as minimizing the standard deviation of the costs of the selected plans. Note that the system is considered fair if all agents select the plans with approximately equal cost. It is formulated as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-equation-unfairness">
+<span class="eqno">(3)<a class="headerlink" href="#equation-equation-unfairness" title="Permalink to this equation">¶</a></span>\[U^{(t)} = \sqrt{\frac{1}{N} \sum_{i = 1}^{N} \left(l(s_{i}^{(t)}) - L^{(t)}\right)^{2}},  \quad U^{(t)} \in \mathbb{R},\]</div>
+<p>where <span class="math notranslate nohighlight">\(l(s_{i}^{(t)})\)</span> denotes the cost of the plan <span class="math notranslate nohighlight">\(s_{i}^{(t)}\)</span> selected by agent <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>EPOS linearly combines the three objectives in a weighted sum of objectives, formulated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-equation-scalarized-objective">
+<span class="eqno">(4)<a class="headerlink" href="#equation-equation-scalarized-objective" title="Permalink to this equation">¶</a></span>\[\gamma \cdot G^{(t)} + \alpha \cdot U^{(t)} + \beta \cdot L^{(t)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma, \alpha, \beta \in [0, 1]\)</span> and it <em>must</em> always hold <span class="math notranslate nohighlight">\(\gamma + \alpha + \beta = 1\)</span>. The higher value of the weight expresses stronger preference towards minimizing the corresponding objective. When the value of the weight is 0, the corresponding objective is not optimized. The scalarization of the objectives before combining them in the weighted sum is subject of future work. Depending on the data, users are encouraged to implement their own objective-scalarization scheme(s).</p>
+<p>By default <span class="math notranslate nohighlight">\(\alpha = \beta = 0\)</span>, which means that only the global objective is optimized. The weights can be set in one of the following two ways (the example shows setting <span class="math notranslate nohighlight">\(\alpha=0.2\)</span> and <span class="math notranslate nohighlight">\(\beta=0.3\)</span>):</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">alpha=0.2</span></code> and <code class="docutils literal notranslate"><span class="pre">beta=0.3</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="alpha-beta-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#alpha-beta-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">double</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that <span class="math notranslate nohighlight">\(\gamma\)</span> is always computed as <span class="math notranslate nohighlight">\(\gamma = 1 - \alpha - \beta\)</span>. This example can be interpreted as follows: <em>the global objective is optimized with preference 0.5, the local objective is optimized with preference 0.3 and the unfairness is optimized with preference 0.2</em>.</p>
+<p>The agent that is capable of optimizing multiple objectives is implemented in class <code class="docutils literal notranslate"><span class="pre">agent.MultiObjectiveIEPOSAgent&lt;V</span> <span class="pre">extends</span> <span class="pre">DataType&lt;V&gt;&gt;</span></code>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logging-output.html" class="btn btn-neutral float-right" title="Logging &amp; Output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="termination-criteria.html" class="btn btn-neutral float-left" title="Termination Criteria" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>

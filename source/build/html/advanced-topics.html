@@ -1,0 +1,426 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Topics &mdash; EPOS 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/Icon16.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Live Experiment" href="LiveRun.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EPOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="experimantal-setup.html">Initial Setup and Running Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line-arguments.html">Configuration Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-cost-function.html">Global Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-cost-function.html">Local Cost Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree-topology.html">Tree Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="termination-criteria.html">Termination Criteria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-objective-optimization.html">Multi-Objective Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging-output.html">Logging &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tree-reorganization">Tree Reorganization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-periodically">Reorganization Criterion: Periodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-convergence">Reorganization Criterion: Convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-global-cost-reduction">Reorganization Criterion: Global Cost Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-criterion-never">Reorganization Criterion: Never</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-run-experiments-with-epos-and-cohda">How to run experiments with EPOS and COHDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-write-your-own-agent">How to write your own agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#epos-live-with-dynamics-fgcs-paper">EPOS Live with Dynamics (FGCS paper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameters-for-epos-live-with-dynamics">Parameters for EPOS Live with Dynamics:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-epos-live-with-dynamics">Running EPOS Live with Dynamics:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EPOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Advanced Topics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/advanced-topics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-topics">
+<span id="advanced-topics-chapter"></span><h1>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tree-reorganization">
+<span id="tree-topology-reorganization"></span><h2>Tree Reorganization<a class="headerlink" href="#tree-reorganization" title="Permalink to this headline">¶</a></h2>
+<p>EPOS is capable of randomly changing the relative position of agents in the tree hierarchy dynamically and on-the-fly during runtime. In other words, the reorganization means that each agent gets assigned a new set of children and a new parent. Note, however, that the overall tree topology is not changed, i.e. if the original hierarchy was balanced binary tree, EPOS ensures it remains balanced binary tree after the reorganization. The reorganization is employed as means of improving the learning capacity of the agents by allowing them to explore new combinations of plans.</p>
+<p>When certain criterion is met, the reorganization is triggered. Consequently, a new random relative position of agents within the original tree topology is constructed and each agent receives a new set of children and a new parent. Implementation-wise, the criterion is always evaluated by the current root agent. The current root agent is the one that generates new random relative position of agents within the hierarchy and is the one that notifies the agents that the reorganization is taking place by first notifying its children which then propagate the notification down their subtrees. Note that the actual reorganization takes place during the top-down phase. When an agent receives a notification that the reorganization is taking place, it sends a request message to the current root, and it responds with a message containing the addresses of new children and a new parent. The reorganization also clears all current and previous selections, responses from subtree and indicator variables.</p>
+<p>The reproducibility of experiments in terms of randomness in selecting new relative position of agents when the reorganization is triggered can be controlled via a <em>random generator seed</em>. It can be set via one of the following two ways (the example shows setting the seed to 0):</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">strategy.reorganizationSeed=0</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="reorganization-seed-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-seed-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">long</span> <span class="n">reorganizationSeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>The class encapsulating the reorganization functionality is <code class="docutils literal notranslate"><span class="pre">agent.ModifiableIeposAgent&lt;V</span> <span class="pre">extends</span> <span class="pre">DataType&lt;V&gt;&gt;</span></code>. This class handles request and response messages exchanged to obtain a new set of children and a new parent. It also handles various reorganization criteria: <a class="reference internal" href="#tree-topology-criterion-periodically"><span class="std std-ref">Reorganization Criterion: Periodically</span></a>, <a class="reference internal" href="#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> and <a class="reference internal" href="#tree-topology-criterion-reduction"><span class="std std-ref">Reorganization Criterion: Global Cost Reduction</span></a>.</p>
+<div class="section" id="reorganization-criterion-periodically">
+<span id="tree-topology-criterion-periodically"></span><h3>Reorganization Criterion: Periodically<a class="headerlink" href="#reorganization-criterion-periodically" title="Permalink to this headline">¶</a></h3>
+<p>The periodical criterion triggers the reorganization every X iterations. It can be enabled in two ways (the example shows the period of 3):</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">strategy=periodically</span></code> and <code class="docutils literal notranslate"><span class="pre">periodically.reorganizationPeriod=3</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="reorganization-periodically-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-periodically-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="p">.</span><span class="na">PERIODICALLY</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">reorganizationPeriod</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the period of reorganizations must be an integer value.</p>
+</div>
+<div class="section" id="reorganization-criterion-convergence">
+<span id="tree-topology-criterion-convergence"></span><h3>Reorganization Criterion: Convergence<a class="headerlink" href="#reorganization-criterion-convergence" title="Permalink to this headline">¶</a></h3>
+<p>Convergence is detected when the value of the global cost remains unchanged in two consecutive iterations. Note that the current root agent is the one that can check if the system converged. When the system converges, new combinations of selected plans cannot be explored, so the reorganization is triggered. The idea is to revert the state of the system to some previous, memorized state, that was <em>far enough</em> from this local minimum. Memorizing a state means that every agent memorizes its own selected plan. Intuitively, reverting the state and the new relative position of agents should be able to explore a new set of plan combinations, hopefully finding a combination that results in a lower global cost. A parameter called <em>offset</em> controls when the state is memorized. More precisely, if the value of the global cost is equal at iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, then convergence is detected at iteration <span class="math notranslate nohighlight">\(t\)</span>, the reorganization happens between iterations <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>, and at iteration <span class="math notranslate nohighlight">\(t+1\)</span> the agents select the plans they have previously memorized. Finally, the new memorization occurs at iteration <span class="math notranslate nohighlight">\(t+1+\)</span> <em>offset</em>. Note that reverting to the previously memorized state discards local minimum found. Also, note that the value of the global cost at the iteration in which plans were memorized and at the iteration after the reorganization are equal.</p>
+<p>The convergence reorganization criterion can be enabled in two ways (the example shows the <em>offset</em> of 3):</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">strategy=convergence</span></code> and <code class="docutils literal notranslate"><span class="pre">convergence.memorizationOffset=3</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="reorganization-convergence-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-convergence-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="p">.</span><span class="na">CONVERGENCE</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="n">reorganizationOffset</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the offset must be an integer value.</p>
+</div>
+<div class="section" id="reorganization-criterion-global-cost-reduction">
+<span id="tree-topology-criterion-reduction"></span><h3>Reorganization Criterion: Global Cost Reduction<a class="headerlink" href="#reorganization-criterion-global-cost-reduction" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#tree-topology-criterion-convergence"><span class="std std-ref">Reorganization Criterion: Convergence</span></a> has one main limitation: all progress EPOS made between the iteration at which the selections are memorized and the iteration at which convergence is detected is discarded after the reorganization. This criterion addresses this problem by allowing the system to trigger reorganizations before converging, hence decreasing the runtime. The idea is that the reorganization should be triggered when the system is <em>too close</em> to the the local minimum, which is measured by the reduction in the global cost in two consecutive iterations:</p>
+<div class="math notranslate nohighlight" id="equation-equation-global-cost-reduction">
+<span class="eqno">(1)<a class="headerlink" href="#equation-equation-global-cost-reduction" title="Permalink to this equation">¶</a></span>\[\frac{G^{(t-1)} - G^{(t)}}{G^{(t-1)}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(G^{(t-1)}\)</span> and <span class="math notranslate nohighlight">\(G^{(t)}\)</span> represent the values of the global cost in two consecutive iterations <span class="math notranslate nohighlight">\(t-1\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. Intuitively, when the relative global cost reduction is <em>low</em>, the system is close to reaching the local minimum, but if it is <em>high</em>, the system takes long steps towards it. More precisely, the reorganization is triggered when the relative global cost reduction in Equation <a class="reference internal" href="#equation-equation-global-cost-reduction">(1)</a> <strong>drops</strong> below a certain <em>threshold</em>. At the iteration immediately after the reorganization, the agents make the same selections as at the iteration prior to the reorganization.</p>
+<p>The reorganization criterion based on the global cost reduction can be enabled in two ways (the example shows the <em>threshold</em> of 0.5):</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">strategy=globalCostReduction</span></code> <code class="docutils literal notranslate"><span class="pre">globalCost.reductionThreshold=0.5</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="reorganization-reduction-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-reduction-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="p">.</span><span class="na">GLOBAL_COST_REDUCTION</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="n">convergenceTolerance</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>Note that the threshold must be a double value between 0 and 1. If the <em>threshold</em> is 0, no reorganization happens, since the relative global cost reduction can never be strictly lower than 0. If the <em>threshold</em> is 1, then reorganizations are guaranteed to happen since the relative global cost reduction is always lower than 1.</p>
+</div>
+<div class="section" id="reorganization-criterion-never">
+<span id="tree-topology-criterion-never"></span><h3>Reorganization Criterion: Never<a class="headerlink" href="#reorganization-criterion-never" title="Permalink to this headline">¶</a></h3>
+<p>By default, reorganizations are disabled. Externally, it can be done in one of the following two ways:</p>
+<ol class="arabic">
+<li><p>either setting <code class="docutils literal notranslate"><span class="pre">strategy=never</span></code>, or</p></li>
+<li><div class="literal-block-wrapper docutils container" id="reorganization-never-configuration-java">
+<div class="code-block-caption"><span class="caption-text">config.Configuration.java</span><a class="headerlink" href="#reorganization-never-configuration-java" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">ReorganizationStrategyType</span> <span class="n">reorganizationType</span> <span class="o">=</span>
+                                  <span class="n">ReorganizationStrategyType</span><span class="p">.</span><span class="na">NEVER</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="how-to-run-experiments-with-epos-and-cohda">
+<h2>How to run experiments with EPOS and COHDA<a class="headerlink" href="#how-to-run-experiments-with-epos-and-cohda" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="how-to-write-your-own-agent">
+<h2>How to write your own agent<a class="headerlink" href="#how-to-write-your-own-agent" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="epos-live-with-dynamics-fgcs-paper">
+<h2>EPOS Live with Dynamics (FGCS paper)<a class="headerlink" href="#epos-live-with-dynamics-fgcs-paper" title="Permalink to this headline">¶</a></h2>
+<p>The section illustrates the steps needed to replicate the experiments in the paper <strong>A self-integration testbed for decentralized socio-technical systems</strong> publised at <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0167739X20303435?via%3Dihub">Future Generation Computing Systems</a>.</p>
+<p>The sequence diagram for bootstrapping and managing the performed experiments is as follows:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/EPOSwithDynamics.png"><img alt="alternate text" src="_images/EPOSwithDynamics.png" style="width: 1200.0px; height: 2416.0px;" /></a>
+</div>
+<div class="section" id="parameters-for-epos-live-with-dynamics">
+<h3>Parameters for EPOS Live with Dynamics:<a class="headerlink" href="#parameters-for-epos-live-with-dynamics" title="Permalink to this headline">¶</a></h3>
+<p>The EPOS agent capable of performing these experiment are created by the <code class="docutils literal notranslate"><span class="pre">experiment.LivePeerTestbedExperiment</span></code> class. The main differenece is the configuration file, which is the <code class="docutils literal notranslate"><span class="pre">LivePeerTestbed.properties</span></code>. Within this configutation file, the following parameters are new:</p>
+<div class="literal-block-wrapper docutils container" id="livepeertestbed-properties">
+<div class="code-block-caption"><span class="caption-text">LivePeerTestbed.properties</span><a class="headerlink" href="#livepeertestbed-properties" title="Permalink to this code">¶</a></div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="n">userChange</span><span class="o">=</span><span class="kc">false</span> <span class="c1">// enabling user join/leave dynamic</span>
+<span class="n">joinLeaveRate</span><span class="o">=</span><span class="mi">19</span> <span class="c1">// maximum number of users that can join/leave at the end of 1 run: numUsersPerRun.get(currentRun)/joinLeaveRate</span>
+<span class="n">userChangeProb</span><span class="o">=</span><span class="mi">9</span> <span class="c1">// probability of a user joins/leaves at the end of each run: SecureRandom().nextInt(userChangeProb)==0;</span>
+
+<span class="n">minNumPeers</span><span class="o">=</span><span class="mi">150</span> <span class="c1">// given userChange == true, minimum number of active agents at any point in the system</span>
+<span class="n">maxNumPeers</span><span class="o">=</span><span class="mi">250</span> <span class="c1">// given userChange == true, maximum number of active agents at any point in the system. Very important in case of computational resource restrictions.</span>
+
+<span class="n">planChange</span><span class="o">=</span><span class="kc">false</span> <span class="c1">// enabling plan change dynamic</span>
+<span class="n">newPlanProb</span><span class="o">=</span><span class="mi">9</span> <span class="c1">// probability of changing plans for each user at the end of each run: (random.nextInt(newPlanProb) + 1) == 1</span>
+
+<span class="n">weightChange</span><span class="o">=</span><span class="kc">false</span> <span class="c1">// enabling weights change dynamic</span>
+<span class="n">newWeightProb</span><span class="o">=</span><span class="mi">9</span> <span class="c1">// probability of changing plans for each user at the end of each run: (random.nextInt(newWeightProb) + 1) == 1</span>
+
+<span class="n">GCFChangeProb</span><span class="o">=</span><span class="mi">9</span> <span class="c1">// probability of changing the globalCostFunction at the end of each run: (random.nextInt(GFCChangeProb) + 1) == 1). If `null` no changes are made.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-epos-live-with-dynamics">
+<h3>Running EPOS Live with Dynamics:<a class="headerlink" href="#running-epos-live-with-dynamics" title="Permalink to this headline">¶</a></h3>
+<p>The only difference between running EPOS live with dynamics to the normal live version (<a class="reference internal" href="LiveRun.html#live-run-chapter"><span class="std std-ref">Live Experiment</span></a>), is that the EPOS nodes should be created using the <code class="docutils literal notranslate"><span class="pre">experiment.LivePeerTestbedExperiment</span></code> class. To do so, few parameters in the code need to change in <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Entities.GatewayServer</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="livepeertestbedexperiment-gw">
+<div class="code-block-caption"><span class="caption-text">Running EPOS live with dynamics - parameter change in GatewayServer</span><a class="headerlink" href="#livepeertestbedexperiment-gw" title="Permalink to this code">¶</a></div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// line 94</span>
+<span class="n">String</span> <span class="n">confPath</span> <span class="o">=</span> <span class="n">rootPath</span> <span class="o">+</span> <span class="n">File</span><span class="p">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">&quot;conf&quot;</span> <span class="o">+</span> <span class="n">File</span><span class="p">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">&quot;LivePeerTestbed.properties&quot;</span><span class="p">;</span>
+
+<span class="c1">// line 170</span>
+<span class="n">String</span> <span class="n">command</span> <span class="o">=</span> <span class="s">&quot;screen -S peer&quot;</span> <span class="o">+</span> <span class="n">UsersStatus</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">index</span> <span class="o">+</span> <span class="s">&quot; -d -m java -Xmx2048m -jar LivePeerNode.jar &quot;</span> <span class="o">+</span> <span class="n">UsersStatus</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">index</span> <span class="o">+</span>
+                              <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bootstrapPort</span> <span class="o">+</span> <span class="n">UsersStatus</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="na">index</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">numUsersPerRun</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentRun</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">currentSim</span><span class="p">;</span>
+
+
+<span class="c1">// line 469</span>
+<span class="n">String</span> <span class="n">command</span> <span class="o">=</span> <span class="s">&quot;screen -S peer&quot;</span> <span class="o">+</span> <span class="n">UsersStatus</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="p">).</span><span class="na">index</span> <span class="o">+</span> <span class="s">&quot; -d -m java -Xmx2048m -jar LivePeerNode.jar &quot;</span> <span class="o">+</span> <span class="n">UsersStatus</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="p">).</span><span class="na">index</span> <span class="o">+</span>
+              <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">peerPort</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">numUsersPerRun</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">currentRun</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">initRun</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">currentSim</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Additionally, in <code class="docutils literal notranslate"><span class="pre">liveRunUtils.Entities.User</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="livepeertestbedexperiment-user">
+<div class="code-block-caption"><span class="caption-text">Running EPOS live with dynamics - parameter change in User</span><a class="headerlink" href="#livepeertestbedexperiment-user" title="Permalink to this code">¶</a></div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="c1">// line 85</span>
+<span class="n">String</span> <span class="n">confPath</span> <span class="o">=</span> <span class="n">rootPath</span> <span class="o">+</span> <span class="n">File</span><span class="p">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">&quot;conf&quot;</span> <span class="o">+</span> <span class="n">File</span><span class="p">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">&quot;LivePeerTestbed.properties&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>After these two change, the <code class="docutils literal notranslate"><span class="pre">Gateway.jar</span></code> and <code class="docutils literal notranslate"><span class="pre">User.jar</span></code> files need to be rebuilt, and then the following command executed: <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-jar</span> <span class="pre">EPOSRequester.jar</span></code>. Everything else remains the same as <a class="reference internal" href="LiveRun.html#live-run-chapter"><span class="std std-ref">Live Experiment</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="LiveRun.html" class="btn btn-neutral float-left" title="Live Experiment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Evangelos Pournara, Jovan Nikolic &amp; Farzam Fanitabasi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+     .wy-nav-side {
+    
+        background: #3b6734;
+        color:#eee;
+        
+     }
+
+
+    .wy-side-nav-search {
+    
+        background: #75956c;
+        
+    }
+
+    .wy-menu-vertical li.current{
+        background: #d6dfd3;
+    }
+
+    .wy-menu-vertical a:active{
+        background-color:rgb(72,172,75);
+    }
+
+    .fa-home::before, .icon-home::before {
+        content:"";
+    }
+
+    a.icon-home {
+        width: 50%;
+        margin-left: -6px;
+        font-size: 0%;
+        content:url("http://epos-net.org/wp-content/uploads/2016/10/logo_v8_export.png");
+    }
+
+    .wy-nav-content{
+        max-width: initial;
+    }
+  </style>
+
+
+</body>
+</html>
