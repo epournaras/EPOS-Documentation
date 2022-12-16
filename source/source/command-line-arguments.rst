@@ -38,6 +38,12 @@ Parameters controlling the Objectives:
 
   - ``beta``: Weight of local cost in multi-objective function. 0<= ``beta`` <= 1. Default is 0. For more information, see :ref:`multi-objective-optimization-chapter`.
 
+ 
+ - ``behaviours``: The local cost and unfairness weights: ``different`` for different values that are read from a file,``same``for similar weights to all agents that are read from properties.
+
+ 
+ - ``agentsBehavioursPath``: A path to a file with the behaviours in three columns, agent index, unfairness weight, and local cost weight. The instances of the file must be of size ``numAgents ``. 
+
   - ``globalCostFunction``: The global cost function to be used. Options are (case-sensitive): ``VAR`` for :ref:`global-cost-function-variance`, ``XCORR`` for :ref:`global-cost-function-cross-correlation`, ``RSS`` for :ref:`global-cost-function-rss` and ``RMSE`` for :ref:`global-cost-function-rmse`. Default is ``VAR``. ``XCORR`` uses :ref:`global-cost-function-scaling-standard` by definition, ``RMSE`` has its own way of scaling and ``RSS`` uses standard normalization by default, but can use others. For more information, see :ref:`global-cost-function-chapter`.
 
   - ``scaling``: The scaling technique to be used with ``RSS`` function, ignored otherwise. Options are (case-sensitive): ``STD`` for :ref:`global-cost-function-scaling-standard`, ``MIN-MAX`` for :ref:`global-cost-function-scaling-min-max` and ``UNIT-LENGTH`` for :ref:`global-cost-function-scaling-unit-length`. Default is ``STD``. For more information, see :ref:`global-cost-function-scaling`.
