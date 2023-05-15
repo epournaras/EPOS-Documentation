@@ -73,5 +73,22 @@ And these are the incorrect ways:
    goalSignalPath="datasets"                                                      // the name of the directory containing the file is invalid
    goalSignalPath="/home/user/Documents/EPOS-project/datasets/incentive-signal"   // the file extension must be specified
 
+.. _input-hard-constraint:
 
+Hard Constraint
+=================
 
+EPOS is able to set hard constraints for both plans and costs of agents. When setting the hard constraints, agents will select the plans that do not violate the constraints. If more than one plan satisfies, agents will choose the one following the soft constraints, i.e., the plan with minimum global complex cost. If no plan satisfies, agents will choose the plan that they choose in the last iteration.
+
+The hard constraint for plans is used within EPOS via the parameter ``HARD_PLANS`` in ``constraint``, and via ``constraintPlansPath`` by setting **a path** to a file containing the hard constraint. The file has the dimension same as the ``planDim``, and at least **two** rows. The first row indicates the values of hard constraints for plans, each is for the corresponding dimension of the global response. The second row indicates the decision for plans, where **0**: ignore constraints, **1**: no larger than constraints, **2**: no less than constraints, **3**: equal to constraints. If setting a **range** constraint (upper and lower bound of hard constraint for plans), the file should set **four** rows, two (values and decisions) for upper and two for lower.
+
+The hard constraint for costs is used within EPOS via the parameter ``HARD_COSTS`` in ``constraint``, and via ``constraintCostsPath`` by setting **a path** to a file containing the hard constraint. The file has two rows, one for values and the other for decisions, same as the above. And the file has three columns: **local cost** (1st column), **global cost** (2nd column) and **global complex cost** (3rd column).
+
+Both of the hard constraint files, for example, are provided correctly as follows:
+
+.. code-block:: java
+
+   constraintPlansPath="/home/user/Documents/EPOS-project/datasets/hard_constraints_plans.csv"     // full path
+   constraintPlansPath="datasets/hard_constraints_plans.csv"                                       // relative path
+   constraintCostsPath="/home/user/Documents/EPOS-project/datasets/hard_constraints_costs.csv"     // full path
+   constraintCostsPath="datasets/hard_constraints_costs.csv"                                       // relative path

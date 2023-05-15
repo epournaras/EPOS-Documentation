@@ -69,6 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reorganization-logger">Reorganization Logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#weights-alpha-beta-logger">Weights, Alpha, Beta Logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#position-logger">Position Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hard-constraint-logger">Hard Constraint Logger</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="LiveRun.html">Live Experiment</a></li>
@@ -114,6 +115,8 @@
 <span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="w">                 </span><span class="n">WLogger</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WeightsLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">getWeightsPath</span><span class="p">());</span>
 <span class="n">ReorganizationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="w">          </span><span class="n">RLogger</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReorganizationLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">getReorganizationPath</span><span class="p">());</span>
 <span class="n">PositionLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="w">                </span><span class="n">PLogger</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PositionLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">getAgentsMappingOderPath</span><span class="p">(),</span><span class="n">Configuration</span><span class="p">.</span><span class="na">numAgents</span><span class="p">);</span>
+<span class="n">HardConstraintLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="w">          </span><span class="n">HCLogger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HardConstraintLogger</span><span class="o">&lt;</span><span class="n">Vector</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">getHardConstraintPath</span><span class="p">(),</span><span class="n">Objects</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">constraint</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HARD_COSTS&quot;</span><span class="p">));</span>
+
 
 <span class="n">GCLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
 <span class="n">LCLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
@@ -126,6 +129,7 @@
 <span class="n">WLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
 <span class="n">RLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
 <span class="n">PLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
+<span class="n">HCLogger</span><span class="p">.</span><span class="na">setRun</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="na">permutationID</span><span class="p">);</span>
 
 
 
@@ -140,6 +144,7 @@
 <span class="n">loggingProvider</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">WLogger</span><span class="p">);</span>
 <span class="n">loggingProvider</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">RLogger</span><span class="p">);</span>
 <span class="n">loggingProvider</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">PLogger</span><span class="p">);</span>
+<span class="n">loggingProvider</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">HCLogger</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>In order to add / develop new loggers to EPOS, the <code class="docutils literal notranslate"><span class="pre">GlobalCostLogger</span></code> template is recommended. In addition to this, each logger, when their <code class="docutils literal notranslate"><span class="pre">print</span></code> function is called, they write their data on output files with address defined in <code class="docutils literal notranslate"><span class="pre">config.Configuration</span></code> class.</p>
@@ -229,6 +234,18 @@
 <p>This logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.PositionLogger.java</span></code>. For each EPOS run, the logger creates a new row that contains the agent position in the tree topology in each iteration. The .csv file is a matrix showing the <strong>iteration number</strong> and the <strong>agent position</strong> in each iteration.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/PL.svg"><img alt="alternate text" height="720" src="_images/PL.svg" width="1280" /></a>
+</figure>
+</section>
+<section id="hard-constraint-logger">
+<h2>Hard Constraint Logger<a class="headerlink" href="#hard-constraint-logger" title="Permalink to this heading"></a></h2>
+<p>This logger is implemented in <code class="docutils literal notranslate"><span class="pre">agent.logging.HardConstraintLogger.java</span></code> and by default, it records whether the global response (if hard constraints for plans) or the costs (if hard constraints for costs) violate the hard constraints for every EPOS repetition and in every iteration: <strong>1</strong> is violation, and <strong>0</strong> is no violation. The output file is named <code class="docutils literal notranslate"><span class="pre">hard-constraint-violation.csv</span></code> and can be found in this path: <code class="docutils literal notranslate"><span class="pre">~/output/</span></code>.</p>
+<p>For hard constraints for plans:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/HCP.svg"><img alt="alternate text" height="8640" src="_images/HCP.svg" width="15360" /></a>
+</figure>
+<p>For hard constraints for costs:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/HCC.svg"><img alt="alternate text" height="8640" src="_images/HCC.svg" width="15360" /></a>
 </figure>
 </section>
 </section>

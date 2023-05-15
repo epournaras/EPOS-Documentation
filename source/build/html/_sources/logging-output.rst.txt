@@ -20,6 +20,8 @@ The logging functions in EPOS are extensive and they track, record, and report i
   WeightsLogger<Vector>                 WLogger   = new WeightsLogger<Vector>(Configuration.getWeightsPath());
   ReorganizationLogger<Vector>          RLogger   = new ReorganizationLogger<Vector>(Configuration.getReorganizationPath());
   PositionLogger<Vector>                PLogger   = new PositionLogger<Vector>(Configuration.getAgentsMappingOderPath(),Configuration.numAgents);
+  HardConstraintLogger<Vector>          HCLogger = new HardConstraintLogger<Vector>(Configuration.getHardConstraintPath(),Objects.equals(Configuration.constraint, "HARD_COSTS"));
+
         
   GCLogger.setRun(Configuration.permutationID);
   LCLogger.setRun(Configuration.permutationID);
@@ -32,6 +34,7 @@ The logging functions in EPOS are extensive and they track, record, and report i
   WLogger.setRun(Configuration.permutationID);
   RLogger.setRun(Configuration.permutationID);
   PLogger.setRun(Configuration.permutationID);
+  HCLogger.setRun(Configuration.permutationID);
 
 
         
@@ -46,6 +49,7 @@ The logging functions in EPOS are extensive and they track, record, and report i
   loggingProvider.add(WLogger);
   loggingProvider.add(RLogger);
   loggingProvider.add(PLogger);
+  loggingProvider.add(HCLogger);
 
 
 In order to add / develop new loggers to EPOS, the ``GlobalCostLogger`` template is recommended. In addition to this, each logger, when their ``print`` function is called, they write their data on output files with address defined in ``config.Configuration`` class.
@@ -185,4 +189,20 @@ This logger is implemented in ``agent.logging.PositionLogger.java``. For each EP
    :align: center
 
 
+Hard Constraint Logger
+=====================
+This logger is implemented in ``agent.logging.HardConstraintLogger.java`` and by default, it records whether the global response (if hard constraints for plans) or the costs (if hard constraints for costs) violate the hard constraints for every EPOS repetition and in every iteration: **1** is violation, and **0** is no violation. The output file is named ``hard-constraint-violation.csv`` and can be found in this path: ``~/output/``.
 
+For hard constraints for plans:
+
+.. figure:: HCP.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+For hard constraints for costs:
+
+.. figure:: HCC.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center

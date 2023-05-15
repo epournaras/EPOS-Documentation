@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="960pt" height="540pt" viewBox="0 0 960 540">
+<defs>
+<clipPath id="clip_0">
+<path transform="matrix(1,0,0,-1,0,540)" d="M0 .00001206994H959.76V540H0Z"/>
+</clipPath>
+</defs>
+<g clip-path="url(#clip_0)">
+<path transform="matrix(1,0,0,-1,0,540)" d="M0 540H959.76V.00001206994H0Z" fill="#ffffff"/>
+</g>
+<path transform="matrix(1,0,0,-1,0,540)" d="M0 540H960V.0000140816H0Z" fill="#404040"/>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.78535 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 89.06665 155.7333">Run</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 98.16035 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0">,</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 106.1604 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 44.266656 81.23998 140.61331 184.87998 244.2533 281.22663 318.19996 384.8666">Iteration</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 214.5353 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 33.333326 114.58664 181.2533 240.62662 299.99995">,Local</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 303.4104 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 59.37332 126.03997 178.11997 215.09329 248.42662 344.7866 381.75993 448.42658 515.0932 574.46658">cost,Global</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 458.1603 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 59.37332 126.03997 178.11997 215.09329 248.42662 344.7866 381.75993 448.42658 515.0932 574.46658">cost,Global</tspan></text>
+<text fill="#92d050" xml:space="preserve" transform="matrix(.24 0 -0 .24 612.9103 844.07998)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 59.37332 126.03997 229.67995 296.3466 333.31993 392.69325 459.3599 492.6932 552.0665 618.73318 670.8131">complex cost</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.78543 891.6)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 66.66665 99.99997 166.66663 199.99996 266.6666 299.9999 366.66658 399.99989">0,0,1,0,0</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.78543 938.88)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 66.66665 99.99997 166.66663 199.99996 266.6666 299.9999 366.66658 399.99989">0,1,1,0,0</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.78543 984.95999)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 66.66665 99.99997 166.66663 199.99996 266.6666 299.9999 366.66658 399.99989">0,2,1,0,0</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.78543 1027.2)" font-size="133.3333" font-family="TimesNewRomanPSMT"><tspan y="-2250" x="0 66.66665 99.99997 166.66663 199.99996 266.6666 299.9999 366.66658 399.99989">0,3,0,0,0</tspan></text>
+<path transform="matrix(.00007874016,0,0,.00007874016,44.63953,270)" stroke-width="12700" stroke-linecap="butt" stroke-miterlimit="8" stroke-linejoin="miter" fill="none" stroke="#92d050" d="M0 0H644707V566430H0Z"/>
+<path transform="matrix(.00007874016,0,0,.00007874016,104.0785,270.1724)" stroke-width="12700" stroke-linecap="butt" stroke-miterlimit="8" stroke-linejoin="miter" fill="none" stroke="#92d050" d="M0 0H1377335V576189H0Z"/>
+<path transform="matrix(.00007874016,0,0,.00007874016,221.2047,270)" stroke-width="12700" stroke-linecap="butt" stroke-miterlimit="8" stroke-linejoin="miter" fill="none" stroke="#92d050" d="M0 0H7171982V578380H0Z"/>
+<path transform="matrix(1,0,0,-1,0,540)" d="M71.14613 269.9631 76.00085 417.9525 73.75206 418.0263 68.89734 270.0369ZM78.21274 416.754 75.06087 423.611 71.46637 416.9753Z" fill="#92d050"/>
+<path transform="matrix(1,0,0,-1,0,540)" d="M159.4055 269.5974 184.8562 391.3445 182.6538 391.8049 157.2031 270.0578ZM186.8284 389.7829 184.9061 397.0807 180.2213 391.1641Z" fill="#92d050"/>
+<path transform="matrix(1,0,0,-1,0,540)" d="M504.6289 269.6307 520.8379 316.2716 518.7126 317.0102 502.5036 270.3693ZM522.594 314.4703 521.6218 321.9542 516.218 316.6862Z" fill="#92d050"/>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 54.62083 610.8)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 52.60502 78.14336 170.29839">Sim </tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 44.89082 644.88)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 25.51501 85.91336 146.3117 202.39339">index</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 136.8285 637.44)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 28.641678 66.03336 123.84172 161.70008 215.19176 253.7501 279.24177 340.2001 400.57514">Iteration </tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 154.7335 671.28)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 25.51501 85.91336 146.3117 202.39339">index</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 344.2743 712.56)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 64.586688 90.090038 151.06006 176.5634 230.06676 268.63679 294.1401 355.11015 415.49684 442.05018 503.0202 537.9735 564.52688 624.9135 679.58358 717.9203 778.30697">Violation of hard </tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 537.4643 712.56)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 48.33502 109.27004 169.7384 213.64009 252.17511 290.01014 344.7618 370.3468 429.6485 468.1835 513.4852 540.0036 572.00527 632.9403 673.1087">constraints for </tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.24 0 -0 .24 411.3193 746.4)" font-size="116.6667" font-family="Calibri"><tspan y="-2250" x="0 38.54668 98.910037 137.34004 195.13672 252.93341 279.4634 318.0101 369.62345 429.9868 487.78349 533.0968 559.62686 620.57357 655.5036 682.0336 730.3803 791.327 835.24038 873.78707">three types of costs</tspan></text>
+</svg>

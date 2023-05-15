@@ -19,6 +19,9 @@ The logging functions in EPOS are extensive and they track, record, and report i
   GlobalComplexCostLogger<Vector>       GCXLogger = new GlobalComplexCostLogger<Vector>(Configuration.getGlobalComplexCostPath());
   WeightsLogger<Vector>                 WLogger   = new WeightsLogger<Vector>(Configuration.getWeightsPath());
   ReorganizationLogger<Vector>          RLogger   = new ReorganizationLogger<Vector>(Configuration.getReorganizationPath());
+  PositionLogger<Vector>                PLogger   = new PositionLogger<Vector>(Configuration.getAgentsMappingOderPath(),Configuration.numAgents);
+  HardConstraintLogger<Vector>          HCLogger = new HardConstraintLogger<Vector>(Configuration.getHardConstraintPath(),Objects.equals(Configuration.constraint, "HARD_COSTS"));
+
         
   GCLogger.setRun(Configuration.permutationID);
   LCLogger.setRun(Configuration.permutationID);
@@ -30,6 +33,9 @@ The logging functions in EPOS are extensive and they track, record, and report i
   GCXLogger.setRun(Configuration.permutationID);
   WLogger.setRun(Configuration.permutationID);
   RLogger.setRun(Configuration.permutationID);
+  PLogger.setRun(Configuration.permutationID);
+  HCLogger.setRun(Configuration.permutationID);
+
 
         
   loggingProvider.add(GCLogger);
@@ -42,6 +48,8 @@ The logging functions in EPOS are extensive and they track, record, and report i
   loggingProvider.add(GCXLogger);
   loggingProvider.add(WLogger);
   loggingProvider.add(RLogger);
+  loggingProvider.add(PLogger);
+  loggingProvider.add(HCLogger);
 
 
 In order to add / develop new loggers to EPOS, the ``GlobalCostLogger`` template is recommended. In addition to this, each logger, when their ``print`` function is called, they write their data on output files with address defined in ``config.Configuration`` class.
@@ -161,10 +169,40 @@ This logger is implemented in ``agent.logging.ReorganizationLogger.java``. For e
 Weights, Alpha, Beta Logger
 ===========================
 
-The weights logger is implemented in ``agent.logging.WeightsLogger.java`` and by default, it records the weights defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``weights-alpha-beta.csv`` and can be found in this path: ``~/output/``. The .csv file is a matrix showing :math:`\alpha`, :math:`\beta` and :math:`\gamma = 1 - \alpha - \beta` for every iteration.
+The weights logger is implemented in ``agent.logging.WeightsLogger.java`` and by default, it records the weights defined in :ref:`multi-objective-optimization-chapter`. The output file is named ``weights-alpha-beta.csv`` and can be found in this path: ``~/output/``. The .csv file is a matrix showing the ** agent Index **, :math:`\alpha`, :math:`\beta` and :math:`\gamma = 1 - \alpha - \beta` for every iteration.
 
 
-.. figure:: WE.pdf.svg
+.. figure:: WL.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+
+Position Logger
+=====================
+This logger is implemented in ``agent.logging.PositionLogger.java``. For each EPOS run, the logger creates a new row that contains the agent position in the tree topology in each iteration. The .csv file is a matrix showing the **iteration number** and the **agent position** in each iteration.
+
+
+.. figure:: PL.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+
+Hard Constraint Logger
+=====================
+This logger is implemented in ``agent.logging.HardConstraintLogger.java`` and by default, it records whether the global response (if hard constraints for plans) or the costs (if hard constraints for costs) violate the hard constraints for every EPOS repetition and in every iteration: **1** is violation, and **0** is no violation. The output file is named ``hard-constraint-violation.csv`` and can be found in this path: ``~/output/``.
+
+For hard constraints for plans:
+
+.. figure:: HCP.svg
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
+
+For hard constraints for costs:
+
+.. figure:: HCC.svg
    :scale: 100 %
    :alt: alternate text
    :align: center
