@@ -88,7 +88,7 @@ Both of the hard constraint files, for example, are provided correctly as follow
 
 .. code-block:: java
 
-   constraintPlansPath="/home/user/Documents/EPOS-project/datasets/hard_constraints_plans.csv"     // full path
-   constraintPlansPath="datasets/hard_constraints_plans.csv"                                       // relative path
-   constraintCostsPath="/home/user/Documents/EPOS-project/datasets/hard_constraints_costs.csv"     // full path
-   constraintCostsPath="datasets/hard_constraints_costs.csv"                                       // relative path
+   constraintPlansPath="/home/user/Documents/EPOS-project/datasets/hard-constraints-plans.csv"     // full path
+   constraintPlansPath="datasets/hard-constraints-plans.csv"                                       // relative path
+   constraintCostsPath="/home/user/Documents/EPOS-project/datasets/hard-constraints-costs.csv"     // full path
+   constraintCostsPath="datasets/hard-constraints-costs.csv"                                       // relative path
